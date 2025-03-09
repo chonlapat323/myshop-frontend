@@ -1,0 +1,43 @@
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1px;
+}
+
+.slider-item {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+
+.slider-image {
+  position: absolute; /* ทำให้รูปภาพครอบคลุมพื้นที่ */
+  top: 0;
+  left: 0;
+  bottom: 0px;
+  width: 100vw; /* ทำให้รูปเต็มหน้าจอ */
+  height: 100%; /* ครอบคลุมความสูงของ container */
+  object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่โดยไม่ผิดสัดส่วน */
+  object-position: bottom;
+}
+
+.slider-content {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  background: rgba(220, 220, 220, 0.5);
+  color: black;
+  padding: 12px 16px;
+  border-radius: 5px;
+  max-width: 300px;
+  text-align: right;
+}
+
+.slider-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.slider-description {
+  font-size: 1rem;
+}

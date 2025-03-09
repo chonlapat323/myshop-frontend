@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import theme from "./theme/themeConfig";
+
 import "./globals.css";
+import { ConfigProvider } from "antd";
+import Navbar from "./(components)/navbar/page";
+import Footer from "./(components)/footer/page";
+import {
+  faFacebook,
+  faInstagram,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,10 +33,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menuItems = [
+    { key: "1", label: "PRODUCT", href: "/product" },
+    { key: "2", label: "ABOUT US", href: "/about" },
+    { key: "3", label: "CONTACTS", href: "/contacts" },
+  ];
+  const info = {
+    address: "156 E 2nd St, New York, NY 10009, United States",
+    email: "info@chair.com",
+    phone: "+6600088888",
+    socialLinks: [
+      { icon: faFacebook, href: "https://facebook.com" },
+      { icon: faInstagram, href: "https://instagram.com" },
+      { icon: faYoutube, href: "https://youtube.com" },
+    ],
+  };
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} `}>
+        <ConfigProvider theme={theme}>
+          <AntdRegistry>
+            <Navbar menuItems={menuItems} />
+            {children}
+            <Footer menuItems={menuItems} info={info}></Footer>
+          </AntdRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );

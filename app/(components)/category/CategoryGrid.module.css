@@ -1,0 +1,29 @@
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 16px;
+  grid-template-areas:
+    "living-room bedroom"
+    "bathroom kitchen";
+}
+
+.category-content {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(220, 220, 220, 0.5); /* ทำให้เหมือน Slide */
+  color: black;
+  padding: 12px 16px;
+  border-radius: 5px;
+  max-width: 200px;
+  text-align: left;
+}
+
+.category-image {
+  object-position: bottom;
+}
+
+.category-image-rb {
+  object-position: right bottom;
+}
