@@ -83,12 +83,28 @@ export default function Home() {
       link: "/product/4",
     },
   ];
+
+  const collections = [
+    {
+      title: "New collection",
+      subtitle: "HALF & HALF CHAIRS",
+      image: "/images/showcase/1.jpg",
+      link: "#",
+    },
+    {
+      title: "Trends",
+      subtitle: "WARM ESSENTIALS",
+      image: "/images/showcase/2.jpg",
+      link: "#",
+    },
+    
+  ];
   return (
     <>
       <Slider slides={slidesData} />
       <CategoryGrid />
       <Bestsellers products={products} />
-      <ShowcaseGrid />
+      <ShowcaseGrid collections={collections} />
     </>
   );
 }
