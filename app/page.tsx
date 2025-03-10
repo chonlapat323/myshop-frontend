@@ -1,6 +1,6 @@
 import Bestsellers from "./(components)/bestsellers/page";
 import CategoryGrid from "./(components)/category/page";
-import Footer from "./(components)/footer/page";
+import ShowcaseGrid from "./(components)/ShowcaseGrid/page";
 import Slider from "./(components)/slide/page";
 
 export default function Home() {
@@ -88,6 +88,7 @@ export default function Home() {
       <Slider slides={slidesData} />
       <CategoryGrid />
       <Bestsellers products={products} />
+      <ShowcaseGrid />
     </>
   );
 }
