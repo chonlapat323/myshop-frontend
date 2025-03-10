@@ -1,6 +1,6 @@
 import Bestsellers from "./(components)/bestsellers/page";
 import CategoryGrid from "./(components)/category/page";
-import Footer from "./(components)/footer/page";
+import ShowcaseGrid from "./(components)/ShowcaseGrid/page";
 import Slider from "./(components)/slide/page";
 
 export default function Home() {
@@ -83,11 +83,28 @@ export default function Home() {
       link: "/product/4",
     },
   ];
+
+  const collections = [
+    {
+      title: "New collection",
+      subtitle: "HALF & HALF CHAIRS",
+      image: "/images/showcase/1.jpg",
+      link: "#",
+    },
+    {
+      title: "Trends",
+      subtitle: "WARM ESSENTIALS",
+      image: "/images/showcase/2.jpg",
+      link: "#",
+    },
+    
+  ];
   return (
     <>
       <Slider slides={slidesData} />
       <CategoryGrid />
       <Bestsellers products={products} />
+      <ShowcaseGrid collections={collections} />
     </>
   );
 }
