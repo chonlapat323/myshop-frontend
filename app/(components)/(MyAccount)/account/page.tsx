@@ -46,15 +46,14 @@ export default function MyAccount() {
   return (
     <section className="max-w-6xl mx-auto px-4 py-10 mt-12">
       {/* ✅ Breadcrumbs */}
-      <Breadcrumb className="mb-4 text-gray-500">
-        <Breadcrumb.Item>
-          <Link href="/">Home</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>My Account</Breadcrumb.Item>
-        <Breadcrumb.Item>
-          {menuItems.find((item) => item.key === selectedMenu)?.label}
-        </Breadcrumb.Item>
-      </Breadcrumb>
+      <Breadcrumb
+        className="mb-4 text-gray-500"
+        items={[
+          { title: <Link href="/">Home</Link> },
+          { title: "My Account" },
+          { title: menuItems.find((item) => item.key === selectedMenu)?.label },
+        ]}
+      />
 
       {/* ✅ Mobile Menu Bar */}
       <div className="md:hidden flex items-center justify-between bg-gray-100 p-4">
