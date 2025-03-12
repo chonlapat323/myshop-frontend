@@ -50,12 +50,27 @@ export default function ManageAddress() {
     phone: "",
     isDefault: false,
   });
+  const [newAddressErrors, setNewAddressErrors] = useState<{
+    // State สำหรับเก็บ error messages
+    fullName: string;
+    addressLine: string;
+    city: string;
+    state: string;
+    zip: string;
+  }>({
+    fullName: "",
+    addressLine: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
   // Handle field changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!editData && !isAdding) return;
     if (isAdding) {
       setNewAddress({ ...newAddress, [e.target.name]: e.target.value });
+      setNewAddressErrors({ ...newAddressErrors, [e.target.name]: "" }); // Clear error when typing
     } else {
       setEditData({ ...editData!, [e.target.name]: e.target.value });
     }
@@ -73,7 +88,44 @@ export default function ManageAddress() {
 
   // Save New Address
   const handleSaveNew = () => {
-    if (!newAddress.fullName || !newAddress.addressLine) return;
+    // Reset errors ก่อนตรวจสอบ
+    setNewAddressErrors({
+      fullName: "",
+      addressLine: "",
+      city: "",
+      state: "",
+      zip: "",
+    });
+
+    let isValid = true;
+    const errors: any = {}; // Object to collect errors
+
+    if (!newAddress.fullName) {
+      errors.fullName = "Full Name is required";
+      isValid = false;
+    }
+    if (!newAddress.addressLine) {
+      errors.addressLine = "Address Line is required";
+      isValid = false;
+    }
+    if (!newAddress.city) {
+      errors.city = "City is required";
+      isValid = false;
+    }
+    if (!newAddress.state) {
+      errors.state = "State is required";
+      isValid = false;
+    }
+    if (!newAddress.zip) {
+      errors.zip = "ZIP Code is required";
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setNewAddressErrors(errors); // Set errors to state to display in UI
+      return; // Stop saving if not valid
+    }
+
     setAddresses([...addresses, { ...newAddress, id: Date.now() }]);
     setIsAdding(false);
     setNewAddress({
@@ -85,6 +137,14 @@ export default function ManageAddress() {
       zip: "",
       phone: "",
       isDefault: false,
+    });
+    setNewAddressErrors({
+      // เคลียร์ error messages เมื่อ save สำเร็จ
+      fullName: "",
+      addressLine: "",
+      city: "",
+      state: "",
+      zip: "",
     });
   };
 
@@ -103,6 +163,25 @@ export default function ManageAddress() {
     setEditingId(null);
     setEditData(null);
     setIsAdding(false);
+    setNewAddress({
+      // Reset newAddress state when canceling add mode
+      id: Date.now(),
+      fullName: "",
+      addressLine: "",
+      city: "",
+      state: "",
+      zip: "",
+      phone: "",
+      isDefault: false,
+    });
+    setNewAddressErrors({
+      // เคลียร์ error messages เมื่อ cancel
+      fullName: "",
+      addressLine: "",
+      city: "",
+      state: "",
+      zip: "",
+    });
   };
 
   return (
@@ -235,10 +314,104 @@ export default function ManageAddress() {
         <p className="text-gray-500">No saved addresses.</p>
       )}
 
-      {/* Add New Address Button */}
+      {/* Add New Address Form - ย้ายมาอยู่ด้านบน */}
+      {isAdding && (
+        <div className="mt-6 border p-4 rounded-md shadow-sm bg-white">
+          <h3 className="text-lg font-semibold mb-4">Add New Address</h3>
+          <div className="space-y-2">
+            <input
+              type="text"
+              name="fullName"
+              value={newAddress.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              className="w-full border px-3 py-2 rounded-md"
+            />
+            {newAddressErrors.fullName && ( // แสดง error message ถ้ามี error ของ fullName
+              <p className="text-red-500 text-sm">
+                {newAddressErrors.fullName}
+              </p>
+            )}
+            <input
+              type="text"
+              name="addressLine"
+              value={newAddress.addressLine}
+              onChange={handleChange}
+              placeholder="Address Line"
+              className="w-full border px-3 py-2 rounded-md"
+            />
+            {newAddressErrors.addressLine && ( // แสดง error message ถ้ามี error ของ addressLine
+              <p className="text-red-500 text-sm">
+                {newAddressErrors.addressLine}
+              </p>
+            )}
+            <div className="grid grid-cols-3 gap-2">
+              <input
+                type="text"
+                name="city"
+                value={newAddress.city}
+                onChange={handleChange}
+                placeholder="City"
+                className="border px-3 py-2 rounded-md"
+              />
+              {newAddressErrors.city && ( // แสดง error message ถ้ามี error ของ city
+                <p className="text-red-500 text-sm">{newAddressErrors.city}</p>
+              )}
+              <input
+                type="text"
+                name="state"
+                value={newAddress.state}
+                onChange={handleChange}
+                placeholder="State"
+                className="border px-3 py-2 rounded-md"
+              />
+              {newAddressErrors.state && ( // แสดง error message ถ้ามี error ของ state
+                <p className="text-red-500 text-sm">{newAddressErrors.state}</p>
+              )}
+              <input
+                type="text"
+                name="zip"
+                value={newAddress.zip}
+                onChange={handleChange}
+                placeholder="ZIP Code"
+                className="border px-3 py-2 rounded-md"
+              />
+              {newAddressErrors.zip && ( // แสดง error message ถ้ามี error ของ zip
+                <p className="text-red-500 text-sm">{newAddressErrors.zip}</p>
+              )}
+            </div>
+            <input
+              type="text"
+              name="phone"
+              value={newAddress.phone}
+              onChange={handleChange}
+              placeholder="Phone Number"
+              className="w-full border px-3 py-2 rounded-md"
+            />
+
+            {/* Save & Cancel Buttons for Add New Address */}
+            <div className="mt-3 flex gap-3">
+              <button
+                onClick={handleSaveNew}
+                className="bg-black text-white px-4 py-2 rounded-md text-sm cursor-pointer hover:bg-gray-800"
+              >
+                Save New
+              </button>
+              <button
+                onClick={handleCancel}
+                className="text-gray-500 hover:underline text-sm cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add New Address Button - ย้ายมาอยู่ด้านล่าง */}
       <button
         onClick={() => setIsAdding(true)}
-        className="mt-6 bg-black text-white px-6 py-2 rounded-md"
+        className="cursor-pointer mt-6 bg-black text-white px-6 py-2 rounded-md"
       >
         Add New Address
       </button>
