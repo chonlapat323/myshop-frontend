@@ -55,7 +55,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
 
       {/* ไอคอนขวาสุด & Hamburger Menu */}
       <div className="flex items-center gap-6">
-        <Link href="/profile" className="text-black! hover:text-gray-500!">
+        <Link href="/account" className="text-black! hover:text-gray-500!">
           <UserOutlined className="text-xl hidden! md:block! cursor-pointer" />
         </Link>
         <Link href="/cart" className="text-black! hover:text-gray-500!">
@@ -93,7 +93,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
           onClick={() => setIsOpen(false)}
         />
         <div className="flex items-center gap-6 mt-6">
-          <Link href="/profile" className="text-black! hover:text-gray-500!">
+          <Link href="/account" className="text-black! hover:text-gray-500!">
             <UserOutlined className="text-xl cursor-pointer text-black! hover:text-gray-500!" />
           </Link>
           <Link href="/cart" className="text-black! hover:text-gray-500!">
