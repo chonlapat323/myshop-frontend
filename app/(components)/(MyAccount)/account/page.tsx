@@ -91,7 +91,7 @@ export default function MyAccount() {
         </div>
 
         {/* ✅ Content Area + Breadcrumbs ด้านบน */}
-        <div className="w-full md:w-3/4 bg-white p-6 min-h-screen">
+        <div className="w-full md:w-3/4 bg-white md:mt-0 mt-6 min-h-screen">
           {renderContent()}
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function PersonalInfo() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
+    <div className="bg-white shadow-md rounded-lg p-6 w-full">
       <h2 className="text-2xl font-semibold mb-4">Personal Information</h2>
 
       {/* อัปโหลดรูป */}
