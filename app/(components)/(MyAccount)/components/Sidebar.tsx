@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 interface SidebarProps {
   isMenuOpen: boolean;
-  onClose: () => void; // ✅ รับ prop onClose
+  onClose: () => void;
 }
 
 const menuItems = [
