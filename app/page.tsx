@@ -97,7 +97,6 @@ export default function Home() {
       image: "/images/showcase/2.jpg",
       link: "#",
     },
-    
   ];
   return (
     <>

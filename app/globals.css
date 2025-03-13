@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+/* components/SteamingLoading.css หรือ Global CSS (globals.css, app.css) */
+
+.loading-container {
+  display: flex;
+  justify-content: center; /* จัด Spinner ให้อยู่ตรงกลางแนวนอน */
+  align-items: center; /* จัด Spinner ให้อยู่ตรงกลางแนวตั้ง */
+  min-height: 200px; /* กำหนดความสูงขั้นต่ำของ Container (ปรับได้ตามต้องการ) */
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); /* เส้นขอบ Spinner สีเทาอ่อน */
+  border-top-color: black; /* เส้นขอบด้านบนสีฟ้า */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  width: 50px; /* ขนาดความกว้างของ Spinner (ปรับได้) */
+  height: 50px; /* ขนาดความสูงของ Spinner (ปรับได้) */
+  animation: spin 1s linear infinite; /* Animation หมุน */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  } /* Animation หมุน 360 องศา */
+}

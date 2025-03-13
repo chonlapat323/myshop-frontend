@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 
@@ -22,68 +20,71 @@ interface Order {
   totalAmount: number;
 }
 
-const orders: Order[] = [
-  {
-    orderId: "R0374915036",
-    orderDate: "17 Nov 2023",
-    totalAmount: 3010,
-    orderItems: [
-      {
-        id: "1",
-        productName: "Netting Mykonos Tunic Chair",
-        seller: "Milly Thomas",
-        size: "S",
-        quantity: 1,
-        price: 1250,
-        status: "In Transit",
-        deliveryDate: "24 December 2023",
-        image: "/images/products/chair.jpg",
-      },
-      {
-        id: "2",
-        productName: "Embroidered Sequin Mini Chair",
-        seller: "Sonia Agrawal",
-        size: "S",
-        quantity: 1,
-        price: 1760,
-        status: "In Transit",
-        deliveryDate: "24 December 2023",
-        image: "/images/products/armchair.jpg",
-      },
-    ],
-  },
-  {
-    orderId: "R0374915037",
-    orderDate: "17 Nov 2023",
-    totalAmount: 3010,
-    orderItems: [
-      {
-        id: "1",
-        productName: "Netting Mykonos Tunic Chair",
-        seller: "Milly Thomas",
-        size: "S",
-        quantity: 1,
-        price: 1250,
-        status: "In Transit",
-        deliveryDate: "24 December 2023",
-        image: "/images/products/chair.jpg",
-      },
-      {
-        id: "2",
-        productName: "Embroidered Sequin Mini Chair",
-        seller: "Sonia Agrawal",
-        size: "S",
-        quantity: 1,
-        price: 1760,
-        status: "In Transit",
-        deliveryDate: "24 December 2023",
-        image: "/images/products/armchair.jpg",
-      },
-    ],
-  },
-];
+async function getOrderData() {
+  return [
+    {
+      orderId: "R0374915036",
+      orderDate: "17 Nov 2023",
+      totalAmount: 3010,
+      orderItems: [
+        {
+          id: "1",
+          productName: "Netting Mykonos Tunic Chair",
+          seller: "Milly Thomas",
+          size: "S",
+          quantity: 1,
+          price: 1250,
+          status: "In Transit",
+          deliveryDate: "24 December 2023",
+          image: "/images/products/chair.jpg",
+        },
+        {
+          id: "2",
+          productName: "Embroidered Sequin Mini Chair",
+          seller: "Sonia Agrawal",
+          size: "S",
+          quantity: 1,
+          price: 1760,
+          status: "In Transit",
+          deliveryDate: "24 December 2023",
+          image: "/images/products/armchair.jpg",
+        },
+      ],
+    },
+    {
+      orderId: "R0374915037",
+      orderDate: "17 Nov 2023",
+      totalAmount: 3010,
+      orderItems: [
+        {
+          id: "1",
+          productName: "Netting Mykonos Tunic Chair",
+          seller: "Milly Thomas",
+          size: "S",
+          quantity: 1,
+          price: 1250,
+          status: "In Transit",
+          deliveryDate: "24 December 2023",
+          image: "/images/products/chair.jpg",
+        },
+        {
+          id: "2",
+          productName: "Embroidered Sequin Mini Chair",
+          seller: "Sonia Agrawal",
+          size: "S",
+          quantity: 1,
+          price: 1760,
+          status: "In Transit",
+          deliveryDate: "24 December 2023",
+          image: "/images/products/armchair.jpg",
+        },
+      ],
+    },
+  ];
+}
 
-export default function MyOrders() {
+export default async function MyOrders() {
+  const orders = await getOrderData();
   return (
     <section className="max-w-6xl mx-auto  md:py-0 py-4">
       {/* ✅ Header */}
