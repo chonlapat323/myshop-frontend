@@ -55,6 +55,7 @@ export default function RootLayout({
           <AntdRegistry>
             <Navbar menuItems={menuItems} />
             {children}
+
             <Footer menuItems={menuItems} info={info}></Footer>
           </AntdRegistry>
         </ConfigProvider>

@@ -29,9 +29,49 @@ const categories = [
     image: "/images/category/kc1.jpg",
     link: "/kitchen",
   },
+  {
+    id: 5,
+    title: "KITCHEN",
+    image: "/images/category/lvr1.jpg",
+    link: "/kitchen",
+  },
+  {
+    id: 6,
+    title: "KITCHEN",
+    image: "/images/category/bthr1.jpg",
+    link: "/kitchen",
+  },
+  {
+    id: 7,
+    title: "KITCHEN",
+    image: "/images/category/br2.jpg",
+    link: "/kitchen",
+  },
+  {
+    id: 8,
+    title: "KITCHEN",
+    image: "/images/category/bthr1.jpg",
+    link: "/kitchen",
+  },
+  {
+    id: 9,
+    title: "KITCHEN",
+    image: "/images/category/lvr1.jpg",
+    link: "/kitchen",
+  },
+  {
+    id: 10,
+    title: "KITCHEN",
+    image: "/images/category/br2.jpg",
+    link: "/kitchen",
+  },
 ];
 
-export default function CategoryGrid() {
+export default function CategoryGrid(props: {
+  limit: number;
+  showText: Boolean;
+}) {
+  const { limit, showText } = props; // ✅ รับ limit และ showText จาก props
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -45,7 +85,10 @@ export default function CategoryGrid() {
 
   // ✅ คำนวณจำนวน `row` และ `col-span`
   const rows: number[][] = [];
-  const tempCategories = [...categories];
+  // ✅ กรอง categories ตาม limit ถ้า limit มีค่า
+  const categoriesToDisplay =
+    limit && limit > 0 ? categories.slice(0, limit) : categories;
+  const tempCategories = [...categoriesToDisplay];
 
   while (tempCategories.length > 0) {
     if (tempCategories.length === 1) {
@@ -61,8 +104,14 @@ export default function CategoryGrid() {
   }
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-8 md:px-16">
-      <h2 className="text-center text-2xl font-bold mb-6">SHOP BY ROOM</h2>
+    <section className="max-w-6xl mx-auto px-4 py-0 md:px-16">
+      <h2
+        className={`text-center text-2xl font-bold mb-6 ${
+          showText !== true ? "hidden" : ""
+        }`}
+      >
+        SHOP BY ROOM
+      </h2>
       <div className="grid grid-cols-3 gap-4 hidden">
         <div className="col-span-3 bg-red-500">Test</div>
         <div className="bg-blue-500 col-span-2">Item 1</div>
@@ -73,7 +122,8 @@ export default function CategoryGrid() {
           isMobile ? "grid-cols-1" : "grid-cols-3"
         } gap-4 auto-rows-[250px]`}
       >
-        {categories.map((category, index) => {
+        {/* ✅ เปลี่ยนจาก categories เป็น categoriesToDisplay ใน map */}
+        {categoriesToDisplay.map((category, index) => {
           let colSpan = "col-span-1"; // ✅ ค่าเริ่มต้น (Mobile)
 
           if (!isMobile) {
@@ -102,7 +152,7 @@ export default function CategoryGrid() {
               <img
                 src={category.image}
                 alt={category.title}
-                className="w-full h-full object-cover  transition-transform group-hover:scale-105"
+                className="w-full h-full object-cover object-bottom  transition-transform group-hover:scale-105"
               />
               <div className={styles["category-content"]}>
                 <h3 className="text-lg font-semibold">{category.title}</h3>
