@@ -3,73 +3,73 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./CategoryGrid.module.css";
-
+import Image from "next/image";
 const categories = [
   {
     id: 1,
     title: "LIVING ROOM",
     image: "/images/category/lvr1.jpg",
-    link: "/living-room",
+    link: "/catalog/living-room",
   },
   {
     id: 2,
     title: "BEDROOM",
     image: "/images/category/br2.jpg",
-    link: "/bedroom",
+    link: "/catalog/bedroom",
   },
   {
     id: 3,
     title: "BATHROOM",
     image: "/images/category/bthr1.jpg",
-    link: "/bathroom",
+    link: "/catalog/bathroom",
   },
   {
     id: 4,
     title: "KITCHEN",
     image: "/images/category/kc1.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 5,
     title: "KITCHEN",
     image: "/images/category/lvr1.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 6,
     title: "KITCHEN",
     image: "/images/category/bthr1.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 7,
     title: "KITCHEN",
     image: "/images/category/br2.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 8,
     title: "KITCHEN",
     image: "/images/category/bthr1.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 9,
     title: "KITCHEN",
     image: "/images/category/lvr1.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
   {
     id: 10,
     title: "KITCHEN",
     image: "/images/category/br2.jpg",
-    link: "/kitchen",
+    link: "/catalog/kitchen",
   },
 ];
 
 export default function CategoryGrid(props: {
   limit: number;
-  showText: Boolean;
+  showText: boolean;
 }) {
   const { limit, showText } = props; // ✅ รับ limit และ showText จาก props
   const [isMobile, setIsMobile] = useState(false);
@@ -149,9 +149,11 @@ export default function CategoryGrid(props: {
               href={category.link}
               className={`relative group row-span-1 ${colSpan}`}
             >
-              <img
+              <Image
                 src={category.image}
                 alt={category.title}
+                layout="fill"
+                objectFit="cover" // หรือ "contain" ขึ้นอยู่กับความต้องการของคุณ
                 className="w-full h-full object-cover object-bottom  transition-transform group-hover:scale-105"
               />
               <div className={styles["category-content"]}>

@@ -39,7 +39,7 @@ export default function PaymentMethodPage() {
 
   // Validate form fields
   const validate = (data: PaymentMethod) => {
-    let tempErrors: { [key: string]: string } = {};
+    const tempErrors: { [key: string]: string } = {};
 
     if (!data.cardHolder) tempErrors.cardHolder = "Cardholder name is required";
     if (!data.cardNumber || data.cardNumber.length < 16)

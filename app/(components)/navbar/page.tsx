@@ -9,7 +9,6 @@ import {
   ShoppingOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import type { MenuProps } from "antd";
 
 const { Header } = Layout;
 
@@ -19,68 +18,68 @@ interface NavbarProps {
 
 export default function Navbar({ menuItems }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
 
-  // ปิด Drawer อัตโนมัติเมื่อหน้าจอเปลี่ยนเป็น Desktop
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(false);
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
       }
     };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // สร้างเมนูที่ใช้ Link ของ Next.js
-  const menuItemsWithLinks: MenuProps["items"] = menuItems.map((item) => ({
-    key: item.key,
-    label: <Link href={item.href}>{item.label}</Link>, // ใช้ Link ของ Next.js
-  }));
-
   return (
-    <Header className="!bg-white shadow-md px-8 flex items-center justify-between fixed top-0 left-0 w-full z-50">
-      {/* โลโก้ */}
-      <div className="text-2xl font-bold">
+    <Header
+      className={`${
+        isFixed
+          ? "fixed shadow-lg !bg-white"
+          : "relative bg-transparent !bg-white"
+      } px-8 flex items-center justify-between top-0 left-0 w-full z-50 transition-all duration-300 border-b border-gray-200`}
+    >
+      {/* Logo */}
+      <div className="text-2xl font-bold cursor-pointer">
         <Link href="/">Chair.</Link>
       </div>
 
-      {/* เมนูปกติ (ซ่อนในมือถือ) */}
+      {/* Desktop Menu */}
       <Menu
         mode="horizontal"
-        className="hidden! md:flex! border-none! flex-1! justify-center! bg-transparent!"
-        items={menuItemsWithLinks}
-        onClick={() => setIsOpen(false)} // ปิดเมนูเมื่อคลิก
+        className="hidden! md:flex! border-none! flex-1 justify-center bg-transparent"
+        items={menuItems.map((item) => ({
+          key: item.key,
+          label: <Link href={item.href}>{item.label}</Link>,
+        }))}
       />
 
-      {/* ไอคอนขวาสุด & Hamburger Menu */}
+      {/* Icons and Hamburger Menu */}
       <div className="flex items-center gap-6">
         <Link
           href="/account"
-          onClick={() => setIsOpen(false)}
-          className="text-black! hover:text-gray-500!"
+          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
         >
-          <UserOutlined className="text-xl hidden! md:block! cursor-pointer" />
+          <UserOutlined className="text-xl" />
         </Link>
         <Link
           href="/cart"
-          onClick={() => setIsOpen(false)}
-          className="text-black! hover:text-gray-500!"
+          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
         >
-          <ShoppingOutlined className="text-xl hidden! md:block! cursor-pointer" />
+          <ShoppingOutlined className="text-xl cursor-pointer" />
         </Link>
 
-        {/* Hamburger Menu Button (เฉพาะในมือถือ) */}
         <MenuOutlined
           className="md:hidden! text-2xl cursor-pointer"
           onClick={() => setIsOpen(true)}
         />
       </div>
 
-      {/* Drawer (Slide from Right) */}
+      {/* Drawer */}
       <Drawer
         title={
-          <div className="flex justify-between items-center w-full ">
+          <div className="flex justify-between items-center w-full">
             <span>Menu</span>
             <Button
               type="text"
@@ -96,24 +95,18 @@ export default function Navbar({ menuItems }: NavbarProps) {
       >
         <Menu
           mode="vertical"
-          className="!bg-white !w-full! !border-r-0"
-          items={menuItemsWithLinks}
+          items={menuItems.map((item) => ({
+            key: item.key,
+            label: <Link href={item.href}>{item.label}</Link>,
+          }))}
           onClick={() => setIsOpen(false)}
         />
         <div className="flex items-center gap-6 mt-6">
-          <Link
-            href="/account"
-            onClick={() => setIsOpen(false)}
-            className="text-black! hover:text-gray-500!"
-          >
-            <UserOutlined className="text-xl cursor-pointer text-black! hover:text-gray-500!" />
+          <Link href="/account">
+            <UserOutlined className="text-xl cursor-pointer hover:text-gray-500" />
           </Link>
-          <Link
-            href="/cart"
-            onClick={() => setIsOpen(false)}
-            className="text-black! hover:text-gray-500!"
-          >
-            <ShoppingOutlined className="text-xl cursor-pointer text-black! hover:text-gray-500!" />
+          <Link href="/cart">
+            <ShoppingOutlined className="text-xl cursor-pointer text-black hover:text-gray-500" />
           </Link>
         </div>
       </Drawer>

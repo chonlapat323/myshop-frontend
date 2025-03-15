@@ -13,6 +13,14 @@ interface Address {
   isDefault: boolean;
 }
 
+interface AddressErrors {
+  fullName: string;
+  addressLine: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
 export default function ManageAddress() {
   const [addresses, setAddresses] = useState<Address[]>([
     {
@@ -98,7 +106,13 @@ export default function ManageAddress() {
     });
 
     let isValid = true;
-    const errors: any = {}; // Object to collect errors
+    const errors: AddressErrors = {
+      fullName: "",
+      addressLine: "",
+      city: "",
+      state: "",
+      zip: "",
+    };
 
     if (!newAddress.fullName) {
       errors.fullName = "Full Name is required";

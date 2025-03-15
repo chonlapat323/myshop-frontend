@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  ShoppingCartOutlined,
-  EyeOutlined,
-  HeartOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import Image from "next/image";
 
 interface Product {
   id: number;
@@ -19,7 +16,7 @@ interface BestsellersProps {
   products: Product[];
 }
 
-export default function Bestsellers({ products }: BestsellersProps) {
+export default function BestsellersClient({ products }: BestsellersProps) {
   const [hoveredPopup, setHoveredPopup] = useState<number | null>(null);
   const [cartPopup, setCartPopup] = useState<number | null>(null);
 
@@ -34,9 +31,11 @@ export default function Bestsellers({ products }: BestsellersProps) {
           >
             {/* รูปสินค้า (แนวตั้ง) */}
             <div className="w-full aspect-[3/4] overflow-hidden">
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
+                width={300}
+                height={400}
                 className="w-full h-full object-cover transition-transform group-hover:scale-105"
               />
             </div>
@@ -64,8 +63,8 @@ export default function Bestsellers({ products }: BestsellersProps) {
                   <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-[10px] px-2 py-[2px] rounded shadow-md text-center whitespace-nowrap">
                     Add to Cart
                     <div
-                      className="absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0 
-                border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"
+                      className="absolute left-1/2 transform -translate-x-1/2 top-full w-0 h-0
+                      border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"
                     ></div>
                   </div>
                 )}

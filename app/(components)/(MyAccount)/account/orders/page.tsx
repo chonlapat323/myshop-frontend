@@ -1,24 +1,5 @@
-import { useState } from "react";
 import Link from "next/link";
-
-interface OrderItem {
-  id: string;
-  productName: string;
-  seller: string;
-  size: string;
-  quantity: number;
-  price: number;
-  status: string;
-  deliveryDate: string;
-  image: string;
-}
-
-interface Order {
-  orderId: string;
-  orderDate: string;
-  orderItems: OrderItem[];
-  totalAmount: number;
-}
+import Image from "next/image";
 
 async function getOrderData() {
   return [
@@ -118,14 +99,16 @@ export default async function MyOrders() {
 
             {/* ✅ Order Items */}
             <div className="mt-4 space-y-4">
-              {order.orderItems.map((item, index) => (
+              {order.orderItems.map((item) => (
                 <div
                   key={item.id}
                   className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-gray-50 rounded-lg shadow-sm"
                 >
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.productName}
+                    width={100}
+                    height={100}
                     className="w-20 h-20 object-cover rounded-md border cursor-pointer hover:opacity-80 transition"
                   />
                   <div className="flex-1">

@@ -2,7 +2,6 @@
 
 import React from "react";
 import CategoryGrid from "../(components)/category/page";
-import styles from "./CatalogPage.module.css"; // ✅ Import CSS Modules (ถ้าต้องการ Style เฉพาะหน้า Catalog)
 
 const CatalogPage = () => {
   return (

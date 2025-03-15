@@ -9,7 +9,7 @@ export default function ChangePasswordForm() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const validateForm = () => {
-    let tempErrors: { [key: string]: string } = {};
+    const tempErrors: { [key: string]: string } = {};
     if (!currentPassword) {
       tempErrors.currentPassword = "Current password is required";
     }

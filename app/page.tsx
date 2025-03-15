@@ -24,8 +24,14 @@ export default function Home() {
       description: "Enjoy the best offers and discounts.",
     },
   ];
-
-  const products = [
+  interface Product {
+    id: number;
+    image: string;
+    name: string;
+    price: number;
+    link: string;
+  }
+  const products: Product[] = [
     {
       id: 1,
       image: "/images/products/chair.jpg",
