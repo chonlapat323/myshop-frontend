@@ -108,7 +108,7 @@ export default function Home() {
     <>
       <Slider slides={slidesData} />
       <CategoryGrid limit={4} showText={true} />
-      <Bestsellers products={products} />
+      <Bestsellers />
       <ShowcaseGrid collections={collections} />
     </>
   );
