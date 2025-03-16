@@ -107,7 +107,7 @@ export default function PaymentMethodPage() {
   };
 
   return (
-    <section className="max-w-3xl mx-auto">
+    <section className="mx-auto">
       <h2 className="text-2xl font-bold mb-4">Payment Methods</h2>
 
       {methods.length > 0 ? (

@@ -199,7 +199,7 @@ export default function ManageAddress() {
   };
 
   return (
-    <section className="max-w-3xl mx-auto px-0 py-0">
+    <section className=" mx-auto px-0 py-0">
       <h2 className="text-2xl font-bold mb-4">Manage Address</h2>
 
       {addresses.length > 0 ? (
