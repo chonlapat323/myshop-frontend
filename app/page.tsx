@@ -1,7 +1,7 @@
-import Bestsellers from "./(components)/bestsellers/page";
-import CategoryGrid from "./(components)/category/page";
-import ShowcaseGrid from "./(components)/ShowcaseGrid/page";
-import Slider from "./(components)/slide/page";
+import Bestsellers from "./components/bestsellers/Bestsellers";
+import CategoryGrid from "./components/category/CategoryGrid";
+import ShowcaseGrid from "./components/ShowcaseGrid/ShowcaseGrid";
+import Slider from "./components/slide/Slide";
 
 export default function Home() {
   const slidesData = [
@@ -24,66 +24,6 @@ export default function Home() {
       description: "Enjoy the best offers and discounts.",
     },
   ];
-
-  const products = [
-    {
-      id: 1,
-      image: "/images/products/chair.jpg",
-      name: "Wood small chair",
-      price: 120,
-      link: "/product/1",
-    },
-    {
-      id: 2,
-      image: "/images/products/table.jpg",
-      name: "Tomo side table",
-      price: 250,
-      link: "/product/2",
-    },
-    {
-      id: 3,
-      image: "/images/products/armchair.jpg",
-      name: "Armchair Dublin",
-      price: 680,
-      link: "/product/3",
-    },
-    {
-      id: 4,
-      image: "/images/products/lamp.jpg",
-      name: "Lamp Castle Rock",
-      price: 220,
-      link: "/product/4",
-    },
-    {
-      id: 5,
-      image: "/images/products/chair.jpg",
-      name: "Wood small chair",
-      price: 120,
-      link: "/product/1",
-    },
-    {
-      id: 6,
-      image: "/images/products/table.jpg",
-      name: "Tomo side table",
-      price: 250,
-      link: "/product/2",
-    },
-    {
-      id: 7,
-      image: "/images/products/armchair.jpg",
-      name: "Armchair Dublin",
-      price: 680,
-      link: "/product/3",
-    },
-    {
-      id: 8,
-      image: "/images/products/lamp.jpg",
-      name: "Lamp Castle Rock",
-      price: 220,
-      link: "/product/4",
-    },
-  ];
-
   const collections = [
     {
       title: "New collection",
@@ -102,7 +42,7 @@ export default function Home() {
     <>
       <Slider slides={slidesData} />
       <CategoryGrid limit={4} showText={true} />
-      <Bestsellers products={products} />
+      <Bestsellers />
       <ShowcaseGrid collections={collections} />
     </>
   );
