@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import theme from "./theme/themeConfig";
+import theme from "./Theme/themeConfig";
 
 import "./globals.css";
 import { ConfigProvider } from "antd";

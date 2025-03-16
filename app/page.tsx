@@ -1,7 +1,7 @@
 import Bestsellers from "./components/bestsellers/Bestsellers";
 import CategoryGrid from "./components/category/CategoryGrid";
 import ShowcaseGrid from "./components/ShowcaseGrid/ShowcaseGrid";
-import Slider from "./components/slide/Slide";
+import Slider from "./components/Slide/Slide";
 
 export default function Home() {
   const slidesData = [
