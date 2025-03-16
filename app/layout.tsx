@@ -5,8 +5,8 @@ import theme from "./theme/themeConfig";
 
 import "./globals.css";
 import { ConfigProvider } from "antd";
-import Navbar from "./(components)/navbar/page";
-import Footer from "./(components)/footer/page";
+import Navbar from "./components/Navbar";
+import Footer from "./components/ui/Footer";
 import {
   faFacebook,
   faInstagram,

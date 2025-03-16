@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import IconLink from "../IconLink/page";
+import IconLink from "../IconLink";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface FooterProps {

@@ -1,15 +1,17 @@
 // app/(components)/bestsellers/page.tsx
 import BestsellersSection from "./BestsellersSection";
-import { Product } from "./BestsellersSection"; // หรือ Path ที่ถูกต้อง
+import { ProductInterface } from "../../components/ui/ProductCard"; // Import Product Interface from ProductCard
 
 // กำหนด Mock Data (ตรวจสอบ Type อีกครั้ง)
-const mockProducts: Product[] = [
+const mockProducts: ProductInterface[] = [
   {
     id: 1,
     image: "/images/products/chair.jpg",
     name: "Wood small chair",
     price: 120,
     link: "/product/1",
+    brand: "Generic", // เพิ่ม brand
+    category: "furniture", // เพิ่ม category
   },
   {
     id: 2,
@@ -17,6 +19,8 @@ const mockProducts: Product[] = [
     name: "Tomo side table",
     price: 250,
     link: "/product/2",
+    brand: "Generic", // เพิ่ม brand
+    category: "furniture", // เพิ่ม category
   },
   {
     id: 3,
@@ -24,6 +28,8 @@ const mockProducts: Product[] = [
     name: "Tomo side table",
     price: 250,
     link: "/product/2",
+    brand: "Generic", // เพิ่ม brand
+    category: "furniture", // เพิ่ม category
   },
   {
     id: 4,
@@ -31,8 +37,10 @@ const mockProducts: Product[] = [
     name: "Tomo side table",
     price: 250,
     link: "/product/2",
+    brand: "Generic", // เพิ่ม brand
+    category: "furniture", // เพิ่ม category
   },
-  // ... สินค้าอื่นๆ
+  // ... สินค้าอื่นๆ (คุณสามารถเพิ่มข้อมูล brand และ category ให้กับสินค้าอื่นๆ ได้)
 ];
 
 export default function BestsellersPage() {

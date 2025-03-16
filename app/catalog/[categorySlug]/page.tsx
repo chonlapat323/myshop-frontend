@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
-
+import ProductCard from "@/app/components/ui/ProductCard"; // Import ProductCard
+import { ProductInterface } from "../../components/ui/ProductCard"; // Import Product Interface from ProductCard
 const mockProducts = [
   {
     id: 1,
@@ -43,6 +43,8 @@ const mockProducts = [
   },
 ];
 
+// Define the Product interface here to match the data structure
+
 export default function CategoryPage() {
   // Extract the dynamic route parameter.
   const { categorySlug } = useParams();
@@ -61,7 +63,7 @@ export default function CategoryPage() {
   // 1. Filter products by category (case-insensitive)
   const productsByCategory = mockProducts.filter(
     (p) => p.category.toLowerCase() === slug.toLowerCase()
-  );
+  ) as ProductInterface[]; // Cast to Product
 
   // 2. Filter by brand if one is selected
   const filteredByBrand =
@@ -85,7 +87,7 @@ export default function CategoryPage() {
       return [...searchedProducts].sort((a, b) => b.price - a.price);
     }
     return searchedProducts;
-  }, [searchedProducts, sortOption]);
+  }, [searchedProducts, sortOption]) as ProductInterface[]; // Cast to Product;
 
   // Unique brand options from this category
   const brandOptions = Array.from(
@@ -93,7 +95,7 @@ export default function CategoryPage() {
   );
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-8">
+    <section className="max-w-6xl mx-auto px-4 py-0">
       <h1 className="text-2xl font-bold capitalize mb-6">{slug} Products</h1>
 
       {/* Filter, Search & Sort Panel */}
@@ -139,16 +141,7 @@ export default function CategoryPage() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {sortedProducts.map((product) => (
-            <div key={product.id} className="border p-4 rounded shadow-sm">
-              <Image
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover rounded mb-2"
-              />
-              <h3 className="font-semibold">{product.name}</h3>
-              <p className="text-sm text-gray-500">{product.brand}</p>
-              <p className="text-lg font-bold">฿ {product.price}</p>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}

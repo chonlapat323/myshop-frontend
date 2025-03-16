@@ -1,4 +1,4 @@
-import ShowcaseCard from "../ShowcaseCard/page";
+import ShowcaseCard from "../ShowcaseCard/ShowcaseCard";
 
 interface ShowcaseGridProps {
   collections: {

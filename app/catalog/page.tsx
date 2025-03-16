@@ -1,11 +1,11 @@
 "use client"; // ✅ Client Component สำหรับใช้ useState, useEffect (ถ้าจำเป็นในอนาคต)
 
 import React from "react";
-import CategoryGrid from "../(components)/category/page";
+import CategoryGrid from "../components/category/CategoryGrid";
 
 const CatalogPage = () => {
   return (
-    <section className="container mx-auto py-10 pt-18">
+    <section className="container mx-auto py-10 pt-4">
       {/* Catalog Page Title */}
       <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
         Our Product Catalog

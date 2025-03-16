@@ -104,9 +104,9 @@ export default function CategoryGrid(props: {
   }
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-0 md:px-16">
+    <section className="max-w-6xl mx-auto px-4 py-4 md:px-16">
       <h2
-        className={`text-center text-2xl font-bold mb-6 ${
+        className={`text-center text-2xl font-bold mb-4 ${
           showText !== true ? "hidden" : ""
         }`}
       >

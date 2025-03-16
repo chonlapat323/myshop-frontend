@@ -2,60 +2,94 @@
 
 import { useState } from "react";
 
-const allCategories = [
-  { name: "Living Room", slug: "living-room" },
-  { name: "Bedroom", slug: "bedroom" },
-  { name: "Bathroom", slug: "bathroom" },
-  { name: "Kitchen", slug: "kitchen" },
-  { name: "Office", slug: "office" },
-  { name: "Outdoor", slug: "outdoor" },
-  { name: "Lighting", slug: "lighting" },
-  { name: "Decor", slug: "decor" },
-];
-
 export default function Sidebar() {
-  const [search, setSearch] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
-  const filteredCategories = allCategories.filter((cat) =>
-    cat.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const toggleCategory = (slug: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(slug) ? prev.filter((c) => c !== slug) : [...prev, slug]
+  const handleBrandToggle = (brand: string) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
 
   return (
-    <aside className="bg-gray-100 p-4 rounded-lg">
-      <h3 className="text-lg font-semibold mb-3">Categories</h3>
+    <aside className="bg-gray-100 p-4 rounded-lg shadow-md">
+      <h3 className="text-lg font-bold mb-3 border-b pb-2">Filter Products</h3>
 
-      {/* ✅ Search Input */}
-      <input
-        type="text"
-        placeholder="Search categories..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full p-2 border rounded mb-3"
-      />
+      {/* Price Filter */}
+      <div className="mb-4 mt-4">
+        <span className="font-semibold mb-2 block">Price Range</span>
+        <div className="flex items-center gap-2">
+          <input
+            placeholder="Min"
+            className="border px-3 py-1 w-full rounded-md"
+            value={priceRange.min}
+            onChange={(e) =>
+              setPriceRange({ ...priceRange, min: e.target.value })
+            }
+          />
+          <span>-</span>
+          <input
+            placeholder="Max"
+            className="border px-3 py-1 w-full rounded-md"
+            value={priceRange.max}
+            onChange={(e) =>
+              setPriceRange({ ...priceRange, max: e.target.value })
+            }
+          />
+        </div>
+      </div>
 
-      {/* ✅ Categories List */}
-      <div className="space-y-2 max-h-64 overflow-y-auto">
-        {filteredCategories.map((category) => (
-          <label
-            key={category.slug}
-            className="flex items-center gap-2 cursor-pointer"
-          >
-            <input
-              type="checkbox"
-              checked={selectedCategories.includes(category.slug)}
-              onChange={() => toggleCategory(category.slug)}
-              className="cursor-pointer"
-            />
-            {category.name}
-          </label>
-        ))}
+      {/* Brands Filter */}
+      <div className="mt-4">
+        <h4 className="font-semibold mb-2">Brands</h4>
+        <div className="space-y-2 max-h-48 overflow-y-auto">
+          {["IKEA", "HomePro", "INDEX"].map((brand) => (
+            <label
+              key={brand}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={selectedBrands.includes(brand)}
+                onChange={() => handleBrandToggle(brand)}
+              />
+              {brand}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Ratings Filter */}
+      <div className="mt-4">
+        <h4 className="font-semibold mb-2">Rating</h4>
+        <div className="space-y-2">
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <label
+              key={rating}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <input type="checkbox" />
+              {rating} Stars & Up
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Stock Filter */}
+      <div className="mt-4">
+        <h4 className="font-semibold mb-2">Availability</h4>
+        <div className="space-y-2">
+          {["In Stock", "Out of Stock", "Pre-order"].map((status) => (
+            <label
+              key={status}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <input type="checkbox" />
+              {status}
+            </label>
+          ))}
+        </div>
       </div>
     </aside>
   );
