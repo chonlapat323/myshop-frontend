@@ -48,7 +48,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
       {/* Desktop Menu */}
       <Menu
         mode="horizontal"
-        className="hidden! md:flex! border-none! flex-1 justify-center bg-transparent"
+        className="hidden! md:flex! border-none! flex-1 justify-end bg-transparent"
         items={menuItems.map((item) => ({
           key: item.key,
           label: <Link href={item.href}>{item.label}</Link>,

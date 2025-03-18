@@ -33,11 +33,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const menuItems = [
-    { key: "1", label: "CATALOG", href: "/catalog" },
-    { key: "2", label: "ABOUT US", href: "/about" },
-    { key: "3", label: "CONTACTS", href: "/contacts" },
-  ];
+  const menuItems = [{ key: "1", label: "CATALOG", href: "/catalog" }];
   const info = {
     address: "156 E 2nd St, New York, NY 10009, United States",
     email: "info@chair.com",
