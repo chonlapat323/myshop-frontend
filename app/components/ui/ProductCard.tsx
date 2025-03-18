@@ -4,6 +4,7 @@
 import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // Define the Product interface here
 export interface ProductInterface {
@@ -76,9 +77,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           onMouseEnter={() => setHoveredPopup(product.id)}
           onMouseLeave={() => setHoveredPopup(null)}
         >
-          <button className="p-2 bg-black text-white rounded-full shadow-md hover:bg-gray-800 cursor-pointer">
-            <EyeOutlined />
-          </button>
+          <Link
+            href={`/catalog/product/${product.id}`}
+            key={`view-product-${product.id}`}
+          >
+            <button className="p-2 bg-black text-white rounded-full shadow-md hover:bg-gray-800 cursor-pointer">
+              <EyeOutlined />
+            </button>
+          </Link>
 
           {/* Popup Quick View + ลูกศร */}
           {hoveredPopup === product.id && (
