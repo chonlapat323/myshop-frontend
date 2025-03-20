@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import Image from "next/image";
 export default function ProductDetail() {
   const images = [
     "/images/catalog/living-room/1.jpg",
@@ -37,9 +37,10 @@ export default function ProductDetail() {
                     : "border-transparent"
                 }`}
               >
-                <img
+                <Image
                   src={img}
                   alt={`Thumbnail ${idx}`}
+                  layout="fill"
                   className="w-20 h-20 object-cover"
                 />
               </div>
@@ -48,9 +49,10 @@ export default function ProductDetail() {
 
           {/** Main Image (ใช้ flex-1 เพื่อขยายเต็มที่) */}
           <div className="flex-1 flex justify-center items-center">
-            <img
+            <Image
               src={images[selectedImage]}
               alt="Sofa Lucca"
+              layout="fill"
               className="w-full max-w-xl h-auto object-cover"
             />
           </div>

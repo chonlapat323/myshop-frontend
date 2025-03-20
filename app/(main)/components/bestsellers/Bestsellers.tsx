@@ -1,6 +1,6 @@
 // app/(components)/bestsellers/page.tsx
 import BestsellersSection from "./BestsellersSection";
-import { ProductInterface } from "../../components/ui/ProductCard"; // Import Product Interface from ProductCard
+import { ProductInterface } from "../ui/ProductCard"; // Import Product Interface from ProductCard
 
 // กำหนด Mock Data (ตรวจสอบ Type อีกครั้ง)
 const mockProducts: ProductInterface[] = [
