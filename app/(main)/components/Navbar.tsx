@@ -8,6 +8,7 @@ import {
   UserOutlined,
   ShoppingOutlined,
   CloseOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
 
 const { Header } = Layout;
@@ -57,6 +58,12 @@ export default function Navbar({ menuItems }: NavbarProps) {
 
       {/* Icons and Hamburger Menu */}
       <div className="flex items-center gap-6">
+        <Link
+          href="/login"
+          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
+        >
+          <LockOutlined className="text-xl" />
+        </Link>
         <Link
           href="/account"
           className="text-black hover:text-gray-500 hidden md:block cursor-pointer"

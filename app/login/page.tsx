@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -9,7 +10,11 @@ export default function LoginPage() {
       {/* ซ้าย: Login Form */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-10 lg:px-16 bg-white">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">Gakhan.</h1>
+          <div className="text-2xl font-bold cursor-pointer">
+            <Link href="/" className="text-logo">
+              Chair.
+            </Link>
+          </div>
         </div>
         <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>
         <p className="text-gray-500 mb-8">
@@ -74,7 +79,10 @@ export default function LoginPage() {
         </form>
         <p className="mt-6 text-center text-sm">
           Don&apos;t have an account?{" "}
-          <a href="#" className="text-black font-medium hover:underline">
+          <a
+            href="/register"
+            className="text-black font-medium hover:underline"
+          >
             Sign up
           </a>
         </p>
@@ -82,13 +90,13 @@ export default function LoginPage() {
       {/* ขวา: ภาพ + ข้อความ (เฉพาะในหน้าจอใหญ่) */}
       <div className="hidden lg:flex w-1/2 relative">
         <Image
-          src="/images/sample.jpg"
+          src="/images/catalog/living-room/4.jpg"
           alt="Sample"
           fill
           style={{ objectFit: "cover" }}
           priority
         />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-8">
+        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-8">
           <h3 className="text-3xl font-bold mb-2">Karina 카리나</h3>
           <p className="max-w-sm text-center text-sm sm:text-base">
             (ข้อความเกี่ยวกับศิลปิน หรือคำโปรยอื่น ๆ ที่คุณต้องการ)
