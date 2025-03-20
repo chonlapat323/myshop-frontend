@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Breadcrumbs from "../../components/Breadcrumbs";
+
 export default function ProductDetail() {
   const images = [
     "/images/catalog/living-room/1.jpg",
@@ -15,50 +17,48 @@ export default function ProductDetail() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      {/**
-       * แบ่งเป็น 2 คอลัมน์หลักเมื่อจอใหญ่ (lg)
-       * จอเล็กจะเรียงเป็น 1 คอลัมน์
-       */}
+      <Breadcrumbs />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/**
-         * คอลัมน์ซ้าย: รวม Thumbnails + Main Image
-         * ใช้ flex หรือ grid ย่อยตามต้องการ
-         */}
         <div className="flex flex-col lg:flex-row">
-          {/** Thumbnails (วางชิดซ้าย, stack บนจอใหญ่) */}
           <div className="mb-4 lg:mb-0 lg:mr-4 flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-4">
             {images.map((img, idx) => (
               <div
                 key={idx}
                 onClick={() => setSelectedImage(idx)}
-                className={`cursor-pointer border-2 ${
+                className={`relative cursor-pointer border-2 ${
                   selectedImage === idx
                     ? "border-gray-800"
                     : "border-transparent"
                 }`}
+                style={{ width: "80px", height: "80px" }}
               >
                 <Image
                   src={img}
                   alt={`Thumbnail ${idx}`}
-                  layout="fill"
-                  className="w-20 h-20 object-cover"
+                  fill
+                  sizes="(max-width: 768px) 20vw, 80px"
+                  className="object-cover"
                 />
               </div>
             ))}
           </div>
 
-          {/** Main Image (ใช้ flex-1 เพื่อขยายเต็มที่) */}
-          <div className="flex-1 flex justify-center items-center">
+          {/* ปรับปรุงส่วนนี้ */}
+          <div
+            className="relative flex-1 flex justify-center items-center"
+            style={{ aspectRatio: "4/3" }}
+          >
             <Image
               src={images[selectedImage]}
               alt="Sofa Lucca"
-              layout="fill"
-              className="w-full max-w-xl h-auto object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
+              priority={selectedImage === 0}
             />
           </div>
         </div>
 
-        {/** คอลัมน์ขวา: Product Details */}
         <div className="flex flex-col space-y-4">
           <h1 className="text-2xl font-semibold">SOFA LUCCA</h1>
           <p className="text-lg font-medium">$5850</p>
@@ -66,7 +66,6 @@ export default function ProductDetail() {
             Designed by Jenni Roininen, the sofa is elegantly simple...
           </p>
 
-          {/** Quantity */}
           <div>
             <label
               htmlFor="quantity"
@@ -83,14 +82,12 @@ export default function ProductDetail() {
             />
           </div>
 
-          {/** Add to Cart Button */}
           <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">
             ADD TO CART
           </button>
         </div>
       </div>
 
-      {/** ส่วนของ Tabs */}
       <div className="mt-8">
         <div className="flex space-x-6 border-b">
           {tabs.map((tab) => (

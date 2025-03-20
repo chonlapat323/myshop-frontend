@@ -18,6 +18,10 @@
   animation: spin 1s linear infinite; /* Animation หมุน */
 }
 
+.text-logo {
+  color: #1677ff;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
