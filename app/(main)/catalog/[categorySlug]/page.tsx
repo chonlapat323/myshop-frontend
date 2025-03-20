@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
-import ProductCard from "@/app/components/ui/ProductCard"; // Import ProductCard
+import ProductCard from "@/app/(main)/components/ui/ProductCard"; // Import ProductCard
 import { ProductInterface } from "../../components/ui/ProductCard"; // Import Product Interface from ProductCard
 const mockProducts = [
   {

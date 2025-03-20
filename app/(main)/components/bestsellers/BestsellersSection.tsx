@@ -1,7 +1,7 @@
 "use client";
 
-import { ProductInterface } from "../../components/ui/ProductCard"; // Import Product Interface from ProductCard
-import ProductCard from "@/app/components/ui/ProductCard"; // Import the ProductCard component
+import { ProductInterface } from "../ui/ProductCard"; // Import Product Interface from ProductCard
+import ProductCard from "@/app/(main)/components/ui/ProductCard"; // Import the ProductCard component
 
 interface BestsellersProps {
   products: ProductInterface[];

@@ -1,6 +1,6 @@
 "use client";
 
-import AvatarUpload from "@/app/components/ui/AvatarUpload";
+import AvatarUpload from "@/app/(main)/components/ui/AvatarUpload";
 import { useState } from "react";
 
 export default function PersonalInfo() {
