@@ -7,6 +7,7 @@ import "../globals.css";
 import { ConfigProvider } from "antd";
 import Navbar from "./components/Navbar";
 import Footer from "./components/ui/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 import {
   faFacebook,
   faInstagram,
@@ -38,7 +39,7 @@ export default function RootLayout({
     <ConfigProvider theme={theme}>
       <AntdRegistry>
         <Navbar menuItems={menuItems} />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
 
         <Footer menuItems={menuItems} info={info}></Footer>
       </AntdRegistry>

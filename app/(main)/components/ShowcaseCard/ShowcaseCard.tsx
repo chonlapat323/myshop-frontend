@@ -16,10 +16,12 @@ export default function Showcase({
   return (
     <div className={`${styles["showcase-container"]} parent-of-showcase`}>
       <Image
-        layout="fill"
+        fill
         src={image}
         alt={title}
         className={styles["showcase-image"]}
+        style={{ objectFit: "cover" }}
+        priority
       />
       <div className={styles["showcase-content"]}>
         <h3 className={styles["showcase-title"]}>{title}</h3>
