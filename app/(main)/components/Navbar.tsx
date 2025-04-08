@@ -3,14 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Layout, Menu, Drawer, Button } from "antd";
-import {
-  MenuOutlined,
-  UserOutlined,
-  ShoppingOutlined,
-  CloseOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
-
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { Cart, LockIcon, UserIcon } from "@/app/icons";
+import { useAuth } from "@/hooks/useAuth";
 const { Header } = Layout;
 
 interface NavbarProps {
@@ -20,14 +15,11 @@ interface NavbarProps {
 export default function Navbar({ menuItems }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
+  const { isAuthenticated, isReady } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
+      setIsFixed(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -58,25 +50,26 @@ export default function Navbar({ menuItems }: NavbarProps) {
 
       {/* Icons and Hamburger Menu */}
       <div className="flex items-center gap-6">
-        <Link
-          href="/login"
-          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
-        >
-          <LockOutlined className="text-xl" />
-        </Link>
-        <Link
-          href="/account"
-          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
-        >
-          <UserOutlined className="text-xl" />
-        </Link>
-        <Link
-          href="/cart"
-          className="text-black hover:text-gray-500 hidden md:block cursor-pointer"
-        >
-          <ShoppingOutlined className="text-xl cursor-pointer" />
-        </Link>
+        {isReady && !isAuthenticated && (
+          <Link href="/login" className="hidden md:block cursor-pointer">
+            <LockIcon className="text-xl" />
+          </Link>
+        )}
 
+        {isReady && isAuthenticated && (
+          <Link href="/account" className="hidden md:block cursor-pointer">
+            <UserIcon className="text-xl" />
+          </Link>
+        )}
+
+        {isReady && isAuthenticated && (
+          <Link href="/cart" className="hidden md:block cursor-pointer">
+            <Cart className="text-xl" />
+          </Link>
+        )}
+        {!isReady && (
+          <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse" />
+        )}
         <MenuOutlined
           className="md:hidden! text-2xl cursor-pointer"
           onClick={() => setIsOpen(true)}
@@ -109,12 +102,21 @@ export default function Navbar({ menuItems }: NavbarProps) {
           onClick={() => setIsOpen(false)}
         />
         <div className="flex items-center gap-6 mt-6">
-          <Link href="/account">
-            <UserOutlined className="text-xl cursor-pointer hover:text-gray-500" />
-          </Link>
-          <Link href="/cart">
-            <ShoppingOutlined className="text-xl cursor-pointer text-black hover:text-gray-500" />
-          </Link>
+          {!isAuthenticated && (
+            <Link href="/login" className="md:block cursor-pointer">
+              <LockIcon className="text-xl" />
+            </Link>
+          )}
+          {isAuthenticated && (
+            <Link href="/account">
+              <UserIcon className="text-xl cursor-pointer " />
+            </Link>
+          )}
+          {isAuthenticated && (
+            <Link href="/cart">
+              <Cart className="text-xl cursor-pointer text-black " />
+            </Link>
+          )}
         </div>
       </Drawer>
     </Header>

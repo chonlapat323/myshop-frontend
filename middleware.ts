@@ -1,11 +1,22 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(req: NextRequest) {
-  if (
-    req.nextUrl.pathname.startsWith("/navbar") ||
-    req.nextUrl.pathname.startsWith("/footer")
-  ) {
-    return NextResponse.redirect(new URL("/404", req.url)); // ✅ Redirect ไปหน้าแรก
+export async function middleware(req: NextRequest) {
+  const token = req.cookies.get("token")?.value;
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  try {
+    await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
+
+    return NextResponse.next(); // ✅ Token valid → ไปต่อได้
+  } catch (err) {
+    console.warn("❌ Invalid token in middleware:", err);
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 }
+
+export const config = {
+  matcher: ["/account/:path*", "/orders/:path*", "/admin/:path*"],
+};

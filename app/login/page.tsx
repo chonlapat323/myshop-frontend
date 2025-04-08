@@ -1,10 +1,21 @@
 // app/login/page.tsx
 "use client";
 
+import { useLogin } from "@/hooks/useLogin";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleLogin, loading, error } = useLogin();
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    await handleLogin(email, password);
+  }
+
   return (
     <div className="min-h-screen flex">
       {/* ซ้าย: Login Form */}
@@ -17,10 +28,12 @@ export default function LoginPage() {
           </div>
         </div>
         <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>
+        <p className="text-gray-500 mb-0">Sit better, live better.</p>
         <p className="text-gray-500 mb-8">
-          The faster you fill up, the faster you get a ticket
+          Discover your next favorite chair — comfort meets modern design.
         </p>
-        <form className="space-y-5">
+
+        <form className="space-y-5" onSubmit={onSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -31,8 +44,11 @@ export default function LoginPage() {
             <input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              required
             />
           </div>
           <div>
@@ -45,8 +61,11 @@ export default function LoginPage() {
             <input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              required
             />
           </div>
           <div className="flex items-center justify-between text-sm">
@@ -60,11 +79,12 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors"
+            disabled={loading}
+            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors cursor-pointer"
           >
-            Sign In
+            {loading ? "Signing in..." : "Sign In"}
           </button>
-          <button
+          {/* <button
             type="button"
             className="w-full border border-gray-300 py-2 rounded hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2"
           >
@@ -75,7 +95,7 @@ export default function LoginPage() {
               height={20}
             />
             <span>Sign in with Google</span>
-          </button>
+          </button> */}
         </form>
         <p className="mt-6 text-center text-sm">
           Don&apos;t have an account?{" "}

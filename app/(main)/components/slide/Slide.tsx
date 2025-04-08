@@ -16,9 +16,10 @@ export default function Slider({ slides }: SliderProps) {
           <Image
             src={slide.image}
             alt={slide.title || "Slide"}
-            layout="fill"
-            objectFit="cover" // หรือ "contain" ขึ้นอยู่กับความต้องการของคุณ
+            fill
             className={styles["slider-image"]}
+            style={{ objectFit: "cover" }}
+            priority
           />
           {/* ข้อความบนรูป */}
           {slide.title && (

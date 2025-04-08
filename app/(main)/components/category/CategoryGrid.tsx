@@ -152,9 +152,10 @@ export default function CategoryGrid(props: {
               <Image
                 src={category.image}
                 alt={category.title}
-                layout="fill"
-                objectFit="cover" // หรือ "contain" ขึ้นอยู่กับความต้องการของคุณ
+                fill
                 className="w-full h-full object-cover object-bottom  transition-transform group-hover:scale-105"
+                style={{ objectFit: "cover" }}
+                priority
               />
               <div className={styles["category-content"]}>
                 <h3 className="text-lg font-semibold">{category.title}</h3>
