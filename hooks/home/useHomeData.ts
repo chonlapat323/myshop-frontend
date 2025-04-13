@@ -8,14 +8,14 @@ import { Category } from "@/types/home/category";
 
 interface UseHomeDataResult {
   categories: Category[];
-  slides: Slide[];
+  slide: Slide | undefined;
   loading: boolean;
   error: string | null;
 }
 
 export function useHomeData(): UseHomeDataResult {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [slides, setSlides] = useState<Slide[]>([]);
+  const [slide, setSlides] = useState<Slide | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -42,5 +42,5 @@ export function useHomeData(): UseHomeDataResult {
     return () => controller.abort();
   }, []);
 
-  return { categories, slides, loading, error };
+  return { categories, slide, loading, error };
 }

@@ -7,7 +7,7 @@ import Slider from "./components/slide/Slide";
 import SkeletonSlide from "../sekeleton/SkeletonSlide";
 import { useHomeData } from "@/hooks/home/useHomeData";
 export default function Home() {
-  const { categories, slides, loading, error } = useHomeData();
+  const { categories, slide, loading, error } = useHomeData();
   // const { slides, loading, error } = useSlides();
   // const {
   //   categories,
@@ -91,14 +91,12 @@ export default function Home() {
     },
   ];
 
-  const slideItems = (slides ?? []).flatMap((slide) =>
-    slide.images.map((img) => ({
-      id: `${slide.id}-${img.id}`,
-      image: `${API_URL}${img.url}`,
-      title: slide.title,
-      description: slide.description,
-    }))
-  );
+  const slideItems = (slide?.images ?? []).map((img) => ({
+    id: `${slide?.id}-${img.id}`,
+    image: `${API_URL}${img.url}`,
+    title: slide?.title,
+    description: slide?.description,
+  }));
   return (
     <>
       {loading ? (
