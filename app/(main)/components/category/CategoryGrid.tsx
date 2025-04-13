@@ -91,7 +91,7 @@ export default function CategoryGrid({
           return (
             <Link
               key={category.id}
-              href={`/catalog/${category.name}`}
+              href={`/catalog/${category.link}`}
               className={`relative group row-span-1 ${colSpan}`}
             >
               {category.image}
@@ -104,7 +104,7 @@ export default function CategoryGrid({
                 priority
               />
               <div className={styles["category-content"]}>
-                <h3 className="text-lg font-semibold">{category.title}</h3>
+                <h3 className="text-lg font-semibold">{category.name}</h3>
                 <p className="text-sm underline mt-1">SHOP NOW</p>
               </div>
             </Link>
