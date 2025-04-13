@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "localhost:3001"],
   },
 };
 

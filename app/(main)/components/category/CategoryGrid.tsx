@@ -4,74 +4,19 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./CategoryGrid.module.css";
 import Image from "next/image";
-const categories = [
-  {
-    id: 1,
-    title: "LIVING ROOM",
-    image: "/images/category/lvr1.jpg",
-    link: "/catalog/living-room",
-  },
-  {
-    id: 2,
-    title: "BEDROOM",
-    image: "/images/category/br2.jpg",
-    link: "/catalog/bedroom",
-  },
-  {
-    id: 3,
-    title: "BATHROOM",
-    image: "/images/category/bthr1.jpg",
-    link: "/catalog/bathroom",
-  },
-  {
-    id: 4,
-    title: "KITCHEN",
-    image: "/images/category/kc1.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 5,
-    title: "KITCHEN",
-    image: "/images/category/lvr1.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 6,
-    title: "KITCHEN",
-    image: "/images/category/bthr1.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 7,
-    title: "KITCHEN",
-    image: "/images/category/br2.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 8,
-    title: "KITCHEN",
-    image: "/images/category/bthr1.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 9,
-    title: "KITCHEN",
-    image: "/images/category/lvr1.jpg",
-    link: "/catalog/kitchen",
-  },
-  {
-    id: 10,
-    title: "KITCHEN",
-    image: "/images/category/br2.jpg",
-    link: "/catalog/kitchen",
-  },
-];
-
-export default function CategoryGrid(props: {
+import { Category } from "@/types/home/category";
+import { API_URL } from "@/lib/config";
+interface CategoryGridProps {
+  categories: Category[];
   limit: number;
   showText: boolean;
-}) {
-  const { limit, showText } = props; // ✅ รับ limit และ showText จาก props
+}
+
+export default function CategoryGrid({
+  categories,
+  limit,
+  showText,
+}: CategoryGridProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -146,12 +91,13 @@ export default function CategoryGrid(props: {
           return (
             <Link
               key={category.id}
-              href={category.link}
+              href={`/catalog/${category.name}`}
               className={`relative group row-span-1 ${colSpan}`}
             >
+              {category.image}
               <Image
-                src={category.image}
-                alt={category.title}
+                src={`${API_URL}${category.image}`}
+                alt={category.name}
                 fill
                 className="w-full h-full object-cover object-bottom  transition-transform group-hover:scale-105"
                 style={{ objectFit: "cover" }}
