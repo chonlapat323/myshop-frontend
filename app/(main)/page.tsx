@@ -1,29 +1,13 @@
+"use client";
+import { API_URL } from "@/lib/config";
 import Bestsellers from "./components/bestsellers/Bestsellers";
 import CategoryGrid from "./components/category/CategoryGrid";
 import ShowcaseGrid from "./components/ShowcaseGrid/ShowcaseGrid";
 import Slider from "./components/slide/Slide";
-
+import { useSlides } from "@/hooks/home/useSlides";
+import SkeletonSlide from "../sekeleton/SkeletonSlide";
 export default function Home() {
-  const slidesData = [
-    {
-      id: 1,
-      image: "/images/slide/1.jpg",
-      title: "Welcome to Our Shop",
-      description: "Discover the latest trends with us.",
-    },
-    {
-      id: 2,
-      image: "/images/slide/2.jpg",
-      title: "Exclusive Collection",
-      description: "Find unique and stylish items just for you.",
-    },
-    {
-      id: 3,
-      image: "/images/slide/3.jpg",
-      title: "Best Deals",
-      description: "Enjoy the best offers and discounts.",
-    },
-  ];
+  const { slides, loading, error } = useSlides();
   const collections = [
     {
       title: "New collection",
@@ -38,9 +22,24 @@ export default function Home() {
       link: "#",
     },
   ];
+
+  const slideItems = (slides ?? []).flatMap((slide) =>
+    slide.images.map((img) => ({
+      id: `${slide.id}-${img.id}`,
+      image: `${API_URL}${img.url}`,
+      title: slide.title,
+      description: slide.description,
+    }))
+  );
   return (
     <>
-      <Slider slides={slidesData} />
+      {loading ? (
+        <>
+          <SkeletonSlide />
+        </>
+      ) : (
+        <Slider slides={slideItems} />
+      )}
       <CategoryGrid limit={4} showText={true} />
       <Bestsellers />
       <ShowcaseGrid collections={collections} />

@@ -17,11 +17,13 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/postcss": "^4.0.12",
     "antd": "^5.24.3",
+    "framer-motion": "^12.6.5",
     "jose": "^6.0.10",
     "next": "15.2.1",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "swiper": "^11.2.6",
     "tailwindcss": "^4.0.12"
   },
   "devDependencies": {
