@@ -3,8 +3,9 @@
 import { Carousel } from "antd";
 import styles from "./Slider.module.css";
 import Image from "next/image";
+import { API_URL } from "@/lib/config";
 interface SliderProps {
-  slides: { id: number; image: string; title?: string; description?: string }[];
+  slides: { id: string; image: string; title?: string; description?: string }[];
 }
 
 export default function Slider({ slides }: SliderProps) {
