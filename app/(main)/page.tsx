@@ -1,6 +1,6 @@
 "use client";
 import { API_URL } from "@/lib/config";
-import BestSellersPage from "./components/bestsellers/BestSellers";
+import BestSellersPage from "./components/bestsellers/Bestsellers";
 import CategoryGrid from "./components/category/CategoryGrid";
 import ShowcaseGrid from "./components/ShowcaseGrid/ShowcaseGrid";
 import Slider from "./components/slide/Slide";
