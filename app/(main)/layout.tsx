@@ -39,7 +39,9 @@ export default function RootLayout({
     <ConfigProvider theme={theme}>
       <AntdRegistry>
         <Navbar menuItems={menuItems} />
-        <AuthProvider>{children}</AuthProvider>
+        <div className="pt-20 px-4 sm:px-6 lg:px-8">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
 
         <Footer menuItems={menuItems} info={info}></Footer>
       </AntdRegistry>

@@ -2,8 +2,10 @@
 
 import React from "react";
 import CategoryGrid from "../components/category/CategoryGrid";
+import { useHomeData } from "@/hooks/home/useHomeData";
 
 const CatalogPage = () => {
+  const { categories } = useHomeData(); // หรือที่คุณใช้โหลด data
   return (
     <section className="container mx-auto py-10 pt-4">
       {/* Catalog Page Title */}
@@ -11,7 +13,7 @@ const CatalogPage = () => {
         Our Product Catalog
       </h1>
       {/* Category Grid Component */}
-      <CategoryGrid showText={false} limit={0} />{" "}
+      <CategoryGrid categories={categories} showText={false} limit={0} />{" "}
       {/* ✅ Render CategoryGrid Component (แสดง Categories ทั้งหมด - ไม่มีการ limit) */}
       {/* (Optional) คำอธิบาย Catalog หรือ Content อื่นๆ เพิ่มเติมได้ที่นี่ */}
     </section>
