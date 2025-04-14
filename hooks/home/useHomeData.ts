@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import { getSlides } from "@/services/home/slide.service";
 import { getCategories } from "@/services/home/category.service";
 import { Category } from "@/types/home/category";
+import { getBestSellers } from "@/services/home/product.service";
+import { Product } from "@/types/home/product";
 
 interface UseHomeDataResult {
   categories: Category[];
   slide: Slide | undefined;
+  bestSellers: Product[] | undefined;
   loading: boolean;
   error: string | null;
 }
@@ -16,6 +19,7 @@ interface UseHomeDataResult {
 export function useHomeData(): UseHomeDataResult {
   const [categories, setCategories] = useState<Category[]>([]);
   const [slide, setSlides] = useState<Slide | undefined>();
+  const [bestSellers, setBestSellers] = useState<Product[] | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -23,13 +27,15 @@ export function useHomeData(): UseHomeDataResult {
 
     const fetchData = async () => {
       try {
-        const [categoryData, slideData] = await Promise.all([
+        const [categoryData, slideData, bestSellersData] = await Promise.all([
           getCategories(),
           getSlides(),
+          getBestSellers(),
         ]);
 
         setCategories(categoryData);
         setSlides(slideData);
+        setBestSellers(bestSellersData);
       } catch (err: any) {
         setError(err.message || "Unknown error");
       } finally {
@@ -42,5 +48,5 @@ export function useHomeData(): UseHomeDataResult {
     return () => controller.abort();
   }, []);
 
-  return { categories, slide, loading, error };
+  return { categories, slide, bestSellers, loading, error };
 }
