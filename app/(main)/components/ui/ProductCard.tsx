@@ -5,20 +5,11 @@ import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-// Define the Product interface here
-export interface ProductInterface {
-  brand: string;
-  id: number;
-  image: string;
-  name: string;
-  price: number;
-  link: string;
-  category: string; // เพิ่ม category
-}
+import { API_URL } from "@/lib/config";
+import { Product } from "@/types/home/product";
 
 interface ProductCardProps {
-  product: ProductInterface;
+  product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -33,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* รูปสินค้า (แนวตั้ง) */}
       <div className="w-full aspect-[3/4] overflow-hidden">
         <Image
-          src={product.image}
+          src={`${API_URL}${product.images[0].url}`}
           alt={product.name}
           width={300}
           height={400}
