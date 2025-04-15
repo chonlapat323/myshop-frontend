@@ -21,7 +21,7 @@ export default function Breadcrumbs() {
           <Link href="/" className="text-gray-500 hover:text-black">
             Home
           </Link>
-          <span className="text-gray-400">/</span>
+          <span className="text-gray-400"> /</span>
         </li>
         {breadcrumbItems.map((item, index) => (
           <li key={index}>
@@ -32,7 +32,7 @@ export default function Breadcrumbs() {
               {item.label}
             </Link>
             {index < breadcrumbItems.length - 1 && (
-              <span className="text-gray-400">/</span>
+              <span className="text-gray-400"> /</span>
             )}
           </li>
         ))}

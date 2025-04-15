@@ -10,15 +10,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Breadcrumbs />
 
       {/* ✅ Main Container */}
-      <div className="flex gap-6">
-        {/* ✅ Sidebar (left side) */}
-        <aside className="hidden md:block w-1/4">
+      {/* <div className="flex gap-6"> */}
+      {/* ✅ Sidebar (left side) */}
+      {/* <aside className="hidden md:block w-1/4">
           <Sidebar />
-        </aside>
+        </aside> */}
 
-        {/* ✅ Products Content Area */}
-        <main className="flex-1">{children}</main>
-      </div>
+      {/* ✅ Products Content Area */}
+      <main className="flex-1">{children}</main>
+      {/* </div> */}
     </section>
   );
 }

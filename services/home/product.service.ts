@@ -1,5 +1,6 @@
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
+
 export async function getBestSellers() {
   const res = await fetchWithAuth(`${API_URL}/products/best-sellers`);
 
@@ -7,5 +8,11 @@ export async function getBestSellers() {
     throw new Error("Failed to fetch best seller products");
   }
 
+  return res.json();
+}
+
+export async function getProductsByCategory(slug: string) {
+  const res = await fetchWithAuth(`${API_URL}/products/category/${slug}`);
+  if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
 }
