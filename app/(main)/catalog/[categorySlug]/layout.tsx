@@ -1,5 +1,3 @@
-"use client";
-
 import Sidebar from "../components/Sidebar";
 import Breadcrumbs from "../components/Breadcrumbs";
 

@@ -10,46 +10,16 @@ export default function CategoryPage() {
   const slug = Array.isArray(categorySlug)
     ? categorySlug[0]
     : categorySlug || "";
-
-  const { products, loading, error } = useProductsByCategory(slug);
-
+  const [tempSearchTerm, setTempSearchTerm] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedBrand, setSelectedBrand] = useState<string>("all");
   const [sortOption, setSortOption] = useState<"none" | "lowest" | "highest">(
     "none"
   );
-
-  const productsByCategory = products;
-
-  const filteredByBrand =
-    selectedBrand === "all"
-      ? productsByCategory
-      : productsByCategory.filter(
-          (p) => p.brand.toLowerCase() === selectedBrand.toLowerCase()
-        );
-
-  const searchedProducts = filteredByBrand.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const { products, loading, error } = useProductsByCategory(
+    slug,
+    searchTerm,
+    sortOption
   );
-
-  const sortedProducts = useMemo(() => {
-    if (sortOption === "lowest") {
-      return [...searchedProducts].sort(
-        (a, b) => parseFloat(a.price) - parseFloat(b.price)
-      );
-    }
-    if (sortOption === "highest") {
-      return [...searchedProducts].sort(
-        (a, b) => parseFloat(b.price) - parseFloat(a.price)
-      );
-    }
-    return searchedProducts;
-  }, [searchedProducts, sortOption]);
-
-  const brandOptions = Array.from(
-    new Set(productsByCategory.map((p) => p.brand))
-  );
-
   return (
     <section className="mx-auto py-0">
       <h1 className="text-2xl font-bold capitalize mb-6">{slug} Products</h1>
@@ -58,10 +28,17 @@ export default function CategoryPage() {
         <input
           type="text"
           placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={tempSearchTerm}
+          onChange={(e) => setTempSearchTerm(e.target.value)}
           className="border p-2 rounded w-full md:w-1/3"
         />
+
+        <button
+          onClick={() => setSearchTerm(tempSearchTerm)}
+          className="cursor-pointer bg-black hover:text-black hover:bg-[#ddd] text-white font-bold py-2 px-4 rounded"
+        >
+          Search
+        </button>
 
         <select
           value={sortOption}
@@ -76,16 +53,14 @@ export default function CategoryPage() {
         </select>
       </div>
 
-      {/* Loading & Error */}
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
-      {/* Product Grid */}
-      {!loading && sortedProducts.length === 0 ? (
+      {!loading && products.length === 0 ? (
         <p className="text-gray-500">No products found.</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {sortedProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

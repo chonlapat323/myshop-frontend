@@ -2,17 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
-export default function Breadcrumbs() {
+interface BreadcrumbsProps {
+  productName?: string;
+}
+
+export default function Breadcrumbs({ productName }: BreadcrumbsProps) {
   const pathname = usePathname();
   const paths = pathname.split("/").filter(Boolean);
 
-  const breadcrumbItems = paths.map((segment, index) => {
-    const href = `/${paths.slice(0, index + 1).join("/")}`;
-    const label = segment.replace("-", " ");
+  const breadcrumbItems = useMemo(() => {
+    return paths.map((segment, index) => {
+      const href = `/${paths.slice(0, index + 1).join("/")}`;
+      let label = segment.replace("-", " ");
 
-    return { label, href };
-  });
+      const isLast = index === paths.length - 1;
+      const isProductPage =
+        paths.length >= 2 && paths[paths.length - 2] === "product";
+
+      if (isLast && isProductPage && productName) {
+        label = productName;
+      }
+
+      return { label, href };
+    });
+  }, [paths, productName]);
 
   return (
     <nav className="mb-4">
