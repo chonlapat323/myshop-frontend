@@ -4,9 +4,10 @@ import { useState } from "react";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar, { MenuItem } from "../components/Sidebar";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { MenuOutlined } from "@ant-design/icons";
+import { logoutUser } from "@/services/member/member.service";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -27,7 +28,22 @@ function ProtectedLayout({ children }: { children: React.ReactNode }) {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const menuItems: MenuItem[] = [
+    {
+      key: "personal-info",
+      label: "Personal Information",
+      href: "/account/personal-info",
+    },
+    { key: "orders", label: "My Order", href: "/account/orders" },
+    { key: "address", label: "Manage Address", href: "/account/address" },
+    { key: "payment", label: "Payment Method", href: "/account/payment" },
+    { key: "password", label: "Password Manage", href: "/account/password" },
+    {
+      key: "logout",
+      label: "Logout",
+      onClick: () => logoutUser(), // ฟังก์ชัน logout ของคุณ
+    },
+  ];
   return (
     <AuthProvider>
       <section className="max-w-6xl mx-auto px-4 py-4">
@@ -46,6 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             } md:block`}
           >
             <Sidebar
+              menuItems={menuItems}
               onClose={() => setIsMenuOpen(false)}
               isMenuOpen={isMenuOpen}
             />

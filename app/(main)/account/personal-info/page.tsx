@@ -1,27 +1,14 @@
 "use client";
 
 import AvatarUpload from "@/app/(main)/components/ui/AvatarUpload";
-import { useState } from "react";
+import { useMemberForm } from "@/hooks/member/useMemberForm"; // ✅ Hook ใหม่
 
 export default function PersonalInfo() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    gender: "Male",
-  });
+  const { formData, handleChange, handleSubmit, loading, error, submitting } =
+    useMemberForm();
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Updated Data:", formData);
-  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="mx-auto bg-white p-6 md:mt-0 mt-4 rounded-md shadow">
@@ -83,26 +70,17 @@ export default function PersonalInfo() {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium">Gender *</label>
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800"
+          disabled={submitting}
+          className={`w-full py-2 rounded-md ${
+            submitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-black text-white hover:bg-gray-800"
+          }`}
         >
-          Update Changes
+          {submitting ? "Updating..." : "Update Changes"}
         </button>
       </form>
     </div>
