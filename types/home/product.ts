@@ -5,13 +5,26 @@ export interface ProductImage {
   productId: number;
   order_image: number;
 }
-
-export interface Product {
+export type Category = {
   id: number;
   name: string;
   description: string;
-  price: string; // หรือใช้ `number` ถ้าคุณจะ parse เป็น float
-  discountPrice: string; // หรือ `number`
+  link: string;
+  image: string;
+  is_active: boolean;
+  created_at: string;
+  deleted_at: string | null;
+};
+
+export interface Product {
+  id: number;
+  category: Category;
+  name: string;
+  description: string;
+  design: string;
+  additionalInformation: string;
+  price: string;
+  discountPrice: string;
   stock: number;
   sku: string;
   brand: string;
@@ -19,7 +32,7 @@ export interface Product {
   images: ProductImage[];
   is_active: boolean;
   is_best_seller: boolean;
-  created_at: string; // หรือ `Date` ถ้าแปลงแล้ว
+  created_at: string;
   updated_at: string;
   deleted_at: string | null;
 }

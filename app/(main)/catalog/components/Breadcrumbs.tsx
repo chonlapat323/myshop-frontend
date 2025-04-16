@@ -6,28 +6,43 @@ import { useMemo } from "react";
 
 interface BreadcrumbsProps {
   productName?: string;
+  categorySlug?: string;
 }
 
-export default function Breadcrumbs({ productName }: BreadcrumbsProps) {
+export default function Breadcrumbs({
+  productName,
+  categorySlug,
+}: BreadcrumbsProps) {
   const pathname = usePathname();
   const paths = pathname.split("/").filter(Boolean);
 
   const breadcrumbItems = useMemo(() => {
-    return paths.map((segment, index) => {
-      const href = `/${paths.slice(0, index + 1).join("/")}`;
-      let label = segment.replace("-", " ");
+    const items = [];
 
-      const isLast = index === paths.length - 1;
-      const isProductPage =
-        paths.length >= 2 && paths[paths.length - 2] === "product";
-
-      if (isLast && isProductPage && productName) {
-        label = productName;
-      }
-
-      return { label, href };
+    // ✅ เพิ่ม Catalog (คงที่)
+    items.push({
+      label: "Catalog",
+      href: "/catalog",
     });
-  }, [paths, productName]);
+
+    // ✅ เพิ่ม Category (ถ้ามี)
+    if (categorySlug) {
+      items.push({
+        label: categorySlug.replace(/-/g, " "),
+        href: `/catalog/${categorySlug}`,
+      });
+    }
+
+    // ✅ เพิ่ม Product Name (ถ้ามี)
+    if (productName) {
+      items.push({
+        label: productName,
+        href: "", // ไม่ต้องคลิก
+      });
+    }
+
+    return items;
+  }, [categorySlug, productName]);
 
   return (
     <nav className="mb-4">
@@ -36,21 +51,30 @@ export default function Breadcrumbs({ productName }: BreadcrumbsProps) {
           <Link href="/" className="text-gray-500 hover:text-black">
             Home
           </Link>
-          <span className="text-gray-400"> /</span>
+          {breadcrumbItems.length > 0 && (
+            <span className="text-gray-400"> /</span>
+          )}
         </li>
-        {breadcrumbItems.map((item, index) => (
-          <li key={index}>
-            <Link
-              href={item.href}
-              className="capitalize text-gray-500 hover:text-black"
-            >
-              {item.label}
-            </Link>
-            {index < breadcrumbItems.length - 1 && (
-              <span className="text-gray-400"> /</span>
-            )}
-          </li>
-        ))}
+
+        {breadcrumbItems.map((item, index) => {
+          const isLast = index === breadcrumbItems.length - 1;
+
+          return (
+            <li key={index}>
+              {isLast ? (
+                <span className="capitalize text-gray-500">{item.label}</span>
+              ) : (
+                <Link
+                  href={item.href}
+                  className="capitalize text-gray-500 hover:text-black"
+                >
+                  {item.label}
+                </Link>
+              )}
+              {!isLast && <span className="text-gray-400"> /</span>}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

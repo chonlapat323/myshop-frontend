@@ -1,11 +1,16 @@
 import Sidebar from "../components/Sidebar";
 import Breadcrumbs from "../components/Breadcrumbs";
-
-export default function Layout({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode;
+  params: {
+    categorySlug: string;
+  };
+};
+export default function Layout({ children, params }: Props) {
   return (
     <section className="max-w-7xl mx-auto px-4 py-6">
       {/* ✅ Breadcrumbs */}
-      <Breadcrumbs />
+      <Breadcrumbs categorySlug={params.categorySlug} />
 
       {/* ✅ Main Container */}
       {/* <div className="flex gap-6"> */}
