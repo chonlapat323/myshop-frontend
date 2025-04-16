@@ -21,12 +21,19 @@ export default function Navbar({ menuItems }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, isReady } = useAuth();
 
-  const linkClass = (href: string) =>
-    `px-4 py-2 rounded-md text-sm font-medium transition ${
-      pathname === href
+  const isPathActive = (href: string, currentPath: string) => {
+    if (href === "/") return currentPath === "/";
+    return currentPath === href || currentPath.startsWith(href + "/");
+  };
+  const linkClass = (href: string) => {
+    const isActive = isPathActive(href, pathname);
+
+    return `px-4 py-2 rounded-md text-sm font-medium transition ${
+      isActive
         ? "bg-black text-white"
         : "text-gray-600 hover:text-black hover:bg-gray-100"
     }`;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white shadow z-50">
