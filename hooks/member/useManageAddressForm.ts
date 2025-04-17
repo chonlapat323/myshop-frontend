@@ -1,10 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useCreateAddress } from "../api/address/useCreateAddress";
+import { Address } from "@/types/member/address";
+import { getAddresses } from "@/services/member/address.service";
 
 export function useManageAddressForm() {
   const { create, loading } = useCreateAddress();
+  const [addresses, setAddresses] = useState<Address[]>([]);
   const [isAdding, setIsAdding] = useState(false);
-
   const [newAddress, setNewAddress] = useState({
     full_name: "",
     address_line: "",
@@ -22,6 +24,18 @@ export function useManageAddressForm() {
     zip_code: "",
     phone_number: "",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAddresses();
+        setAddresses(data);
+      } catch (err) {
+        console.error("โหลดที่อยู่ไม่สำเร็จ", err);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewAddress({ ...newAddress, [e.target.name]: e.target.value });
@@ -45,7 +59,10 @@ export function useManageAddressForm() {
 
   const handleSaveNew = useCallback(async () => {
     if (!validate()) return;
-    await create(newAddress);
+    const newItem = await create(newAddress);
+    if (newItem) {
+      setAddresses((prev) => [...prev, newItem]);
+    }
     setIsAdding(false);
     setNewAddress({
       full_name: "",
@@ -63,6 +80,8 @@ export function useManageAddressForm() {
     newAddress,
     handleChange,
     handleSaveNew,
+    addresses,
+    setAddresses,
     errors,
     loading,
   };

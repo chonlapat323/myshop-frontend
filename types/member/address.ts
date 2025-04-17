@@ -11,3 +11,13 @@ export interface Address {
   created_at?: string;
   updated_at?: string;
 }
+
+export interface CreateAddressDto {
+  full_name: string;
+  address_line: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  phone_number: string;
+  is_default?: boolean; // Optional (ถ้าไม่ระบุจะเป็น false โดย default)
+}

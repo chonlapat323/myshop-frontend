@@ -1,9 +1,8 @@
 // app/account/address/page.tsx
 "use client";
-import { useManageAddressForm } from "@/hooks/member/useManageAddressForm";
 
 import ManageAddressForm from "../../components/account/ManageAddressForm";
-import ManageAddressList from "../../components/account/ManageAddressList";
+import { useManageAddressForm } from "@/hooks/member/useManageAddressForm";
 export default function ManageAddressPage() {
   const {
     newAddress,
@@ -21,7 +20,25 @@ export default function ManageAddressPage() {
     <section className="mx-auto px-0 py-0">
       <h2 className="text-2xl font-bold mb-4">Manage Address</h2>
 
-      <ManageAddressList addresses={addresses} />
+      {addresses.length > 0 ? (
+        <div className="space-y-4 mb-6">
+          {addresses.map((addr) => (
+            <div
+              key={addr.id}
+              className="border p-4 rounded-md bg-white shadow-sm"
+            >
+              <h3 className="font-semibold">{addr.full_name}</h3>
+              <p>{addr.address_line}</p>
+              <p>
+                {addr.city}, {addr.state} {addr.zip_code}
+              </p>
+              <p className="text-gray-500">{addr.phone_number}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500 mb-6">No saved addresses.</p>
+      )}
 
       {isAdding && (
         <ManageAddressForm
