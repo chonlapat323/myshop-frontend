@@ -1,4 +1,3 @@
-// ✅ เวอร์ชันที่ไม่ใช้ localStorage accessToken
 import { API_URL } from "@/lib/config";
 
 export const fetchWithAuth = async (

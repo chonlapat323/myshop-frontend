@@ -2,25 +2,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+export interface MenuItem {
+  key: string;
+  label: string;
+  href?: string;
+  onClick?: () => void;
+}
+
 interface SidebarProps {
   isMenuOpen: boolean;
+  menuItems: MenuItem[];
   onClose: () => void;
 }
 
-const menuItems = [
-  {
-    key: "personal-info",
-    label: "Personal Information",
-    href: "/account/personal-info",
-  },
-  { key: "orders", label: "My Order", href: "/account/orders" },
-  { key: "address", label: "Manage Address", href: "/account/address" },
-  { key: "payment", label: "Payment Method", href: "/account/payment" },
-  { key: "password", label: "Password Manage", href: "/account/password" },
-  { key: "logout", label: "Logout", href: "/account/logout" },
-];
-
-export default function Sidebar({ isMenuOpen, onClose }: SidebarProps) {
+export default function Sidebar({
+  isMenuOpen,
+  onClose,
+  menuItems,
+}: SidebarProps) {
   const pathname = usePathname();
 
   return (
@@ -29,19 +28,39 @@ export default function Sidebar({ isMenuOpen, onClose }: SidebarProps) {
         isMenuOpen ? "block" : "hidden md:block"
       }`}
     >
-      {menuItems.map((item) => (
-        <Link key={item.key} href={item.href} onClick={onClose}>
-          <button
-            className={`cursor-pointer w-full text-left px-4 py-3 rounded-md transition-all ${
-              pathname === item.href
-                ? "bg-gray-200 font-bold"
-                : "hover:bg-gray-100"
-            }`}
-          >
-            {item.label}
-          </button>
-        </Link>
-      ))}
+      {menuItems.map((item) => {
+        const isActive = pathname === item.href;
+
+        if (item.onClick) {
+          // ✅ กรณี Logout หรือ custom function
+          return (
+            <button
+              key={item.key}
+              onClick={() => {
+                item.onClick?.();
+                onClose(); // ✅ ปิดเมนูหลังคลิก
+              }}
+              className={`cursor-pointer w-full hover:bg-gray-200 text-left px-4 py-3 rounded-md transition-all ${
+                isActive ? "bg-gray-200 font-bold" : "hover:bg-gray-100"
+              }`}
+            >
+              {item.label}
+            </button>
+          );
+        }
+
+        return (
+          <Link key={item.key} href={item.href || "#"} onClick={onClose}>
+            <button
+              className={`cursor-pointer w-full hover:bg-gray-200 text-left px-4 py-3 rounded-md transition-all ${
+                isActive ? "bg-gray-200 font-bold" : "hover:bg-gray-100"
+              }`}
+            >
+              {item.label}
+            </button>
+          </Link>
+        );
+      })}
     </div>
   );
 }

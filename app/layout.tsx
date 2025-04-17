@@ -1,4 +1,5 @@
 // app/login/layout.tsx
+import { Toaster } from "sonner";
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 const geistSans = Geist({
@@ -19,6 +20,7 @@ export default function LoginLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
         {children}
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   ); // Layout นี้จะไม่รวม Navbar/Footer
