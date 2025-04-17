@@ -67,7 +67,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
               <Link href="/account">
                 <User
                   className={`w-6 h-6 transition ${
-                    pathname === "/account"
+                    pathname === "/account" || pathname.startsWith("/account/")
                       ? "text-black"
                       : "text-gray-400 hover:text-black"
                   }`}
@@ -123,7 +123,8 @@ export default function Navbar({ menuItems }: NavbarProps) {
                 <Link href="/account">
                   <User
                     className={`w-6 h-6 transition ${
-                      pathname === "/account"
+                      pathname === "/account" ||
+                      pathname.startsWith("/account/")
                         ? "text-black"
                         : "text-gray-400 hover:text-black"
                     }`}
