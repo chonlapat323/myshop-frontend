@@ -28,12 +28,33 @@ export async function createAddress(
 
 export async function updateAddress(
   id: string,
-  data: FormData
-): Promise<Response> {
-  return fetchWithAuth(`${API_URL}/addresses/${id}`, {
+  data: Partial<Address>
+): Promise<Address> {
+  const res = await fetchWithAuth(`${API_URL}/addresses/${id}`, {
     method: "PATCH",
-    body: data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to update address");
+  }
+
+  return res.json();
+}
+
+export async function setDefaultAddress(id: string): Promise<Address> {
+  const res = await fetchWithAuth(`${API_URL}/addresses/${id}/default`, {
+    method: "PATCH",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to set default address");
+  }
+
+  return res.json();
 }
 
 export async function deleteAddress(id: string): Promise<Response> {

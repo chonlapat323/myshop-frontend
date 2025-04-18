@@ -1,6 +1,5 @@
 "use client";
 
-import { Address } from "@/types/member/address";
 import React from "react";
 
 interface AddressFormProps {
@@ -21,8 +20,9 @@ interface AddressFormProps {
     phone_number: string;
   };
   loading: boolean;
+  editingAddressId: string | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSave: () => void;
+  onSaveOrUpdate: () => void;
   onCancel: () => void;
 }
 
@@ -30,15 +30,16 @@ export default function ManageAddressForm({
   newAddress,
   errors,
   loading,
+  editingAddressId,
   onChange,
-  onSave,
+  onSaveOrUpdate,
   onCancel,
 }: AddressFormProps) {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSave();
+        onSaveOrUpdate();
       }}
     >
       <div className="mt-6 border p-4 rounded-md shadow-sm bg-white">
@@ -116,7 +117,13 @@ export default function ManageAddressForm({
               disabled={loading}
               className="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-gray-800"
             >
-              {loading ? "Saving..." : "Save"}
+              {loading
+                ? editingAddressId
+                  ? "Updating..."
+                  : "Saving..."
+                : editingAddressId
+                ? "Update"
+                : "Save"}
             </button>
             <button
               onClick={onCancel}

@@ -13,33 +13,49 @@ export default function ManageAddressPage() {
     setIsAdding,
     handleChange,
     handleSaveNew,
-    addresses, // ✅ เพิ่มเข้ามา
-    setAddresses, // optional เผื่อใช้ในภายหลัง
+    handleUpdateEdit,
+    handleEdit,
+    cancelEdit,
+    addresses,
+    editingAddressId,
   } = useManageAddressForm();
 
   return (
     <section className="mx-auto px-0 py-0">
       <h2 className="text-2xl font-bold mb-4">Manage Address</h2>
 
-      <ManageAddressList addresses={addresses} />
+      <ManageAddressList
+        addresses={addresses}
+        onEdit={handleEdit}
+        editingAddressId={editingAddressId}
+        newAddress={newAddress}
+        errors={errors}
+        onChange={handleChange}
+        onSaveOrUpdate={handleUpdateEdit}
+        onCancel={cancelEdit}
+        loading={loading}
+      />
 
-      {isAdding && (
+      {isAdding && !editingAddressId && (
         <ManageAddressForm
           newAddress={newAddress}
           errors={errors}
           loading={loading}
           onChange={handleChange}
-          onSave={handleSaveNew}
-          onCancel={() => setIsAdding(false)}
+          onSaveOrUpdate={handleSaveNew}
+          onCancel={cancelEdit}
+          editingAddressId={null}
         />
       )}
 
-      <button
-        onClick={() => setIsAdding(true)}
-        className="cursor-pointer mt-6 bg-black text-white px-6 py-2 rounded-md"
-      >
-        Add New Address
-      </button>
+      {!isAdding && !editingAddressId && (
+        <button
+          onClick={() => setIsAdding(true)}
+          className="cursor-pointer mt-6 bg-black text-white px-6 py-2 rounded-md"
+        >
+          Add New Address
+        </button>
+      )}
     </section>
   );
 }

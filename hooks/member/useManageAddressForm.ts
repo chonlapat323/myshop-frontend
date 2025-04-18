@@ -2,9 +2,11 @@ import { useState, useCallback, useEffect } from "react";
 import { useCreateAddress } from "../api/address/useCreateAddress";
 import { Address } from "@/types/member/address";
 import { getAddresses } from "@/services/member/address.service";
-
+import { useUpdateAddress } from "../api/address/useUpdateAddress"; // ✅ เพิ่มเข้ามา
 export function useManageAddressForm() {
   const { create, loading } = useCreateAddress();
+
+  const { update } = useUpdateAddress();
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isAdding, setIsAdding] = useState(false);
   const [newAddress, setNewAddress] = useState({
@@ -14,8 +16,8 @@ export function useManageAddressForm() {
     state: "",
     zip_code: "",
     phone_number: "",
+    is_default: false,
   });
-
   const [errors, setErrors] = useState({
     full_name: "",
     address_line: "",
@@ -24,6 +26,28 @@ export function useManageAddressForm() {
     zip_code: "",
     phone_number: "",
   });
+  const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
+  const handleEdit = (address: Address) => {
+    setIsAdding(true);
+    setEditingAddressId(address.id ?? null);
+    setNewAddress({
+      full_name: address.full_name,
+      address_line: address.address_line,
+      city: address.city,
+      state: address.state,
+      zip_code: address.zip_code,
+      phone_number: address.phone_number,
+      is_default: address.is_default ?? false,
+    });
+    setErrors({
+      full_name: "",
+      address_line: "",
+      city: "",
+      state: "",
+      zip_code: "",
+      phone_number: "",
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,8 +95,43 @@ export function useManageAddressForm() {
       state: "",
       zip_code: "",
       phone_number: "",
+      is_default: false,
     });
   }, [newAddress]);
+
+  const handleUpdateEdit = useCallback(async () => {
+    if (!validate() || !editingAddressId) return;
+    debugger;
+    const updated = await update(editingAddressId, newAddress);
+    if (updated) {
+      setAddresses((prev) =>
+        prev.map((addr) => (addr.id === updated.id ? updated : addr))
+      );
+    }
+    cancelEdit();
+  }, [editingAddressId, newAddress]);
+
+  const cancelEdit = () => {
+    setIsAdding(false);
+    setEditingAddressId(null);
+    setNewAddress({
+      full_name: "",
+      address_line: "",
+      city: "",
+      state: "",
+      zip_code: "",
+      phone_number: "",
+      is_default: false,
+    });
+    setErrors({
+      full_name: "",
+      address_line: "",
+      city: "",
+      state: "",
+      zip_code: "",
+      phone_number: "",
+    });
+  };
 
   return {
     isAdding,
@@ -82,6 +141,10 @@ export function useManageAddressForm() {
     handleSaveNew,
     addresses,
     setAddresses,
+    handleUpdateEdit,
+    handleEdit,
+    cancelEdit,
+    editingAddressId,
     errors,
     loading,
   };
