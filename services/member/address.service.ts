@@ -57,8 +57,12 @@ export async function setDefaultAddress(id: string): Promise<Address> {
   return res.json();
 }
 
-export async function deleteAddress(id: string): Promise<Response> {
-  return fetchWithAuth(`${API_URL}/addresses/${id}`, {
+export async function deleteAddress(id: string): Promise<void> {
+  const res = await fetchWithAuth(`${API_URL}/addresses/${id}`, {
     method: "DELETE",
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete address");
+  }
 }
