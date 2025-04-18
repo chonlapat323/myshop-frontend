@@ -18,6 +18,7 @@ export default function ManageAddressPage() {
     cancelEdit,
     addresses,
     editingAddressId,
+    setAddresses,
   } = useManageAddressForm();
 
   return (
@@ -26,6 +27,7 @@ export default function ManageAddressPage() {
 
       <ManageAddressList
         addresses={addresses}
+        setAddresses={setAddresses}
         onEdit={handleEdit}
         editingAddressId={editingAddressId}
         newAddress={newAddress}

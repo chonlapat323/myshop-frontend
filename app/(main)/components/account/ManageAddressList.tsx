@@ -111,7 +111,7 @@ export default function ManageAddressList({
                   <button
                     onClick={() => handleSetDefault(address.id!)}
                     disabled={address.is_default || settingDefault}
-                    className="bg-gray-200 text-black px-4 py-2 rounded-md text-sm hover:bg-gray-300"
+                    className="cursor-pointer bg-gray-200 text-black px-4 py-2 rounded-md text-sm hover:bg-gray-300"
                   >
                     {settingDefault && address.id === editingAddressId
                       ? "Setting..."
