@@ -1,5 +1,5 @@
 // app/(components)/bestsellers/page.tsx
-import BestSellersSection from "./BestSellersSection";
+import BestSellersSection from "./BestsellersSection";
 import { Product } from "@/types/home/product";
 import BestsellerSkeleton from "./BestsellerSkeleton";
 interface Props {
