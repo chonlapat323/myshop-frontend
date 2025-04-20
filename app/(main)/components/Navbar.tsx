@@ -74,13 +74,18 @@ export default function Navbar({ menuItems }: NavbarProps) {
                 />
               </Link>
               <Link href="/cart">
-                <ShoppingCart
-                  className={`w-6 h-6 transition ${
-                    pathname === "/cart"
-                      ? "text-black"
-                      : "text-gray-400 hover:text-black"
-                  }`}
-                />
+                <div className="relative" id="cart-icon">
+                  <ShoppingCart
+                    className={`w-6 h-6 transition ${
+                      pathname === "/cart"
+                        ? "text-black"
+                        : "text-gray-400 hover:text-black"
+                    }`}
+                  />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                    5
+                  </span>
+                </div>
               </Link>
             </>
           )}
