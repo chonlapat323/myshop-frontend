@@ -1,3 +1,4 @@
+import { useCart } from "@/context/CartContext";
 import { useCartFromAPI } from "../api/cart/useCartFromAPI.ts";
 import {
   updateCartItemQuantity,
@@ -14,13 +15,20 @@ interface UseCartItems {
 }
 
 export function useCartItems(): UseCartItems {
-  const { items, refresh, removeItemFromState, total, loading } =
-    useCartFromAPI();
+  const {
+    items,
+    refresh: refreshCartItem,
+    removeItemFromState,
+    total,
+    loading,
+  } = useCartFromAPI();
+  const { refresh: refreshCartCount } = useCart();
 
   const updateItemQuantity = async (id: number, qty: number) => {
     try {
       await updateCartItemQuantity(id, qty);
-      await refresh();
+      await refreshCartItem();
+      await refreshCartCount();
     } catch (err) {
       console.error("❌ update failed", err);
     }
@@ -30,7 +38,8 @@ export function useCartItems(): UseCartItems {
     try {
       await removeCartItem(id);
       removeItemFromState(id);
-      await refresh();
+      await refreshCartItem();
+      await refreshCartCount();
     } catch (err) {
       console.error("❌ delete failed", err);
     }

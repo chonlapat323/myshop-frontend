@@ -12,6 +12,18 @@ interface GetCartResponse {
   total: number;
 }
 
+export async function getCartCount(): Promise<number> {
+  const res = await fetchWithAuth(`${API_URL}/cart/count`);
+
+  if (!res.ok) {
+    console.error("❌ Failed to fetch cart count");
+    return 0;
+  }
+
+  const data = await res.json();
+  return data.count || 0;
+}
+
 export async function getCart(): Promise<GetCartResponse> {
   const res = await fetchWithAuth(`${API_URL}/cart`);
 
