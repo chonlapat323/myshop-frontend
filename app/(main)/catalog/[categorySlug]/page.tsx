@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import ProductCard from "@/app/(main)/components/ui/ProductCard";
 import { useProductsByCategory } from "@/hooks/product/useProductsByCategory";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export default function CategoryPage() {
   const { categorySlug } = useParams();
@@ -22,6 +23,7 @@ export default function CategoryPage() {
   );
   return (
     <section className="mx-auto py-0">
+      <Breadcrumbs categorySlug={categorySlug as string} />
       <h1 className="text-2xl font-bold capitalize mb-6">{slug} Products</h1>
 
       <div className="mb-6 flex flex-col md:flex-row md:items-center gap-4">

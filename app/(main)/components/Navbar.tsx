@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, ShoppingCart, Lock, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/context/CartContext";
 
 interface MenuItem {
   key: string;
@@ -20,7 +21,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, isReady } = useAuth();
-
+  const { count } = useCart();
   const isPathActive = (href: string, currentPath: string) => {
     if (href === "/") return currentPath === "/";
     return currentPath === href || currentPath.startsWith(href + "/");
@@ -74,13 +75,20 @@ export default function Navbar({ menuItems }: NavbarProps) {
                 />
               </Link>
               <Link href="/cart">
-                <ShoppingCart
-                  className={`w-6 h-6 transition ${
-                    pathname === "/cart"
-                      ? "text-black"
-                      : "text-gray-400 hover:text-black"
-                  }`}
-                />
+                <div className="relative" id="cart-icon">
+                  <ShoppingCart
+                    className={`w-6 h-6 transition ${
+                      pathname === "/cart"
+                        ? "text-black"
+                        : "text-gray-400 hover:text-black"
+                    }`}
+                  />
+                  {count > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                      {count}
+                    </span>
+                  )}
+                </div>
               </Link>
             </>
           )}
@@ -131,13 +139,20 @@ export default function Navbar({ menuItems }: NavbarProps) {
                   />
                 </Link>
                 <Link href="/cart">
-                  <ShoppingCart
-                    className={`w-6 h-6 transition ${
-                      pathname === "/cart"
-                        ? "text-black"
-                        : "text-gray-400 hover:text-black"
-                    }`}
-                  />
+                  <div className="relative">
+                    <ShoppingCart
+                      className={`w-6 h-6 transition ${
+                        pathname === "/cart"
+                          ? "text-black"
+                          : "text-gray-400 hover:text-black"
+                      }`}
+                    />
+                    {count > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                        {count}
+                      </span>
+                    )}
+                  </div>
                 </Link>
               </>
             )}

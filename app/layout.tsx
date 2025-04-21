@@ -2,6 +2,7 @@
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
+import { CartProvider } from "@/context/CartContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,7 +20,7 @@ export default function LoginLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
-        {children}
+        <CartProvider>{children}</CartProvider>
         <Toaster position="bottom-right" richColors />
       </body>
     </html>
