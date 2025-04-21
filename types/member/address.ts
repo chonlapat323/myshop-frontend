@@ -1,5 +1,5 @@
 export interface Address {
-  id?: string;
+  id?: number;
   user_id?: string;
   full_name: string;
   address_line: string;

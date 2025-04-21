@@ -5,6 +5,9 @@ import {
   removeCartItem,
 } from "@/services/cart/cart.service";
 import { CartItem } from "@/types/cart/cart";
+import { Address } from "@/types/member/address";
+import { buildOrderPayload } from "@/utils/order/buildOrderPayload";
+import { createOrder } from "@/services/order/order.service";
 
 interface UseCartItems {
   items: CartItem[];
@@ -12,6 +15,7 @@ interface UseCartItems {
   isLoading: boolean;
   updateItemQuantity: (id: number, qty: number) => Promise<void>;
   removeItem: (id: number) => Promise<void>;
+  placeOrder: (address: Address) => Promise<void>; // ✅ เพิ่มตรงนี้
 }
 
 export function useCartItems(): UseCartItems {
@@ -45,11 +49,20 @@ export function useCartItems(): UseCartItems {
     }
   };
 
+  const placeOrder = async (address: Address): Promise<void> => {
+    const payload = buildOrderPayload(address, items);
+    await createOrder(payload);
+    await refreshCartItem();
+    await refreshCartCount();
+    await refreshCartItem(); // เคลียร์ item UI ด้วย (optional)
+  };
+
   return {
     items,
     total,
     isLoading: loading,
     updateItemQuantity,
     removeItem,
+    placeOrder,
   };
 }

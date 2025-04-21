@@ -5,12 +5,31 @@ import { useCartItems } from "@/hooks/cart/useCartItems";
 import CartItemCard from "../components/cart/CartItemCard";
 import ConfirmModal from "../components/ui/modal/ConfirmModal";
 import { useState } from "react";
-
+import AddressSelectModal from "../components/ui/modal/AddressSelectModal";
+import { useCart } from "@/context/CartContext";
+import { useAddresses } from "@/hooks/member/useAddresses";
 export default function CartPage() {
-  const { updateItemQuantity, removeItem, items, total, isLoading } =
-    useCartItems();
+  const {
+    updateItemQuantity,
+    removeItem,
+    placeOrder,
+    items,
+    total,
+    isLoading,
+  } = useCartItems();
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const { addresses, loading } = useAddresses();
+  const handleConfirmAddress = async (addressId: number) => {
+    setShowAddressModal(false);
+    const address = addresses.find((a) => a.id === addressId);
+    if (!address) return;
+
+    await placeOrder(address); // ✅ เรียกผ่าน hook
+    alert("สั่งซื้อสำเร็จ!");
+  };
+
   const handleConfirmDelete = () => {
     if (selectedItemId !== null) {
       removeItem(selectedItemId); // ✅ ลบจาก hook
@@ -54,7 +73,10 @@ export default function CartPage() {
                 <span>รวมทั้งหมด</span>
                 <span className="font-bold">{total.toFixed(2)} บาท</span>
               </div>
-              <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+              <button
+                onClick={() => setShowAddressModal(true)}
+                className="cursor-pointer mt-4 w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+              >
                 ดำเนินการชำระเงิน
               </button>
             </div>
@@ -70,6 +92,11 @@ export default function CartPage() {
           setSelectedItemId(null);
         }}
         onConfirm={handleConfirmDelete}
+      />
+      <AddressSelectModal
+        open={showAddressModal}
+        onClose={() => setShowAddressModal(false)}
+        onConfirm={handleConfirmAddress}
       />
     </>
   );

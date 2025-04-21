@@ -53,6 +53,7 @@ import MoreDotIcon from "./more-dot.svg";
 import BellIcon from "./bell.svg";
 import Category from "./category.svg";
 import Cart from "./cart.svg";
+import NoImage from "./no-image-svgrepo-com.svg";
 export {
   DownloadIcon,
   BellIcon,
@@ -109,4 +110,5 @@ export {
   ChatIcon,
   Category,
   Cart,
+  NoImage,
 };
