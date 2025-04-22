@@ -19,3 +19,14 @@ export async function createOrder(payload: OrderPayload) {
   if (!res.ok) throw new Error("สั่งซื้อไม่สำเร็จ");
   return res.json();
 }
+
+export async function cancelOrder(orderId: number): Promise<void> {
+  const res = await fetchWithAuth(`${API_URL}/orders/${orderId}/cancel`, {
+    method: "PATCH",
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "ยกเลิกคำสั่งซื้อไม่สำเร็จ");
+  }
+}
