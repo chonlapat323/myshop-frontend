@@ -21,4 +21,5 @@ export interface Order {
   total_price: number;
   items: OrderItem[];
   status: "pending" | "shipped" | "cancelled";
+  tracking_number: string;
 }
