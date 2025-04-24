@@ -29,7 +29,7 @@ export interface Product {
   sku: string;
   brand: string;
   soldCount: number;
-  images: ProductImage[];
+  product_image: ProductImage[];
   is_active: boolean;
   is_best_seller: boolean;
   created_at: string;

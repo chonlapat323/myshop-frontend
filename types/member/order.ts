@@ -20,6 +20,6 @@ export interface Order {
   created_at: string;
   total_price: number;
   items: OrderItem[];
-  status: "pending" | "shipped" | "cancelled";
+  order_status: "pending" | "shipped" | "cancelled";
   tracking_number: string;
 }

@@ -24,7 +24,7 @@ export default function Home() {
     },
   ];
 
-  const slideItems = (slide?.images ?? []).map((img) => ({
+  const slideItems = (slide?.slide_images ?? []).map((img) => ({
     id: `${slide?.id}-${img.id}`,
     image: `${API_URL}${img.url}`,
     title: slide?.title,
