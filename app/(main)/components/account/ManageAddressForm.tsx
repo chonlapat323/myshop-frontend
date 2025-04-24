@@ -20,7 +20,7 @@ interface AddressFormProps {
     phone_number: string;
   };
   loading: boolean;
-  editingAddressId: string | null;
+  editingAddressId: number | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSaveOrUpdate: () => void;
   onCancel: () => void;

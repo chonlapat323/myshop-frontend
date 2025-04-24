@@ -10,9 +10,9 @@ export function useAddressActions(
   const { setDefault, loading: settingDefault } = useSetDefaultAddress();
   const { remove, loading: deleting } = useDeleteAddress();
   const [showConfirm, setShowConfirm] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const handleSetDefault = async (id: string) => {
+  const handleSetDefault = async (id: number) => {
     const updated = await setDefault(id);
     if (!updated) return;
 
@@ -24,7 +24,7 @@ export function useAddressActions(
     );
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     setSelectedId(id);
     setShowConfirm(true);
   };

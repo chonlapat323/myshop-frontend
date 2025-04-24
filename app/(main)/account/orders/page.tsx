@@ -107,7 +107,7 @@ export default function MyOrders() {
                           className="w-20 h-20 object-cover rounded-md border"
                         />
                       ) : (
-                        <NoImage />
+                        <NoImage width={100} height={100} />
                       )}
                       <div className="flex-1">
                         <h3 className="font-semibold">{item.product_name}</h3>

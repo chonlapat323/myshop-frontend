@@ -27,7 +27,7 @@ export async function createAddress(
 }
 
 export async function updateAddress(
-  id: string,
+  id: number,
   data: Partial<Address>
 ): Promise<Address> {
   const res = await fetchWithAuth(`${API_URL}/addresses/${id}`, {
@@ -45,7 +45,7 @@ export async function updateAddress(
   return res.json();
 }
 
-export async function setDefaultAddress(id: string): Promise<Address> {
+export async function setDefaultAddress(id: number): Promise<Address> {
   const res = await fetchWithAuth(`${API_URL}/addresses/${id}/default`, {
     method: "PATCH",
   });
@@ -57,7 +57,7 @@ export async function setDefaultAddress(id: string): Promise<Address> {
   return res.json();
 }
 
-export async function deleteAddress(id: string): Promise<void> {
+export async function deleteAddress(id: number): Promise<void> {
   const res = await fetchWithAuth(`${API_URL}/addresses/${id}`, {
     method: "DELETE",
   });

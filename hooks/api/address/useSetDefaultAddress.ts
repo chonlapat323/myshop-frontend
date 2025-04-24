@@ -6,7 +6,7 @@ import { Address } from "@/types/member/address";
 export function useSetDefaultAddress() {
   const [loading, setLoading] = useState(false);
 
-  const setDefault = async (id: string): Promise<Address | null> => {
+  const setDefault = async (id: number): Promise<Address | null> => {
     try {
       setLoading(true);
       const updated = await setDefaultAddress(id);

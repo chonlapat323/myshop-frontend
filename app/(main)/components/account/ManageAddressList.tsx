@@ -7,7 +7,7 @@ import ConfirmModal from "../ui/modal/ConfirmModal";
 interface Props {
   addresses: Address[];
   onEdit: (address: Address) => void;
-  editingAddressId: string | null;
+  editingAddressId: number | null;
   newAddress: {
     full_name: string;
     address_line: string;

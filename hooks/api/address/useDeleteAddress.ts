@@ -5,7 +5,7 @@ import { deleteAddress } from "@/services/member/address.service";
 export function useDeleteAddress() {
   const [loading, setLoading] = useState(false);
 
-  const remove = async (id: string): Promise<boolean> => {
+  const remove = async (id: number): Promise<boolean> => {
     try {
       setLoading(true);
       await deleteAddress(id);

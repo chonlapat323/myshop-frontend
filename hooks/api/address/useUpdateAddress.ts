@@ -6,7 +6,7 @@ import { useState } from "react";
 export function useUpdateAddress() {
   const [loading, setLoading] = useState(false);
 
-  const update = async (id: string, data: Partial<Address>) => {
+  const update = async (id: number, data: Partial<Address>) => {
     try {
       setLoading(true);
       const updated = await updateAddress(id, data);
