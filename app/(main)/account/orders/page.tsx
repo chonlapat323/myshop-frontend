@@ -1,23 +1,26 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
 import { NoImage } from "@/app/icons";
 import { useOrderActions } from "@/hooks/member/useOrderActions";
 import ConfirmModal from "../../components/ui/modal/ConfirmModal";
+import ShippingAddressModal from "../../components/ui/modal/ShippingAddressModal";
 import { useState } from "react";
 import { formatDate } from "@/utils/format-date";
 import {
   getOrderStatusColor,
   getOrderStatusLabel,
 } from "@/utils/order/order-status";
+import { formatCurrencyTHB } from "@/utils/format-currency";
+import { Address } from "@/types/member/address";
 
 export default function MyOrders() {
   const { orders, isLoading, handleCancelOrder, isError } = useOrderActions();
-
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   const handleClickCancel = (orderId: number) => {
     setSelectedOrderId(orderId);
@@ -54,12 +57,18 @@ export default function MyOrders() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <span className="text-gray-600">Order #</span>
-                  <Link
-                    href={`/account/orders/${order.order_number}`}
-                    className="text-blue-500 hover:underline font-medium"
-                  >
+                  <span className="text-blue-500 hover:underline font-medium">
                     {order.order_number}
-                  </Link>
+                  </span>
+                  <div
+                    onClick={() => {
+                      setSelectedAddress(order.shipping_address);
+                      setShowAddressModal(true);
+                    }}
+                    className="text-sm text-blue-500 hover:underline cursor-pointer"
+                  >
+                    รายละเอียดการจัดส่ง
+                  </div>
                 </div>
                 <p className="text-sm text-gray-500">
                   Order Placed: {formatDate(order.created_at)}
@@ -115,7 +124,9 @@ export default function MyOrders() {
                           Qty:{" "}
                           <span className="font-medium">{item.quantity}</span>
                         </p>
-                        <p className="text-lg font-semibold">฿ {item.price}</p>
+                        <p className="text-lg font-semibold">
+                          {formatCurrencyTHB(item.price)}
+                        </p>
                       </div>
                     </div>
                   );
@@ -130,7 +141,7 @@ export default function MyOrders() {
                   Cancel Order
                 </button>
                 <span className="text-lg font-bold">
-                  Total: ฿ {order.total_price}
+                  Total: {formatCurrencyTHB(order.total_price)}
                 </span>
               </div>
             </div>
@@ -143,6 +154,14 @@ export default function MyOrders() {
         description="This action cannot be undone. Do you really want to cancel it?"
         onConfirm={handleConfirm}
         onCancel={handleCancel}
+      />
+      <ShippingAddressModal
+        open={showAddressModal}
+        address={selectedAddress}
+        onClose={() => {
+          setShowAddressModal(false);
+          setSelectedAddress(null);
+        }}
       />
     </>
   );

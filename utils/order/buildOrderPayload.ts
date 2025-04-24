@@ -9,6 +9,8 @@ export type OrderPayload = {
   shippingCity: string;
   shippingZip: string;
   shippingCountry: string;
+  shippingPhone: string;
+  shippingState: string;
 };
 
 export function buildOrderPayload(
@@ -26,5 +28,7 @@ export function buildOrderPayload(
     shippingCity: address.city,
     shippingZip: address.zip_code,
     shippingCountry: "ไทย",
+    shippingPhone: address.phone_number,
+    shippingState: address.state,
   };
 }
