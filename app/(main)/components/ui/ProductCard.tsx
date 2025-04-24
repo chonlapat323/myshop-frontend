@@ -44,7 +44,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       setIsAdding(false);
     }
   };
-
+  const image = product.product_image?.[0]?.url
+    ? `${API_URL}${product.product_image[0].url}`
+    : "/uploads/no-image.jpg";
   return (
     <div
       key={product.id}
@@ -53,7 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="w-full aspect-[3/4] overflow-hidden">
         <Image
           ref={imageRef}
-          src={`${API_URL}${product.images[0].url}`}
+          src={image}
           alt={product.name}
           width={300}
           height={400}

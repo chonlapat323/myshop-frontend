@@ -67,13 +67,13 @@ export default function MyOrders() {
                 <div className="flex gap-2 items-center">
                   <span
                     className={`font-medium ${getOrderStatusColor(
-                      order.status
+                      order.order_status
                     )}`}
                   >
-                    {getOrderStatusLabel(order.status)}
+                    {getOrderStatusLabel(order.order_status)}
                   </span>
 
-                  {["shipped", "delivered"].includes(order.status) &&
+                  {["shipped", "delivered"].includes(order.order_status) &&
                     order.tracking_number && (
                       <div className="ml-2 px-2 py-1 bg-gray-100 text-sm rounded-md flex items-center gap-1">
                         <span>{order.tracking_number}</span>
