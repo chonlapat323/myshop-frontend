@@ -15,7 +15,7 @@ export default function CartItemCard({
 }: CartItemCardProps) {
   const [quantity, setQuantity] = useState(item.quantity);
   const [totalPrice, setTotalPrice] = useState(item.price * item.quantity);
-  // ✅ ฟังก์ชันยิง API แบบ delay
+
   const debouncedUpdate = useMemo(
     () =>
       debounce((qty: number) => {
@@ -35,11 +35,14 @@ export default function CartItemCard({
   const decrease = () => {
     if (quantity > 1) setQuantity((q) => q - 1);
   };
+  const imageUrl = item.image
+    ? `${API_URL}${item.image}`
+    : `/uploads/no-image.jpg`;
 
   return (
     <div className="flex items-center gap-4 p-4 border rounded-lg relative">
       <Image
-        src={`${API_URL}${item.image}`}
+        src={imageUrl}
         alt={item.name}
         width={80}
         height={80}

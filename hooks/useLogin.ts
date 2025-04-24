@@ -1,4 +1,3 @@
-// hooks/useLogin.ts
 "use client";
 
 import { useState } from "react";
@@ -16,7 +15,7 @@ export function useLogin() {
       setLoading(true);
       await login(email, password);
       const user = await fetchStatusAndGetUser();
-      setUser(user); // <- ผ่าน AuthContext หรือ Zustand
+      setUser(user);
       router.push("/");
     } catch (err: any) {
       setError(err.message || "Login failed");

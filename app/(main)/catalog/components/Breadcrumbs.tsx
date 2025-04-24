@@ -14,18 +14,15 @@ export default function Breadcrumbs({
   categorySlug,
 }: BreadcrumbsProps) {
   const pathname = usePathname();
-  const paths = pathname.split("/").filter(Boolean);
 
   const breadcrumbItems = useMemo(() => {
     const items = [];
 
-    // ✅ เพิ่ม Catalog (คงที่)
     items.push({
       label: "Catalog",
       href: "/catalog",
     });
 
-    // ✅ เพิ่ม Category (ถ้ามี)
     if (categorySlug) {
       items.push({
         label: categorySlug.replace(/-/g, " "),
@@ -33,11 +30,10 @@ export default function Breadcrumbs({
       });
     }
 
-    // ✅ เพิ่ม Product Name (ถ้ามี)
     if (productName) {
       items.push({
         label: productName,
-        href: "", // ไม่ต้องคลิก
+        href: "",
       });
     }
 

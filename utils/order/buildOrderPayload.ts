@@ -20,11 +20,11 @@ export function buildOrderPayload(
       productId: item.product_id,
       quantity: item.quantity,
     })),
-    paymentMethod: "COD", // ✅ mock แบบตายตัว
+    paymentMethod: "COD",
     shippingFullName: address.full_name,
     shippingAddressLine1: address.address_line,
     shippingCity: address.city,
     shippingZip: address.zip_code,
-    shippingCountry: "ไทย", // ✅ กำหนดตายตัว
+    shippingCountry: "ไทย",
   };
 }

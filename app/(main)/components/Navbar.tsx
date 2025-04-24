@@ -39,12 +39,10 @@ export default function Navbar({ menuItems }: NavbarProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white shadow z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="text-xl font-bold">
           🪑 MyShop
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex gap-4 items-center">
           {menuItems.map((item) => (
             <Link
@@ -56,7 +54,6 @@ export default function Navbar({ menuItems }: NavbarProps) {
             </Link>
           ))}
 
-          {/* Icons */}
           {isReady && !isAuthenticated && (
             <Link href="/login" className="ml-4">
               <Lock className="w-5 h-5" />
@@ -98,7 +95,6 @@ export default function Navbar({ menuItems }: NavbarProps) {
           )}
         </div>
 
-        {/* Mobile toggle */}
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
             <Menu className="w-6 h-6 text-black" />
@@ -106,7 +102,6 @@ export default function Navbar({ menuItems }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 bg-white shadow">
           {menuItems.map((item) => (

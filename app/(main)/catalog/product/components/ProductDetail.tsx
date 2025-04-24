@@ -1,24 +1,57 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { Product } from "@/types/home/product";
 import { API_URL } from "@/lib/config";
+import { toast } from "sonner";
+import { addToCart } from "@/services/member/cart.service";
+import { flyToCart } from "@/lib/cart-animation";
+import { useCart } from "@/context/CartContext";
 
 type ProductDetailProps = {
   product: Product;
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  const { increase, refresh } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
-  const images = product.product_image ?? [];
-
   const tabs = ["Additional Information", "Design"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const images = product.product_image ?? [];
   const selectedImageUrl =
     images.length > 0
       ? `${API_URL}${images[selectedImage]?.url ?? images[0].url}`
       : `/uploads/no-image.jpg`;
+  const [isAdding, setIsAdding] = useState(false);
+  const [added, setAdded] = useState(false);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = async () => {
+    try {
+      setIsAdding(true);
+
+      const cartIcon = document.getElementById("cart-icon");
+
+      if (imageRef.current && cartIcon) {
+        flyToCart(imageRef.current, cartIcon);
+      }
+
+      await addToCart(product.id, quantity);
+      increase(1);
+      await refresh();
+      setAdded(true);
+
+      setTimeout(() => setAdded(false), 2000);
+    } catch (error) {
+      console.error(error);
+      toast.error("ไม่สามารถเพิ่มสินค้าได้");
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       <Breadcrumbs
@@ -45,6 +78,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   style={{ width: "80px", height: "80px" }}
                 >
                   <Image
+                    ref={imageRef}
                     src={`${image}`}
                     alt={`Thumbnail ${idx}`}
                     fill
@@ -87,12 +121,16 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               type="number"
               id="quantity"
               min="1"
-              defaultValue="1"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
               className="border rounded w-20 p-2"
             />
           </div>
 
-          <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">
+          <button
+            onClick={handleAddToCart}
+            className="cursor-pointer bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
+          >
             ADD TO CART
           </button>
         </div>

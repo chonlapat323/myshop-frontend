@@ -1,4 +1,3 @@
-// src/services/cart.service.ts
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 export async function addToCart(productId: number, quantity = 1) {

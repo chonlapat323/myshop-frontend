@@ -1,4 +1,3 @@
-// app/login/page.tsx
 "use client";
 
 import { useLogin } from "@/hooks/useLogin";
@@ -18,7 +17,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* ซ้าย: Login Form */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-10 lg:px-16 bg-white">
         <div className="mb-8">
           <div className="text-2xl font-bold cursor-pointer">
@@ -107,7 +105,6 @@ export default function LoginPage() {
           </a>
         </p>
       </div>
-      {/* ขวา: ภาพ + ข้อความ (เฉพาะในหน้าจอใหญ่) */}
       <div className="hidden lg:flex w-1/2 relative">
         <Image
           src="/images/catalog/living-room/4.jpg"

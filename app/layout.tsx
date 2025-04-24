@@ -24,5 +24,5 @@ export default function LoginLayout({
         <Toaster position="bottom-right" richColors />
       </body>
     </html>
-  ); // Layout นี้จะไม่รวม Navbar/Footer
+  );
 }

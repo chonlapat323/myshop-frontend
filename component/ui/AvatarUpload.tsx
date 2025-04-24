@@ -58,7 +58,6 @@ export default function AvatarUpload({
           </svg>
         )}
 
-        {/* 🔄 Loading Spinner */}
         {loading && (
           <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center">
             <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-500 border-t-transparent"></div>

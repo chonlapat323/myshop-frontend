@@ -1,5 +1,3 @@
-// hooks/api/address/useUpdateAddress.ts
-
 import { updateAddress } from "@/services/member/address.service";
 import { Address } from "@/types/member/address";
 import { toast } from "sonner";

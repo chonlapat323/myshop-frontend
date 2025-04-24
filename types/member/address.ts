@@ -19,5 +19,5 @@ export interface CreateAddressDto {
   state: string;
   zip_code: string;
   phone_number: string;
-  is_default?: boolean; // Optional (ถ้าไม่ระบุจะเป็น false โดย default)
+  is_default?: boolean;
 }

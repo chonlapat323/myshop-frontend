@@ -25,7 +25,6 @@ export function useProductsByCategory(
     };
 
     if (slug) fetchData();
-  }, [slug, searchTerm, sortOption]); // 🧠 รอฟังค์ชัน trigger เมื่อค่าใดค่าหนึ่งเปลี่ยน
-
+  }, [slug, searchTerm, sortOption]);
   return { products, loading, error };
 }

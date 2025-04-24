@@ -14,7 +14,7 @@ export default function IconLink({ href, icon, alt }: IconLinkProps) {
       <FontAwesomeIcon
         icon={icon}
         className="text-white text-2xl hover:opacity-75 transition"
-        title={alt} // ใช้ title เพื่อ tooltip
+        title={alt}
       />
     </Link>
   );

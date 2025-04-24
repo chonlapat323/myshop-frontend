@@ -14,7 +14,7 @@ export function useMemberForm() {
     lastName: "",
     email: "",
     phone: "",
-    avatarUrl: "", // ✅ สำหรับ preview
+    avatarUrl: "",
   });
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 

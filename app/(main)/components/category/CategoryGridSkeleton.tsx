@@ -14,7 +14,6 @@ export default function CategoryGridSkeleton() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // จำนวน placeholder items สำหรับ Skeleton (limit = 4)
   const skeletonItems = Array.from({ length: 6 });
 
   return (

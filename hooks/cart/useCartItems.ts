@@ -54,7 +54,7 @@ export function useCartItems(): UseCartItems {
     await createOrder(payload);
     await refreshCartItem();
     await refreshCartCount();
-    await refreshCartItem(); // เคลียร์ item UI ด้วย (optional)
+    await refreshCartItem();
   };
 
   return {

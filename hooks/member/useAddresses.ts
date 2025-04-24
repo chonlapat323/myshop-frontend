@@ -28,6 +28,6 @@ export function useAddresses() {
     addresses,
     loading,
     error,
-    setAddresses, // ✅ เผื่อใช้ตอนลบหรือเพิ่มใหม่
+    setAddresses,
   };
 }
