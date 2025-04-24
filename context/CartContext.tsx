@@ -23,7 +23,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const increase = (qty = 1) => setCount((c) => c + qty);
   const reset = () => setCount(0);
 
-  // ✅ ใหม่: sync count จาก backend
   const refresh = async () => {
     try {
       const newCount = await getCartCount();
@@ -34,7 +33,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    refresh(); // ✅ โหลดตอนเปิดเว็บ
+    refresh();
   }, []);
 
   return (

@@ -11,13 +11,12 @@
 }
 
 .slider-image {
-  position: absolute; /* ทำให้รูปภาพครอบคลุมพื้นที่ */
-  top: 0;
+  position: absolute;
   left: 0;
   bottom: 0px;
-  width: 100vw; /* ทำให้รูปเต็มหน้าจอ */
-  height: 100%; /* ครอบคลุมความสูงของ container */
-  object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่โดยไม่ผิดสัดส่วน */
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
   object-position: bottom;
 }
 

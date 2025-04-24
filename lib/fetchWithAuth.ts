@@ -19,8 +19,6 @@ export const fetchWithAuth = async (
     });
 
     if (refreshRes.ok) {
-      // ✅ cookie ใหม่ถูก set แล้ว
-      // retry request เดิม
       res = await fetch(input, {
         ...init,
         credentials: "include",

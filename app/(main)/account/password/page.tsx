@@ -61,8 +61,6 @@ export default function ChangePasswordForm() {
 
   return (
     <section className="max-w-md md:py-0 py-6">
-      {" "}
-      {/* นำ mx-auto ออก */}
       <h2 className="text-2xl font-bold mb-4">Password</h2>
       <p className="text-gray-700 mb-4">
         Please enter your current password to change your password.

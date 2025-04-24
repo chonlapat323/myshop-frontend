@@ -1,15 +1,14 @@
-// hooks/useSlides.ts
 import { useEffect, useState } from "react";
 import { getSlides } from "@/services/home/slide.service";
 import { Slide } from "@/types/home/slide";
 export function useSlides() {
   const [slides, setSlides] = useState<Slide[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); // เผื่อจัดการ error แบบมี message
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     getSlides()
-      .then((res) => setSlides(res)) // สมมุติว่า getSlides() return { data: Slide[] }
+      .then((res) => setSlides(res))
       .catch((err) => {
         console.error(err);
         setError("เกิดข้อผิดพลาดในการโหลดสไลด์");

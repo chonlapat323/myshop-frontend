@@ -1,4 +1,3 @@
-// app/components/ui/ProductCard.tsx
 "use client";
 
 import { ShoppingCartOutlined, EyeOutlined } from "@ant-design/icons";

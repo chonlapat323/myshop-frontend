@@ -9,7 +9,7 @@ export function useCartFromAPI() {
 
   async function fetchCart() {
     try {
-      const data = await getCart(); // ✅ เรียกผ่าน service
+      const data = await getCart();
       setItems(data.items);
       setTotal(data.total);
     } catch (err) {

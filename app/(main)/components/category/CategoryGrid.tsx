@@ -1,4 +1,4 @@
-"use client"; // ✅ ทำให้เป็น Client Component
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -28,22 +28,20 @@ export default function CategoryGrid({
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // ✅ คำนวณจำนวน `row` และ `col-span`
   const rows: number[][] = [];
-  // ✅ กรอง categories ตาม limit ถ้า limit มีค่า
   const categoriesToDisplay =
     limit && limit > 0 ? categories.slice(0, limit) : categories;
   const tempCategories = [...categoriesToDisplay];
 
   while (tempCategories.length > 0) {
     if (tempCategories.length === 1) {
-      rows.push([3]); // ✅ ถ้าเหลือ 1 category → `col-span-3`
+      rows.push([3]);
       tempCategories.splice(0, 1);
     } else if (rows.length % 2 === 0) {
-      rows.push([2, 1]); // ✅ แถวที่ 1, 3, 5 → `2-1`
+      rows.push([2, 1]);
       tempCategories.splice(0, 2);
     } else {
-      rows.push([1, 2]); // ✅ แถวที่ 2, 4, 6 → `1-2`
+      rows.push([1, 2]);
       tempCategories.splice(0, 2);
     }
   }
@@ -67,12 +65,10 @@ export default function CategoryGrid({
           isMobile ? "grid-cols-1" : "grid-cols-3"
         } gap-4 auto-rows-[250px]`}
       >
-        {/* ✅ เปลี่ยนจาก categories เป็น categoriesToDisplay ใน map */}
         {categoriesToDisplay.map((category, index) => {
-          let colSpan = "col-span-1"; // ✅ ค่าเริ่มต้น (Mobile)
+          let colSpan = "col-span-1";
 
           if (!isMobile) {
-            // ✅ Desktop ใช้ Logic `col-span`
             let assignedIndex = 0;
             let rowIndex = 0;
 

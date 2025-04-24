@@ -1,4 +1,3 @@
-// services/order/order.service.ts
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";
 import { OrderPayload } from "@/utils/order/buildOrderPayload";

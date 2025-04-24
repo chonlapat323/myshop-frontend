@@ -1,4 +1,3 @@
-// app/products/[productId]/loading.tsx
 import React, { JSX } from "react";
 
 export default function Loading(): JSX.Element {

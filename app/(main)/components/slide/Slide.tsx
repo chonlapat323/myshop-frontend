@@ -22,7 +22,6 @@ export default function Slider({ slides }: SliderProps) {
             style={{ objectFit: "cover" }}
             priority
           />
-          {/* ข้อความบนรูป */}
           {slide.title && (
             <div className={styles["slider-content"]}>
               <h2 className={styles["slider-title"]}>{slide.title}</h2>

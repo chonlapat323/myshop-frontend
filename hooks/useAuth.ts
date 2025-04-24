@@ -1,4 +1,3 @@
-// hooks/useAuth.ts
 "use client";
 
 import { useState, useEffect } from "react";
@@ -19,6 +18,6 @@ export function useAuth() {
   return {
     isAuthenticated: !!user,
     isReady,
-    user, // ✅ เอาไว้ใช้ใน UI เช่น user.email
+    user,
   };
 }

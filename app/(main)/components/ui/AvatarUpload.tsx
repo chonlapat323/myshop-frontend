@@ -25,12 +25,11 @@ export default function AvatarUpload({ onImageChange }: AvatarUploadProps) {
 
   return (
     <div className="relative w-24 h-24">
-      {/* แสดงรูปโปรไฟล์ */}
       {image ? (
         <Image
           src={image}
           alt="Avatar"
-          width={96} // กำหนดขนาด (24px * 4 เนื่องจาก w-24 และ h-24 ใน Tailwind อาจหมายถึง 1rem * 6 = 96px โดยประมาณ)
+          width={96}
           height={96}
           className="rounded-full object-cover"
         />
@@ -50,7 +49,6 @@ export default function AvatarUpload({ onImageChange }: AvatarUploadProps) {
         </div>
       )}
 
-      {/* ปุ่มอัปโหลด */}
       <label className="absolute bottom-0 right-0 bg-black text-white w-8 h-8 flex items-center justify-center rounded-full cursor-pointer shadow-md">
         <EditOutlined className="text-sm" />
         <input

@@ -32,13 +32,12 @@ export default function Sidebar({
         const isActive = pathname === item.href;
 
         if (item.onClick) {
-          // ✅ กรณี Logout หรือ custom function
           return (
             <button
               key={item.key}
               onClick={() => {
                 item.onClick?.();
-                onClose(); // ✅ ปิดเมนูหลังคลิก
+                onClose();
               }}
               className={`cursor-pointer w-full hover:bg-gray-200 text-left px-4 py-3 rounded-md transition-all ${
                 isActive ? "bg-gray-200 font-bold" : "hover:bg-gray-100"

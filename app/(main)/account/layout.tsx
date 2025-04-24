@@ -41,7 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     {
       key: "logout",
       label: "Logout",
-      onClick: () => logoutUser(), // ฟังก์ชัน logout ของคุณ
+      onClick: () => logoutUser(),
     },
   ];
   return (

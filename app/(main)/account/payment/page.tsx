@@ -1,4 +1,3 @@
-// app/account/payment-method/page.tsx
 "use client";
 
 import ManagePaymentForm from "../../components/account/ManagePaymentForm";
