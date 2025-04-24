@@ -3,6 +3,7 @@ import debounce from "lodash/debounce";
 import { CartItem } from "@/types/cart/cart";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
+import { formatCurrencyTHB } from "@/utils/format-currency";
 interface CartItemCardProps {
   item: CartItem;
   onQuantityChange: (newQty: number) => void;
@@ -67,7 +68,7 @@ export default function CartItemCard({
         </div>
       </div>
       <div className="text-right">
-        <p className="font-bold">{totalPrice.toFixed(2)} ฿</p>
+        <p className="font-bold">{formatCurrencyTHB(totalPrice)} ฿</p>
       </div>
       <button
         onClick={onRemove}

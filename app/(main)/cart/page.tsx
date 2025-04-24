@@ -7,6 +7,8 @@ import { useState } from "react";
 import AddressSelectModal from "../components/ui/modal/AddressSelectModal";
 import { useAddresses } from "@/hooks/member/useAddresses";
 import { toast } from "sonner";
+import { formatCurrencyTHB } from "@/utils/format-currency";
+
 export default function CartPage() {
   const {
     updateItemQuantity,
@@ -68,7 +70,9 @@ export default function CartPage() {
               <h2 className="text-lg font-semibold mb-4">สรุปคำสั่งซื้อ</h2>
               <div className="flex justify-between mb-2">
                 <span>รวมทั้งหมด</span>
-                <span className="font-bold">{total.toFixed(2)} บาท</span>
+                <span className="font-bold">
+                  {formatCurrencyTHB(total)} บาท
+                </span>
               </div>
               <button
                 onClick={() => setShowAddressModal(true)}

@@ -1,3 +1,5 @@
+import { Address } from "./address";
+
 export type OrderItem = {
   id: number;
   product_name: string;
@@ -22,4 +24,5 @@ export interface Order {
   items: OrderItem[];
   order_status: "pending" | "shipped" | "cancelled";
   tracking_number: string;
+  shipping_address: Address;
 }

@@ -6,6 +6,7 @@ export interface Address {
   city: string;
   state: string;
   zip_code: string;
+  country?: string;
   phone_number: string;
   is_default?: boolean;
   created_at?: string;
