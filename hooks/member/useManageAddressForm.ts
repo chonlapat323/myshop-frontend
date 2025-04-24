@@ -26,7 +26,7 @@ export function useManageAddressForm() {
     zip_code: "",
     phone_number: "",
   });
-  const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
+  const [editingAddressId, setEditingAddressId] = useState<number | null>(null);
   const handleEdit = (address: Address) => {
     setIsAdding(true);
     setEditingAddressId(address.id ?? null);

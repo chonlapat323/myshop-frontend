@@ -20,7 +20,14 @@ export default function AddressSelectModal({
 
   useEffect(() => {
     if (open) {
-      getAddresses().then(setAddresses);
+      getAddresses().then((data) => {
+        setAddresses(data);
+
+        const defaultAddr = data.find((addr) => addr.is_default);
+        if (defaultAddr) {
+          setSelectedId(defaultAddr.id!);
+        }
+      });
     }
   }, [open]);
 

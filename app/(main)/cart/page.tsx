@@ -26,7 +26,7 @@ export default function CartPage() {
     if (!address) return;
 
     await placeOrder(address);
-    toast.error("สั่งซื้อสำเร็จ");
+    toast.success("สั่งซื้อสำเร็จ");
   };
 
   const handleConfirmDelete = () => {
