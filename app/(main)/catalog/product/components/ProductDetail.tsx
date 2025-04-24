@@ -11,11 +11,14 @@ type ProductDetailProps = {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
-  const images = product.images ?? [];
+  const images = product.product_image ?? [];
 
   const tabs = ["Additional Information", "Design"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
-
+  const selectedImageUrl =
+    images.length > 0
+      ? `${API_URL}${images[selectedImage]?.url ?? images[0].url}`
+      : `/uploads/no-image.jpg`;
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       <Breadcrumbs
@@ -25,35 +28,40 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="flex flex-col lg:flex-row">
           <div className="mb-4 lg:mb-0 lg:mr-4 flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-4">
-            {images.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(idx)}
-                className={`relative cursor-pointer border-2 ${
-                  selectedImage === idx
-                    ? "border-gray-800"
-                    : "border-transparent"
-                }`}
-                style={{ width: "80px", height: "80px" }}
-              >
-                <Image
-                  src={`${API_URL}${img.url}`}
-                  alt={`Thumbnail ${idx}`}
-                  fill
-                  sizes="(max-width: 768px) 20vw, 80px"
-                  className="object-cover"
-                />
-              </div>
-            ))}
+            {images.map((img, idx) => {
+              const image = img?.url
+                ? `${API_URL}${img.url}`
+                : "/uploads/no-image.jpg";
+
+              return (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`relative cursor-pointer border-2 ${
+                    selectedImage === idx
+                      ? "border-gray-800"
+                      : "border-transparent"
+                  }`}
+                  style={{ width: "80px", height: "80px" }}
+                >
+                  <Image
+                    src={`${image}`}
+                    alt={`Thumbnail ${idx}`}
+                    fill
+                    sizes="(max-width: 768px) 20vw, 80px"
+                    className="object-cover"
+                  />
+                </div>
+              );
+            })}
           </div>
 
-          {/* ปรับปรุงส่วนนี้ */}
           <div
             className="relative flex-1 flex justify-center items-center"
             style={{ aspectRatio: "4/3" }}
           >
             <Image
-              src={`${API_URL}${images[selectedImage].url}`}
+              src={selectedImageUrl}
               alt="Sofa Lucca"
               fill
               sizes="(max-width: 768px) 100vw, 800px"
