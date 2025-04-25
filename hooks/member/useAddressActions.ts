@@ -1,7 +1,7 @@
 "use client";
 import { useSetDefaultAddress } from "@/hooks/api/address/useSetDefaultAddress";
 import { useDeleteAddress } from "@/hooks/api/address/useDeleteAddress";
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { useState } from "react";
 
 export function useAddressActions(

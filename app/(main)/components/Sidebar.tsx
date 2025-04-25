@@ -1,19 +1,7 @@
 "use client";
+import { SidebarProps } from "@/types/ui/Sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-export interface MenuItem {
-  key: string;
-  label: string;
-  href?: string;
-  onClick?: () => void;
-}
-
-interface SidebarProps {
-  isMenuOpen: boolean;
-  menuItems: MenuItem[];
-  onClose: () => void;
-}
 
 export default function Sidebar({
   isMenuOpen,

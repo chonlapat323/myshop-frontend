@@ -1,13 +1,5 @@
-// components/modal/ShippingAddressModal.tsx
 "use client";
-
-import { Address } from "@/types/member/address";
-
-interface ShippingAddressModalProps {
-  open: boolean;
-  address: Address | null;
-  onClose: () => void;
-}
+import { ShippingAddressModalProps } from "@/types/ui/modal/ShippingAddressModal";
 
 export default function ShippingAddressModal({
   open,

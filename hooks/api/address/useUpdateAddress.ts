@@ -1,5 +1,5 @@
 import { updateAddress } from "@/services/member/address.service";
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { toast } from "sonner";
 import { useState } from "react";
 

@@ -2,17 +2,7 @@
 
 import Link from "next/link";
 import IconLink from "../IconLink";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-
-interface FooterProps {
-  menuItems: { key: string; label: string; href: string }[];
-  info: {
-    address: string;
-    email: string;
-    phone: string;
-    socialLinks: { icon: IconDefinition; href: string }[];
-  };
-}
+import { FooterProps } from "@/types/ui/Footer";
 
 export default function Footer({ menuItems, info }: FooterProps) {
   const midIndex = Math.ceil(menuItems.length / 2);

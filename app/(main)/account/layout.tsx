@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Sidebar, { MenuItem } from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { MenuOutlined } from "@ant-design/icons";
 import { logoutUser } from "@/services/member/member.service";
+import { MenuItem } from "@/types/ui/Sidebar";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();

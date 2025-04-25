@@ -1,14 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import debounce from "lodash/debounce";
-import { CartItem } from "@/types/cart/cart";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
 import { formatCurrencyTHB } from "@/utils/format-currency";
-interface CartItemCardProps {
-  item: CartItem;
-  onQuantityChange: (newQty: number) => void;
-  onRemove: () => void;
-}
+import { CartItemCardProps } from "@/types/components/cart/CartItemCard";
+
 export default function CartItemCard({
   item,
   onQuantityChange,

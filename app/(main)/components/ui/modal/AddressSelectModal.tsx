@@ -1,20 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { getAddresses } from "@/services/member/address.service";
-
-type Props = {
-  open: boolean;
-  onClose: () => void;
-  onConfirm: (addressId: number) => void;
-};
+import { AddressSelectModalProps } from "@/types/ui/modal/AddressSelectModal";
 
 export default function AddressSelectModal({
   open,
   onClose,
   onConfirm,
-}: Props) {
+}: AddressSelectModalProps) {
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 

@@ -1,10 +1,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
-type ImageUploadProps = {
-  onChange?: (file: File | null) => void;
-  value?: string; // preview URL
-  loading?: boolean;
-};
+import { ImageUploadProps } from "@/types/ui/modal/AvatarUpload";
 
 export default function AvatarUpload({
   onChange,

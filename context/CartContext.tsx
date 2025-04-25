@@ -7,15 +7,9 @@ import {
   useEffect,
 } from "react";
 import { getCartCount } from "@/services/cart/cart.service";
+import { CartContextTypeProp } from "@/types/context/CreateContext";
 
-interface CartContextType {
-  count: number;
-  increase: (qty?: number) => void;
-  reset: () => void;
-  refresh: () => Promise<void>;
-}
-
-const CartContext = createContext<CartContextType | null>(null);
+const CartContext = createContext<CartContextTypeProp | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [count, setCount] = useState(0);

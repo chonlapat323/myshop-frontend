@@ -1,14 +1,6 @@
 "use client";
-
 import React from "react";
-
-type ConfirmModalProps = {
-  open: boolean;
-  title?: string;
-  description?: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-};
+import { ConfirmModalProps } from "@/types/ui/modal/ConfirmModal";
 
 export default function ConfirmModal({
   open,

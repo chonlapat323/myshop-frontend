@@ -1,31 +1,9 @@
 "use client";
 
 import React from "react";
-import { PaymentMethod } from "@/types/member/payment";
+import { ManagePaymentListProps } from "@/types/member/Payment";
 import ConfirmModal from "../ui/modal/ConfirmModal";
 import { usePaymentAction } from "@/hooks/member/usePaymentAction";
-
-interface Props {
-  methods: PaymentMethod[];
-  setMethods: React.Dispatch<React.SetStateAction<PaymentMethod[]>>;
-  onEdit: (method: PaymentMethod) => void;
-  editingId: string | null;
-  newMethod: {
-    cardholder_name: string;
-    card_number: string;
-    expiry_date: string;
-    is_default?: boolean;
-  };
-  errors: {
-    cardholder_name: string;
-    card_number: string;
-    expiry_date: string;
-  };
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSaveOrUpdate: () => void;
-  onCancel: () => void;
-  loading: boolean;
-}
 
 export default function ManagePaymentList({
   methods,
@@ -38,7 +16,7 @@ export default function ManagePaymentList({
   onSaveOrUpdate,
   onCancel,
   loading,
-}: Props) {
+}: ManagePaymentListProps) {
   const {
     handleDelete,
     handleConfirmDelete,

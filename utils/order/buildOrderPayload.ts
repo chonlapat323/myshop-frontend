@@ -1,17 +1,6 @@
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { CartItem } from "@/types/cart/cart";
-
-export type OrderPayload = {
-  items: { productId: number; quantity: number }[];
-  paymentMethod: string;
-  shippingFullName: string;
-  shippingAddressLine1: string;
-  shippingCity: string;
-  shippingZip: string;
-  shippingCountry: string;
-  shippingPhone: string;
-  shippingState: string;
-};
+import { OrderPayload } from "@/types/utils/order/buildOrderPayload";
 
 export function buildOrderPayload(
   address: Address,

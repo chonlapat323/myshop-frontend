@@ -1,13 +1,9 @@
 "use client";
 
+import { useMemo } from "react";
+import { BreadcrumbsProps } from "@/types/components/Breadcrumbs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
-
-interface BreadcrumbsProps {
-  productName?: string;
-  categorySlug?: string;
-}
 
 export default function Breadcrumbs({
   productName,

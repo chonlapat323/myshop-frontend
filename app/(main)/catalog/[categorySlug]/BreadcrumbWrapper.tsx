@@ -1,11 +1,6 @@
 "use client";
-
 import Breadcrumbs from "../components/Breadcrumbs";
 
-type Props = {
-  categorySlug: string;
-};
-
-export default function BreadcrumbWrapper({ categorySlug }: Props) {
+export default function BreadcrumbWrapper(categorySlug: string) {
   return <Breadcrumbs categorySlug={categorySlug} />;
 }

@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  getMemberInfo,
-  updateMemberInfo,
-} from "@/services/member/member.service";
+import { getMemberInfo } from "@/services/member/member.service";
 import { toast } from "sonner";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";

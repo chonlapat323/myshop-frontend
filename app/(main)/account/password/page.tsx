@@ -40,12 +40,9 @@ export default function ChangePasswordForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // ในส่วนนี้คือส่วนที่คุณจะเรียก API หรือ function เพื่อเปลี่ยนรหัสผ่านจริงๆ
-      // สำหรับ demo นี้ เราจะ console log ข้อมูลที่กรอก
       console.log("Current Password:", currentPassword);
       console.log("New Password:", newPassword);
       console.log("Password Change Successful!");
-      // หลังจากเปลี่ยนรหัสผ่านสำเร็จ อาจจะ reset form หรือ redirect ไปหน้าอื่น
       resetForm();
     } else {
       console.log("Form validation failed. Please check errors.");

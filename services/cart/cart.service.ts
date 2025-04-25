@@ -1,16 +1,10 @@
 import { CartItem } from "@/types/cart/cart";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";
-
-interface RawCartResponse {
-  cart_id: number;
-  items: CartItem[];
-}
-
-interface GetCartResponse {
-  items: CartItem[];
-  total: number;
-}
+import {
+  GetCartResponse,
+  RawCartResponse,
+} from "@/types/services/cart/cart.service";
 
 export async function getCartCount(): Promise<number> {
   const res = await fetchWithAuth(`${API_URL}/cart/count`);

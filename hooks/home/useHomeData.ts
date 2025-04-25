@@ -7,14 +7,7 @@ import { getCategories } from "@/services/home/category.service";
 import { Category } from "@/types/home/category";
 import { getBestSellers } from "@/services/home/product.service";
 import { Product } from "@/types/home/product";
-
-interface UseHomeDataResult {
-  categories: Category[];
-  slide: Slide | undefined;
-  bestSellers: Product[] | undefined;
-  loading: boolean;
-  error: string | null;
-}
+import { UseHomeDataResult } from "@/types/hook/home/useHomeData";
 
 export function useHomeData(): UseHomeDataResult {
   const [categories, setCategories] = useState<Category[]>([]);
