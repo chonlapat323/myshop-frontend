@@ -65,6 +65,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="text-center mt-4">
         <p className="font-semibold">{product.name}</p>
         <p className="text-gray-500">${product.price}</p>
+        {product.tags && product.tags.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-1 mt-2">
+            {product.tags.map((tag, idx) => (
+              <span
+                key={idx}
+                className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex gap-2 mt-4 group-hover:pointer">

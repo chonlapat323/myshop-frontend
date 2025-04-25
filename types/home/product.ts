@@ -32,6 +32,7 @@ export interface Product {
   product_image: ProductImage[];
   is_active: boolean;
   is_best_seller: boolean;
+  tags?: { name: string }[];
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
