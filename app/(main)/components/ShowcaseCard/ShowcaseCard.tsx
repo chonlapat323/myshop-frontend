@@ -1,11 +1,7 @@
+"use client";
 import Image from "next/image";
 import styles from "./Card.module.css";
-interface ShowcaseProps {
-  title: string;
-  subtitle: string;
-  image: string;
-  link: string;
-}
+import { ShowcaseProps } from "@/types/components/showcase/Showcase";
 
 export default function Showcase({
   title,

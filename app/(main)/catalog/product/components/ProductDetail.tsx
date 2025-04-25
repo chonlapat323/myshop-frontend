@@ -2,16 +2,12 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { Product } from "@/types/home/product";
 import { API_URL } from "@/lib/config";
 import { toast } from "sonner";
 import { addToCart } from "@/services/member/cart.service";
 import { flyToCart } from "@/lib/cart-animation";
 import { useCart } from "@/context/CartContext";
-
-type ProductDetailProps = {
-  product: Product;
-};
+import { ProductDetailProps } from "@/types/product/ProductDetailPage";
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const { increase, refresh } = useCart();
@@ -19,14 +15,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const tabs = ["Additional Information", "Design"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const images = product.product_image ?? [];
-  const selectedImageUrl =
-    images.length > 0
-      ? `${API_URL}${images[selectedImage]?.url ?? images[0].url}`
-      : `/uploads/no-image.jpg`;
   const [isAdding, setIsAdding] = useState(false);
   const [added, setAdded] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const selectedImageUrl =
+    images.length > 0
+      ? `${API_URL}${images[selectedImage]?.url ?? images[0].url}`
+      : `/uploads/no-image.jpg`;
 
   const handleAddToCart = async () => {
     try {

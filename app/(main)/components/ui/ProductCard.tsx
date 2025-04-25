@@ -5,16 +5,11 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { API_URL } from "@/lib/config";
-import { Product } from "@/types/home/product";
 import { addToCart } from "@/services/member/cart.service";
 import { toast } from "sonner";
 import { useCart } from "@/context/CartContext";
 import { flyToCart } from "@/lib/cart-animation";
-
-interface ProductCardProps {
-  product: Product;
-  onAddToCart?: (productId: number) => void;
-}
+import { ProductCardProps } from "@/types/ui/ProductCard";
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [hoveredPopup, setHoveredPopup] = useState<number | null>(null);

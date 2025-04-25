@@ -4,13 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./CategoryGrid.module.css";
 import Image from "next/image";
-import { Category } from "@/types/home/category";
 import { API_URL } from "@/lib/config";
-interface CategoryGridProps {
-  categories: Category[];
-  limit: number;
-  showText: boolean;
-}
+import { CategoryGridProps } from "@/types/components/category/CategoryGrid";
 
 export default function CategoryGrid({
   categories,

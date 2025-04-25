@@ -1,4 +1,4 @@
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 

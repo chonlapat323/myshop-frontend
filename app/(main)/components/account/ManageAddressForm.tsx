@@ -1,30 +1,6 @@
 "use client";
-
 import React from "react";
-
-interface AddressFormProps {
-  newAddress: {
-    full_name: string;
-    address_line: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    phone_number: string;
-  };
-  errors: {
-    full_name: string;
-    address_line: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    phone_number: string;
-  };
-  loading: boolean;
-  editingAddressId: number | null;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSaveOrUpdate: () => void;
-  onCancel: () => void;
-}
+import { AddressFormProps } from "@/types/member/Address";
 
 export default function ManageAddressForm({
   newAddress,

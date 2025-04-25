@@ -1,8 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
 import { fetchStatusAndGetUser } from "@/services/auth.service";
-
-type User = { email: string; role: string } | null;
+import { User } from "@/types/context/AuthContext";
 
 const AuthContext = createContext<{
   user: User;

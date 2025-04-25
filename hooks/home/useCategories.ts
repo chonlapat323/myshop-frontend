@@ -1,15 +1,7 @@
 "use client";
 
+import { Category } from "@/types/hook/home/useCategories";
 import { useEffect, useState } from "react";
-
-export interface Category {
-  id: number;
-  title: string;
-  image: string;
-  link: string;
-  is_default?: boolean;
-  is_active?: boolean;
-}
 
 export function useCategories(defaultOnly = true) {
   const [categories, setCategories] = useState<Category[]>([]);

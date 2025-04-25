@@ -1,7 +1,7 @@
 import { createAddress } from "@/services/member/address.service";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Address, CreateAddressDto } from "@/types/member/address"; // หรือปรับตามของคุณ
+import { Address, CreateAddressDto } from "@/types/member/Address";
 export function useCreateAddress() {
   const [loading, setLoading] = useState(false);
   const [addresses, setAddresses] = useState<Address[]>([]);

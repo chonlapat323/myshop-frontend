@@ -4,21 +4,12 @@ import {
   updateCartItemQuantity,
   removeCartItem,
 } from "@/services/cart/cart.service";
-import { CartItem } from "@/types/cart/cart";
-import { Address } from "@/types/member/address";
+import { UseCartItemsProp } from "@/types/cart/cart";
+import { Address } from "@/types/member/Address.js";
 import { buildOrderPayload } from "@/utils/order/buildOrderPayload";
 import { createOrder } from "@/services/order/order.service";
 
-interface UseCartItems {
-  items: CartItem[];
-  total: number;
-  isLoading: boolean;
-  updateItemQuantity: (id: number, qty: number) => Promise<void>;
-  removeItem: (id: number) => Promise<void>;
-  placeOrder: (address: Address) => Promise<void>; // ✅ เพิ่มตรงนี้
-}
-
-export function useCartItems(): UseCartItems {
+export function useCartItems(): UseCartItemsProp {
   const {
     items,
     refresh: refreshCartItem,

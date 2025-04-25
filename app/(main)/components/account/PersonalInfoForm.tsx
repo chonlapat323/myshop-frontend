@@ -1,21 +1,7 @@
 "use client";
 
 import AvatarUpload from "@/component/ui/AvatarUpload";
-
-type Props = {
-  formData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    avatarUrl?: string;
-  };
-  loading: boolean;
-  submitting: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onAvatarChange: (file: File | null) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-};
+import { PersonalInfoFormProps } from "@/types/member/PersonalInfoForm";
 
 export default function PersonalInfoForm({
   formData,
@@ -24,7 +10,7 @@ export default function PersonalInfoForm({
   onChange,
   onAvatarChange,
   onSubmit,
-}: Props) {
+}: PersonalInfoFormProps) {
   return (
     <div className="mx-auto bg-white p-6 rounded-md shadow">
       <h2 className="text-2xl font-bold mb-4">Personal Information</h2>

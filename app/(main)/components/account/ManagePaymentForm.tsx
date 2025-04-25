@@ -1,25 +1,7 @@
 "use client";
 
 import React from "react";
-
-interface Props {
-  newMethod: {
-    cardholder_name: string;
-    card_number: string;
-    expiry_date: string;
-    is_default?: boolean;
-  };
-  errors: {
-    cardholder_name: string;
-    card_number: string;
-    expiry_date: string;
-  };
-  loading: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSaveOrUpdate: () => void;
-  onCancel: () => void;
-  editingId: string | null;
-}
+import { ManagePaymentFormProps } from "@/types/member/Payment";
 
 export default function ManagePaymentForm({
   newMethod,
@@ -29,7 +11,7 @@ export default function ManagePaymentForm({
   onSaveOrUpdate,
   onCancel,
   editingId,
-}: Props) {
+}: ManagePaymentFormProps) {
   return (
     <div className="mt-6 border p-4 rounded-md shadow-sm bg-white">
       <h3 className="text-lg font-semibold mb-4">

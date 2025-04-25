@@ -1,7 +1,7 @@
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";
 import { OrderPayload } from "@/utils/order/buildOrderPayload";
-import { Order } from "@/types/member/order";
+import { Order } from "@/types/member/Order";
 
 export async function getOrders(): Promise<Order[]> {
   const res = await fetchWithAuth(`${API_URL}/orders`);

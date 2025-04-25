@@ -21,15 +21,15 @@ export default function LoginPage() {
         <div className="mb-8">
           <div className="text-2xl font-bold cursor-pointer">
             <Link href="/" className="text-logo">
-              Chair.
+              MyShop
             </Link>
           </div>
         </div>
-        <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>
-        <p className="text-gray-500 mb-0">Sit better, live better.</p>
+        {/* <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2> */}
+        {/* <p className="text-gray-500 mb-0">Sit better, live better.</p>
         <p className="text-gray-500 mb-8">
           Discover your next favorite chair — comfort meets modern design.
-        </p>
+        </p> */}
 
         <form className="space-y-5" onSubmit={onSubmit}>
           <div>
@@ -114,10 +114,7 @@ export default function LoginPage() {
           priority
         />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-8">
-          <h3 className="text-3xl font-bold mb-2">Karina 카리나</h3>
-          <p className="max-w-sm text-center text-sm sm:text-base">
-            (ข้อความเกี่ยวกับศิลปิน หรือคำโปรยอื่น ๆ ที่คุณต้องการ)
-          </p>
+          <h3 className="text-3xl font-bold mb-2">MyShop</h3>
         </div>
       </div>
     </div>

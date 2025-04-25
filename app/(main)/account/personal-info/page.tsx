@@ -7,7 +7,7 @@ export default function PersonalInfo() {
     formData,
     handleChange,
     handleSubmit,
-    handleAvatarChange, // 👈 อย่าลืมใน hook ต้องมีอันนี้
+    handleAvatarChange,
     loading,
     error,
     submitting,

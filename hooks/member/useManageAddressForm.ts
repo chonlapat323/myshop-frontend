@@ -1,14 +1,14 @@
 import { useState, useCallback, useEffect } from "react";
 import { useCreateAddress } from "../api/address/useCreateAddress";
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 import { getAddresses } from "@/services/member/address.service";
 import { useUpdateAddress } from "../api/address/useUpdateAddress";
 export function useManageAddressForm() {
   const { create, loading } = useCreateAddress();
-
   const { update } = useUpdateAddress();
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isAdding, setIsAdding] = useState(false);
+
   const [newAddress, setNewAddress] = useState({
     full_name: "",
     address_line: "",
@@ -26,6 +26,7 @@ export function useManageAddressForm() {
     zip_code: "",
     phone_number: "",
   });
+
   const [editingAddressId, setEditingAddressId] = useState<number | null>(null);
   const handleEdit = (address: Address) => {
     setIsAdding(true);

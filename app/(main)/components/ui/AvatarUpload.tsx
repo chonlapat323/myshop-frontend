@@ -1,12 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image"; // Import Image component
+import Image from "next/image";
 import { EditOutlined } from "@ant-design/icons";
-
-interface AvatarUploadProps {
-  onImageChange?: (file: File) => void;
-}
+import { AvatarUploadProps } from "@/types/ui/AvatarUpload";
 
 export default function AvatarUpload({ onImageChange }: AvatarUploadProps) {
   const [image, setImage] = useState<string | null>(null);

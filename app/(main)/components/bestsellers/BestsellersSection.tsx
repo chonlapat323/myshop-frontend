@@ -1,11 +1,7 @@
 "use client";
 
-import ProductCard from "@/app/(main)/components/ui/ProductCard"; // Import the ProductCard component
-import { Product } from "@/types/home/product";
-
-interface BestsellersProps {
-  products: Product[] | undefined;
-}
+import ProductCard from "@/app/(main)/components/ui/ProductCard";
+import { BestsellersProps } from "@/types/components/bestsellers/BestSellersSection";
 
 export default function BestSellersSection({ products }: BestsellersProps) {
   return (

@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { getOrders } from "@/services/order/order.service";
-import { Order } from "@/types/member/order";
+import { Order } from "@/types/member/Order";
 
 export const useGetOrders = () => {
   const { data, error, isLoading, mutate } = useSWR<Order[]>(

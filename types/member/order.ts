@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from "./Address";
 
 export type OrderItem = {
   id: number;

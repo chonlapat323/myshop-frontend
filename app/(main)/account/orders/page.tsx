@@ -1,19 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
 import { NoImage } from "@/app/icons";
 import { useOrderActions } from "@/hooks/member/useOrderActions";
 import ConfirmModal from "../../components/ui/modal/ConfirmModal";
 import ShippingAddressModal from "../../components/ui/modal/ShippingAddressModal";
-import { useState } from "react";
 import { formatDate } from "@/utils/format-date";
 import {
   getOrderStatusColor,
   getOrderStatusLabel,
 } from "@/utils/order/order-status";
 import { formatCurrencyTHB } from "@/utils/format-currency";
-import { Address } from "@/types/member/address";
+import { Address } from "@/types/member/Address";
 
 export default function MyOrders() {
   const { orders, isLoading, handleCancelOrder, isError } = useOrderActions();

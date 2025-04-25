@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { setDefaultPaymentMethod } from "@/services/member/payment.service";
-import { PaymentMethod } from "@/types/member/payment";
+import { PaymentMethod } from "@/types/member/Payment";
 
 export function useSetDefaultPayment() {
   const [loading, setLoading] = useState(false);

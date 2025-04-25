@@ -1,36 +1,9 @@
 "use client";
 
-import { Address } from "@/types/member/address";
+import { AddressListProps } from "@/types/member/Address";
 import ManageAddressForm from "./ManageAddressForm";
 import { useAddressActions } from "@/hooks/member/useAddressActions";
 import ConfirmModal from "../ui/modal/ConfirmModal";
-interface Props {
-  addresses: Address[];
-  onEdit: (address: Address) => void;
-  editingAddressId: number | null;
-  newAddress: {
-    full_name: string;
-    address_line: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    phone_number: string;
-    is_default?: boolean;
-  };
-  errors: {
-    full_name: string;
-    address_line: string;
-    city: string;
-    state: string;
-    zip_code: string;
-    phone_number: string;
-  };
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSaveOrUpdate: () => void;
-  onCancel: () => void;
-  loading: boolean;
-  setAddresses: React.Dispatch<React.SetStateAction<Address[]>>;
-}
 
 export default function ManageAddressList({
   addresses,
@@ -43,7 +16,7 @@ export default function ManageAddressList({
   onCancel,
   loading,
   setAddresses,
-}: Props) {
+}: AddressListProps) {
   const {
     handleSetDefault,
     handleDelete,

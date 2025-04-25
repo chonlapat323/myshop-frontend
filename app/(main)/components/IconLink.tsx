@@ -1,12 +1,6 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-
-interface IconLinkProps {
-  href: string;
-  icon: IconDefinition;
-  alt: string;
-}
+import { IconLinkProps } from "@/types/components/IconLink";
 
 export default function IconLink({ href, icon, alt }: IconLinkProps) {
   return (
