@@ -26,9 +26,10 @@ export default function RootLayout({
 }>) {
   const menuItems = [{ key: "1", label: "CATALOG", href: "/catalog" }];
   const info = {
-    address: "156 E 2nd St, New York, NY 10009, United States",
-    email: "info@chair.com",
-    phone: "+6600088888",
+    address:
+      "19 Tanthong Rd., Fah-ham Sub-District, Muang District, Chiang main 50000",
+    email: "cschonlapat@gmail.com",
+    phone: "094-838-6636",
     socialLinks: [
       { icon: faFacebook, href: "https://facebook.com" },
       { icon: faInstagram, href: "https://instagram.com" },
