@@ -14,31 +14,23 @@ import {
 } from "@/utils/order/order-status";
 import { formatCurrencyTHB } from "@/utils/format-currency";
 import { Address } from "@/types/member/Address";
+import Pagination from "../../components/Pagination";
 
 export default function MyOrders() {
-  const { orders, isLoading, handleCancelOrder, isError } = useOrderActions();
-  const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [page, setPage] = useState(1);
+  const limit = 4;
+  const {
+    orders,
+    isLoading,
+    isError,
+    showConfirm,
+    pageCount,
+    handleClickCancel,
+    handleConfirmCancel,
+    handleCancelModal,
+  } = useOrderActions(page, limit);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
-
-  const handleClickCancel = (orderId: number) => {
-    setSelectedOrderId(orderId);
-    setShowConfirm(true);
-  };
-
-  const handleConfirm = async () => {
-    if (selectedOrderId) {
-      await handleCancelOrder(selectedOrderId);
-    }
-    setShowConfirm(false);
-    setSelectedOrderId(null);
-  };
-
-  const handleCancel = () => {
-    setShowConfirm(false);
-    setSelectedOrderId(null);
-  };
 
   if (isLoading) return <p className="text-gray-500">Loading orders...</p>;
   if (isError) return <p className="text-red-500">Failed to load orders.</p>;
@@ -147,13 +139,22 @@ export default function MyOrders() {
             </div>
           ))}
         </div>
+        {pageCount > 1 && (
+          <div className="mt-6 flex justify-center">
+            <Pagination
+              currentPage={page}
+              totalPages={pageCount}
+              onPageChange={(newPage) => setPage(newPage)}
+            />
+          </div>
+        )}
       </section>
       <ConfirmModal
         open={showConfirm}
         title="Cancel this order?"
         description="This action cannot be undone. Do you really want to cancel it?"
-        onConfirm={handleConfirm}
-        onCancel={handleCancel}
+        onConfirm={handleConfirmCancel}
+        onCancel={handleCancelModal}
       />
       <ShippingAddressModal
         open={showAddressModal}

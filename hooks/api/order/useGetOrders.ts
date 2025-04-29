@@ -1,17 +1,21 @@
 import useSWR from "swr";
-import { getOrders } from "@/services/order/order.service";
-import { Order } from "@/types/member/Order";
+import { OrderListResponse } from "@/types/member/Order";
+import { fetchWithAuth } from "@/lib/fetchWithAuth";
+import { API_URL } from "@/lib/config";
 
-export const useGetOrders = () => {
-  const { data, error, isLoading, mutate } = useSWR<Order[]>(
-    "orders",
-    getOrders
+export function useGetOrders(page = 1, limit = 10) {
+  const { data, error, isLoading, mutate } = useSWR<OrderListResponse>(
+    `${API_URL}/orders?page=${page}&limit=${limit}`,
+    fetchWithAuth<OrderListResponse>
   );
 
   return {
-    orders: data ?? [],
+    orders: data?.data ?? [],
+    total: data?.total ?? 0,
+    page: data?.page ?? 1,
+    pageCount: data?.pageCount ?? 1,
     isLoading,
     isError: !!error,
     refresh: mutate,
   };
-};
+}
