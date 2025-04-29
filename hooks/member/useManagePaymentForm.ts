@@ -30,7 +30,7 @@ export function useManagePaymentForm() {
         const res = await getPaymentMethods();
         setMethods(res);
       } catch (err) {
-        console.error("โหลดรายการ payment method ไม่สำเร็จ", err);
+        console.error("Failed to load payment methods", err);
       }
     };
     fetch();

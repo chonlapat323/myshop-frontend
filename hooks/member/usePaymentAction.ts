@@ -23,7 +23,7 @@ export function usePaymentAction({ setMethods }: usePaymentActionProps) {
         is_default: method.id === updated.id,
       }))
     );
-    toast.success("ตั้งค่าบัตรเริ่มต้นเรียบร้อยแล้ว");
+    toast.success("Default payment method set successfully");
   };
 
   const handleDelete = (id: string) => {
@@ -37,7 +37,7 @@ export function usePaymentAction({ setMethods }: usePaymentActionProps) {
     const success = await remove(selectedId);
     if (success) {
       setMethods((prev) => prev.filter((method) => method.id !== selectedId));
-      toast.success("ลบบัตรเรียบร้อยแล้ว");
+      toast.success("Payment method deleted successfully");
     }
 
     setShowConfirm(false);
