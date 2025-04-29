@@ -12,10 +12,10 @@ export function useCreatePayment() {
     try {
       setLoading(true);
       const result = await createPaymentMethod(data);
-      toast.success("เพิ่มวิธีชำระเงินเรียบร้อยแล้ว");
+      toast.success("Payment method added successfully");
       return result;
     } catch (error) {
-      toast.error("ไม่สามารถเพิ่มวิธีชำระเงินได้");
+      toast.error("Failed to add payment method");
       return null;
     } finally {
       setLoading(false);

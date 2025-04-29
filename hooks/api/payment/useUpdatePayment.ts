@@ -13,10 +13,10 @@ export function useUpdatePayment() {
     try {
       setLoading(true);
       const updated = await updatePaymentMethod(id, data);
-      toast.success("อัปเดตวิธีชำระเงินเรียบร้อยแล้ว");
+      toast.success("Payment method updated successfully");
       return updated;
     } catch (error) {
-      toast.error("ไม่สามารถอัปเดตวิธีชำระเงินได้");
+      toast.error("Failed to update payment method");
       return null;
     } finally {
       setLoading(false);

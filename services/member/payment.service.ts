@@ -7,57 +7,45 @@ import {
 } from "@/types/member/Payment";
 
 export async function getPaymentMethods(): Promise<PaymentMethod[]> {
-  const res = await fetchWithAuth(`${API_URL}/payment-method`);
-  if (!res.ok) throw new Error("Failed to fetch payment methods");
-  return res.json();
+  return fetchWithAuth<PaymentMethod[]>(`${API_URL}/payment-method`);
 }
 
-export async function createPaymentMethod(
+export function createPaymentMethod(
   data: CreatePaymentMethodDto
 ): Promise<PaymentMethod> {
-  const res = await fetchWithAuth(`${API_URL}/payment-method`, {
+  return fetchWithAuth<PaymentMethod>(`${API_URL}/payment-method`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
-
-  if (!res.ok) throw new Error("Failed to create payment method");
-  return res.json();
 }
 
-export async function updatePaymentMethod(
+export function updatePaymentMethod(
   id: string,
   data: UpdatePaymentMethodDto
 ): Promise<PaymentMethod> {
-  const res = await fetchWithAuth(`${API_URL}/payment-method/${id}`, {
+  return fetchWithAuth<PaymentMethod>(`${API_URL}/payment-method/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
-
-  if (!res.ok) throw new Error("Failed to update payment method");
-  return res.json();
 }
 
-export async function deletePaymentMethod(id: string): Promise<void> {
-  const res = await fetchWithAuth(`${API_URL}/payment-method/${id}`, {
+export function deletePaymentMethod(id: string): Promise<void> {
+  return fetchWithAuth<void>(`${API_URL}/payment-method/${id}`, {
     method: "DELETE",
   });
-
-  if (!res.ok) throw new Error("Failed to delete payment method");
 }
 
-export async function setDefaultPaymentMethod(
-  id: string
-): Promise<PaymentMethod> {
-  const res = await fetchWithAuth(`${API_URL}/payment-method/${id}/default`, {
-    method: "PATCH",
-  });
-
-  if (!res.ok) throw new Error("Failed to set default payment method");
-  return res.json();
+export function setDefaultPaymentMethod(id: string): Promise<PaymentMethod> {
+  return fetchWithAuth<PaymentMethod>(
+    `${API_URL}/payment-method/${id}/default`,
+    {
+      method: "PATCH",
+    }
+  );
 }
