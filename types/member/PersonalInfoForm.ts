@@ -1,10 +1,10 @@
 export type PersonalInfoFormProps = {
   formData: {
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     email: string;
-    phone: string;
-    avatarUrl?: string;
+    phone_number: string;
+    avatar_url?: string;
   };
   loading: boolean;
   submitting: boolean;

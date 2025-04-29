@@ -17,7 +17,7 @@ export default function PersonalInfoForm({
 
       <div className="flex justify-center mb-6">
         <AvatarUpload
-          value={formData.avatarUrl}
+          value={formData.avatar_url}
           loading={loading}
           onChange={onAvatarChange}
         />
@@ -29,8 +29,8 @@ export default function PersonalInfoForm({
             <label className="block text-sm font-medium">First Name *</label>
             <input
               type="text"
-              name="firstName"
-              value={formData.firstName}
+              name="first_name"
+              value={formData.first_name}
               onChange={onChange}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
@@ -40,8 +40,8 @@ export default function PersonalInfoForm({
             <label className="block text-sm font-medium">Last Name *</label>
             <input
               type="text"
-              name="lastName"
-              value={formData.lastName}
+              name="last_name"
+              value={formData.last_name}
               onChange={onChange}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
@@ -65,8 +65,8 @@ export default function PersonalInfoForm({
           <label className="block text-sm font-medium">Phone *</label>
           <input
             type="tel"
-            name="phone"
-            value={formData.phone}
+            name="phone_number"
+            value={formData.phone_number}
             onChange={onChange}
             className="w-full p-2 border border-gray-300 rounded-md"
             required
