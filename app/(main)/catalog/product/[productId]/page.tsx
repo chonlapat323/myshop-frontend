@@ -6,8 +6,7 @@ import { ProductDetailPageProps } from "@/types/product/ProductDetailPage";
 export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
-  const product = await getProductById(params.productId);
-  console.log(product);
+  const product = await getProductById(parseInt(params?.productId));
   if (!product) return notFound();
 
   return <ProductDetail product={product} />;
