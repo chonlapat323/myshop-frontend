@@ -9,10 +9,10 @@ export function useCreateAddress() {
     try {
       setLoading(true);
       const newAddress = await createAddress(data);
-      toast.success("เพิ่มที่อยู่เรียบร้อยแล้ว");
+      toast.success("Address added successfully");
       return newAddress;
     } catch (error) {
-      toast.error("เกิดข้อผิดพลาดขณะเพิ่มที่อยู่");
+      toast.error("Failed to add address");
       throw error;
     } finally {
       setLoading(false);

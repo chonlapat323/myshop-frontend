@@ -41,6 +41,15 @@ export async function fetchWithAuth<T>(
     throw new HttpError(errorMessage, statusCode);
   }
 
+  const contentLength = response.headers.get("content-length");
+  if (
+    response.status === 204 ||
+    !contentLength ||
+    Number(contentLength) === 0
+  ) {
+    return undefined as T; // ✅ ไม่มีเนื้อหา → ไม่ต้อง parse json
+  }
+
   const data: T = await response.json();
   return data;
 }

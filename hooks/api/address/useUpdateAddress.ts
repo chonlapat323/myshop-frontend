@@ -10,10 +10,10 @@ export function useUpdateAddress() {
     try {
       setLoading(true);
       const updated = await updateAddress(id, data);
-      toast.success("อัปเดตที่อยู่เรียบร้อยแล้ว");
+      toast.success("Address updated successfully");
       return updated;
     } catch (err) {
-      toast.error("ไม่สามารถอัปเดตที่อยู่ได้");
+      toast.error("Failed to update address");
       throw err;
     } finally {
       setLoading(false);

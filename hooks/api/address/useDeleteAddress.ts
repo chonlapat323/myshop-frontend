@@ -9,10 +9,10 @@ export function useDeleteAddress() {
     try {
       setLoading(true);
       await deleteAddress(id);
-      toast.success("ลบที่อยู่เรียบร้อยแล้ว");
+      toast.success("Address deleted successfully");
       return true;
     } catch (err) {
-      toast.error("เกิดข้อผิดพลาดขณะลบที่อยู่");
+      toast.error("Failed to delete address");
       return false;
     } finally {
       setLoading(false);
