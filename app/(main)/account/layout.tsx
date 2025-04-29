@@ -37,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { key: "orders", label: "My Order", href: "/account/orders" },
     { key: "address", label: "Manage Address", href: "/account/address" },
     { key: "payment", label: "Payment Method", href: "/account/payment" },
-    { key: "password", label: "Password Manage", href: "/account/password" },
+    // { key: "password", label: "Password Manage", href: "/account/password" },
     {
       key: "logout",
       label: "Logout",

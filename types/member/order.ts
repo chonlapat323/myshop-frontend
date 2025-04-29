@@ -26,3 +26,10 @@ export interface Order {
   tracking_number: string;
   shipping_address: Address;
 }
+
+export interface OrderListResponse {
+  data: Order[];
+  total: number;
+  page: number;
+  pageCount: number;
+}
