@@ -1,11 +1,9 @@
-import { Address } from "@/types/member/Address";
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
+import { Address } from "@/types/member/Address";
 
-export async function getAddresses(): Promise<Address[]> {
-  const res = await fetchWithAuth(`${API_URL}/addresses`);
-  if (!res.ok) throw new Error("Failed to fetch addresses");
-  return res.json();
+export function getAddresses(): Promise<Address[]> {
+  return fetchWithAuth<Address[]>(`${API_URL}/addresses`);
 }
 
 export async function createAddress(

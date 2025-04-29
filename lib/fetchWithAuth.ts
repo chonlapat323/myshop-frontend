@@ -1,35 +1,46 @@
 import { API_URL } from "@/lib/config";
-
-export const fetchWithAuth = async (
+import { HttpError } from "./HttpError";
+export async function fetchWithAuth<T>(
   input: RequestInfo,
   init?: RequestInit
-): Promise<Response> => {
-  let res = await fetch(input, {
+): Promise<T> {
+  let response = await fetch(input, {
     ...init,
     credentials: "include",
-    headers: {
-      ...(init?.headers || {}),
-    },
   });
 
-  if (res.status === 401) {
+  if (response.status === 401) {
     const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
       method: "POST",
       credentials: "include",
     });
 
     if (refreshRes.ok) {
-      res = await fetch(input, {
+      response = await fetch(input, {
         ...init,
         credentials: "include",
-        headers: {
-          ...(init?.headers || {}),
-        },
       });
     } else {
-      window.location.href = "/login";
+      window.location.href = "/signin";
+      throw new HttpError("Unauthorized, redirected to signin", 401); // 👈 new HttpError จริง
     }
   }
 
-  return res;
-};
+  if (!response.ok) {
+    let errorMessage = "Unknown error";
+    let statusCode = response.status;
+
+    try {
+      const errorBody = await response.json();
+      errorMessage = errorBody.message || errorMessage;
+      statusCode = errorBody.statusCode || statusCode;
+    } catch {
+      errorMessage = await response.text();
+    }
+
+    throw new HttpError(errorMessage, statusCode);
+  }
+
+  const data: T = await response.json();
+  return data;
+}
