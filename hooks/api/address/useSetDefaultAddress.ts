@@ -10,10 +10,10 @@ export function useSetDefaultAddress() {
     try {
       setLoading(true);
       const updated = await setDefaultAddress(id);
-      toast.success("ตั้งค่าที่อยู่เริ่มต้นเรียบร้อยแล้ว");
+      toast.success("Default address set successfully");
       return updated;
     } catch (err) {
-      toast.error("ไม่สามารถตั้งค่าที่อยู่เริ่มต้นได้");
+      toast.error("Failed to set default address");
       return null;
     } finally {
       setLoading(false);

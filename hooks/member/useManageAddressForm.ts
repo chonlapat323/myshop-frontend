@@ -56,7 +56,7 @@ export function useManageAddressForm() {
         const data = await getAddresses();
         setAddresses(data);
       } catch (err) {
-        console.error("โหลดที่อยู่ไม่สำเร็จ", err);
+        console.error("Failed to load addresses", err);
       }
     };
     fetchData();
