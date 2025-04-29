@@ -1,51 +1,20 @@
 "use client";
 import { useRef, useState } from "react";
-import Image from "next/image";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { API_URL } from "@/lib/config";
-import { toast } from "sonner";
-import { addToCart } from "@/services/member/cart.service";
-import { flyToCart } from "@/lib/cart-animation";
-import { useCart } from "@/context/CartContext";
 import { ProductDetailProps } from "@/types/product/ProductDetailPage";
+import { useAddToCart } from "@/hooks/cart/useAddToCartFromProduct";
+import ProductImageGallery from "@/app/(main)/components/products/ProductImageGallery";
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const { increase, refresh } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const tabs = ["Additional Information", "Design"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const images = product.product_image ?? [];
-  const [isAdding, setIsAdding] = useState(false);
-  const [added, setAdded] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const selectedImageUrl =
-    images.length > 0
-      ? `${API_URL}${images[selectedImage]?.url ?? images[0].url}`
-      : `/uploads/no-image.jpg`;
-
+  const { add } = useAddToCart(product.id);
   const handleAddToCart = async () => {
-    try {
-      setIsAdding(true);
-
-      const cartIcon = document.getElementById("cart-icon");
-
-      if (imageRef.current && cartIcon) {
-        flyToCart(imageRef.current, cartIcon);
-      }
-
-      await addToCart(product.id, quantity);
-      increase(1);
-      await refresh();
-      setAdded(true);
-
-      setTimeout(() => setAdded(false), 2000);
-    } catch (error) {
-      console.error(error);
-      toast.error("ไม่สามารถเพิ่มสินค้าได้");
-    } finally {
-      setIsAdding(false);
-    }
+    add(quantity, imageRef.current ?? undefined);
   };
 
   return (
@@ -55,52 +24,12 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         categorySlug={product.category?.link}
       />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="flex flex-col lg:flex-row">
-          <div className="mb-4 lg:mb-0 lg:mr-4 flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-4">
-            {images.map((img, idx) => {
-              const image = img?.url
-                ? `${API_URL}${img.url}`
-                : "/uploads/no-image.jpg";
-
-              return (
-                <div
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`relative cursor-pointer border-2 ${
-                    selectedImage === idx
-                      ? "border-gray-800"
-                      : "border-transparent"
-                  }`}
-                  style={{ width: "80px", height: "80px" }}
-                >
-                  <Image
-                    ref={imageRef}
-                    src={`${image}`}
-                    alt={`Thumbnail ${idx}`}
-                    fill
-                    sizes="(max-width: 768px) 20vw, 80px"
-                    className="object-cover"
-                  />
-                </div>
-              );
-            })}
-          </div>
-
-          <div
-            className="relative flex-1 flex justify-center items-center"
-            style={{ aspectRatio: "4/3" }}
-          >
-            <Image
-              src={selectedImageUrl}
-              alt="Sofa Lucca"
-              fill
-              sizes="(max-width: 768px) 100vw, 800px"
-              className="object-cover"
-              priority={selectedImage === 0}
-            />
-          </div>
-        </div>
-
+        <ProductImageGallery
+          images={images}
+          selectedIndex={selectedImage}
+          onSelect={(idx) => setSelectedImage(idx)}
+          imageRef={imageRef}
+        />
         <div className="flex flex-col space-y-4">
           <h1 className="text-2xl font-semibold">{product.name}</h1>
           <p className="text-lg font-medium">${product.price}</p>
