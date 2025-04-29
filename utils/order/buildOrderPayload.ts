@@ -2,7 +2,7 @@ import { Address } from "@/types/member/Address";
 import { CartItem } from "@/types/cart/cart";
 import { OrderPayload } from "@/types/utils/order/buildOrderPayload";
 
-export function buildOrderPayload(
+export function BuildOrderPayload(
   address: Address,
   cartItems: CartItem[]
 ): OrderPayload {

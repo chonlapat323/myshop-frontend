@@ -6,7 +6,7 @@ import {
 } from "@/services/cart/cart.service";
 import { UseCartItemsProp } from "@/types/cart/cart";
 import { Address } from "@/types/member/Address.js";
-import { buildOrderPayload } from "@/utils/order/buildOrderPayload";
+import { BuildOrderPayload } from "@/utils/order/buildOrderPayload";
 import { createOrder } from "@/services/order/order.service";
 
 export function useCartItems(): UseCartItemsProp {
@@ -41,7 +41,7 @@ export function useCartItems(): UseCartItemsProp {
   };
 
   const placeOrder = async (address: Address): Promise<void> => {
-    const payload = buildOrderPayload(address, items);
+    const payload = BuildOrderPayload(address, items);
     await createOrder(payload);
     await refreshCartItem();
     await refreshCartCount();
