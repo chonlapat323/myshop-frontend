@@ -1,6 +1,6 @@
 "use client";
 
-import AvatarUpload from "@/component/ui/AvatarUpload";
+import AvatarUpload from "@/app/(main)/components/ui/AvatarUpload";
 import { PersonalInfoFormProps } from "@/types/member/PersonalInfoForm";
 
 export default function PersonalInfoForm({
