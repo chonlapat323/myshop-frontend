@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useCart } from "@/context/CartContext";
 import { flyToCart } from "@/lib/cart-animation";
 import { ProductCardProps } from "@/types/ui/ProductCard";
+import { formatCurrencyTHB } from "@/utils/format-currency";
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [hoveredPopup, setHoveredPopup] = useState<number | null>(null);
@@ -43,20 +44,21 @@ export default function ProductCard({ product }: ProductCardProps) {
       key={product.id}
       className="group relative bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center"
     >
-      <div className="w-full aspect-[3/4] overflow-hidden">
+      <div className="relative w-full sm:aspect-[3/5]  md:aspect-[4.8/5] aspect-[5/5] overflow-hidden">
         <Image
           ref={imageRef}
           src={image}
           alt={product.name}
-          width={300}
-          height={400}
-          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+          fill
+          className="md:object-contain  object-contain transition-transform group-hover:scale-105"
         />
       </div>
 
       <div className="text-center mt-4">
         <p className="font-semibold">{product.name}</p>
-        <p className="text-gray-500">${product.price}</p>
+        <p className="text-gray-500">
+          {formatCurrencyTHB(parseInt(product.price))}
+        </p>
         {product.tags && product.tags.length > 0 && (
           <div className="flex flex-wrap justify-center gap-1 mt-2">
             {product.tags.map((tag, idx) => (
