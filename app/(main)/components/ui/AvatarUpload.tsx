@@ -1,60 +1,74 @@
-"use client";
-
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { EditOutlined } from "@ant-design/icons";
-import { AvatarUploadProps } from "@/types/ui/AvatarUpload";
+import { ImageUploadProps } from "@/types/ui/modal/AvatarUpload";
 
-export default function AvatarUpload({ onImageChange }: AvatarUploadProps) {
-  const [image, setImage] = useState<string | null>(null);
+export default function AvatarUpload({
+  onChange,
+  value,
+  loading,
+}: ImageUploadProps) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [hover, setHover] = useState(false);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
 
-      if (onImageChange) {
-        onImageChange(file);
-      }
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (onChange) onChange(file); // ✅ ปลอดภัย
   };
 
   return (
-    <div className="relative w-24 h-24">
-      {image ? (
-        <Image
-          src={image}
-          alt="Avatar"
-          width={96}
-          height={96}
-          className="rounded-full object-cover"
-        />
-      ) : (
-        <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center">
+    <div className="flex flex-col items-start gap-2">
+      <div
+        className={`relative w-24 h-24 rounded-full border border-gray-300 bg-gray-100 flex items-center justify-center overflow-hidden cursor-pointer transition hover:ring-2 hover:ring-blue-400 ${
+          hover ? "ring-2 ring-blue-500" : ""
+        }`}
+        onClick={handleClick}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        {value ? (
+          <Image
+            src={value}
+            alt="Preview"
+            fill
+            className="w-full h-full object-cover"
+          />
+        ) : (
           <svg
-            className="w-8 h-8 text-black"
-            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-500"
+            fill="none"
             viewBox="0 0 24 24"
+            stroke="currentColor"
           >
             <path
-              fillRule="evenodd"
-              d="M12 2a5 5 0 00-5 5v1a5 5 0 1010 0V7a5 5 0 00-5-5zm-7 14a7 7 0 0114 0v2a1 1 0 01-1 1H6a1 1 0 01-1-1v-2z"
-              clipRule="evenodd"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 7h4l2-3h6l2 3h4v13H3V7z"
             />
+            <circle cx="12" cy="13" r="4" />
           </svg>
-        </div>
-      )}
+        )}
 
-      <label className="absolute bottom-0 right-0 bg-black text-white w-8 h-8 flex items-center justify-center rounded-full cursor-pointer shadow-md">
-        <EditOutlined className="text-sm" />
-        <input
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleImageUpload}
-        />
-      </label>
+        {loading && (
+          <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-500 border-t-transparent"></div>
+          </div>
+        )}
+      </div>
+
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleChange}
+        className="hidden"
+      />
+      <span className="text-sm text-gray-500">Click to upload</span>
     </div>
   );
 }
