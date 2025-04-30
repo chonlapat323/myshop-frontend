@@ -55,7 +55,7 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser to see the 
 ├── app/                         # Next.js App Router
 │   └── (main)/catalog/         # Product catalog + product detail
 │   └── (main)/account/         # Member address, payment
-├── components/                 # Reusable UI components
+│   └── components/             # Reusable UI components
 ├── services/                   # API request handlers
 ├── hooks/                      # Custom React hooks
 ├── public/                     # Static files (images, etc.)
@@ -69,7 +69,6 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser to see the 
 - ✅ Product catalog & detail pages
 - 🛒 Shopping cart system
 - 👤 Member info & address management
-- 🌗 Dark mode ready
 - 📱 Responsive design with Tailwind CSS
 
 ---
@@ -79,14 +78,12 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser to see the 
 - [x] Next.js (App Router)
 - [x] TypeScript
 - [x] Tailwind CSS
-- [x] Ant Design (for some components)
 - [x] API connected to NestJS backend
 
 ---
 
 ## 🚀 Deployment
 
-Deployed on [Vercel](https://vercel.com)  
 To deploy manually:
 
 ```bash
