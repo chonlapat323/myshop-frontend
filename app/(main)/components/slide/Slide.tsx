@@ -7,7 +7,11 @@ import { SliderProps } from "@/types/components/slide/Slider";
 
 export default function Slider({ slides }: SliderProps) {
   return (
-    <Carousel className={styles["slider-container"]}>
+    <Carousel
+      className={styles["slider-container"]}
+      autoplay
+      autoplaySpeed={7000}
+    >
       {slides.map((slide) => (
         <div key={slide.id} className={styles["slider-item"]}>
           {/* รูปภาพที่เป็น Cover */}
