@@ -26,7 +26,7 @@ export default function CartItemCard({
       debouncedUpdate(quantity);
       setTotalPrice(item.price * quantity);
     }
-  }, [quantity]);
+  }, [quantity, item.quantity, item.price, debouncedUpdate]);
 
   const increase = () => setQuantity((q) => q + 1);
   const decrease = () => {

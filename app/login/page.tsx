@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin, loading, error } = useLogin();
+  const { handleLogin, loading } = useLogin();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();

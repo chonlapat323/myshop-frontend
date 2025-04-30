@@ -3,14 +3,11 @@
 import { useMemo } from "react";
 import { BreadcrumbsProps } from "@/types/components/Breadcrumbs";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function Breadcrumbs({
   productName,
   categorySlug,
 }: BreadcrumbsProps) {
-  const pathname = usePathname();
-
   const breadcrumbItems = useMemo(() => {
     const items = [];
 

@@ -14,7 +14,6 @@ import { ProductCardProps } from "@/types/ui/ProductCard";
 export default function ProductCard({ product }: ProductCardProps) {
   const [hoveredPopup, setHoveredPopup] = useState<number | null>(null);
   const [cartPopup, setCartPopup] = useState<number | null>(null);
-  const [added, setAdded] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const { increase, refresh } = useCart();
   const imageRef = useRef<HTMLImageElement>(null);
@@ -29,8 +28,6 @@ export default function ProductCard({ product }: ProductCardProps) {
       await addToCart(product.id);
       increase(1);
       await refresh();
-      setAdded(true);
-      setTimeout(() => setAdded(false), 2000);
     } catch (err) {
       console.error(err);
       toast.error("ไม่สามารถเพิ่มสินค้าได้");

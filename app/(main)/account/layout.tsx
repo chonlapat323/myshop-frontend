@@ -18,7 +18,7 @@ function ProtectedLayout({ children }: { children: React.ReactNode }) {
     if (!loading && !user) {
       router.replace("/login");
     }
-  }, [loading, user]);
+  }, [loading, user, router]);
 
   if (loading) return <p>Loading...</p>;
   if (!user) return null;
