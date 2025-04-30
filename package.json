@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:force": "powershell -Command \"Remove-Item -Recurse -Force .next; npm run build\""
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",

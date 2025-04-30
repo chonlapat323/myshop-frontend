@@ -1,5 +1,6 @@
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
+import { HttpError } from "@/lib/HttpError";
 import { Product } from "@/types/home/product";
 
 export function getBestSellers(): Promise<Product[]> {
@@ -20,6 +21,13 @@ export function getProductsByCategory(
   );
 }
 
-export function getProductById(id: number): Promise<Product> {
-  return fetchWithAuth<Product>(`${API_URL}/products/${id}`);
+export async function getProductById(id: number): Promise<Product | null> {
+  try {
+    return await fetchWithAuth<Product>(`${API_URL}/products/${id}`);
+  } catch (error) {
+    if (error instanceof HttpError && error.status === 404) {
+      return null;
+    }
+    throw error;
+  }
 }

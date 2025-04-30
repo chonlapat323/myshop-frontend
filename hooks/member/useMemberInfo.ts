@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getMemberInfo } from "@/services/member/member.service";
-import { MemberProfileForm } from "@/types/member/MemberProfileForm";
+import { MemberInfo } from "@/types/member/MemberProfileForm";
 
 export function useMemberInfo() {
-  const [member, setMember] = useState<MemberProfileForm | null>(null);
+  const [member, setMember] = useState<MemberInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
