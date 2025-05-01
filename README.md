@@ -7,7 +7,7 @@ It connects to a NestJS backend and displays product, cart, and member features.
 
 ## 🧩 Frontend Architecture Diagram
 
-<img src="public/images/screenshot/diagram.png" alt="Architecture Diagram" width="800"/>
+<img src="public/images/screenshot/myshop-architecture.svg" alt="Architecture Diagram" width="800"/>
 
 ---
 
