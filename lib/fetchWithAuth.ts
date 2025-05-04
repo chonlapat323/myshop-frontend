@@ -8,7 +8,7 @@ export async function fetchWithAuth<T>(
     ...init,
     credentials: "include",
   });
-
+  debugger;
   if (response.status === 401) {
     const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
       method: "POST",
@@ -40,11 +40,11 @@ export async function fetchWithAuth<T>(
 
     throw new HttpError(errorMessage, statusCode);
   }
-
+  debugger;
   if (response.status === 204) {
     return undefined as T;
   }
-
+  debugger;
   try {
     return await response.json();
   } catch {
