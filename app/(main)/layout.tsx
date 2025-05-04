@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import theme from "../Theme/ThemeConfig";
 import "../globals.css";
 import { ConfigProvider } from "antd";
 import Navbar from "./components/Navbar";
@@ -35,7 +34,7 @@ export default function RootLayout({
     ],
   };
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider>
       <AntdRegistry>
         <Navbar menuItems={menuItems} />
         <div className="pt-20 px-4 sm:px-6 lg:px-8">
