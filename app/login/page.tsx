@@ -12,6 +12,7 @@ export default function LoginPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    debugger;
     await handleLogin(email, password);
   }
 

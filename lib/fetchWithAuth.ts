@@ -8,8 +8,7 @@ export async function fetchWithAuth<T>(
     ...init,
     credentials: "include",
   });
-  console.log(input);
-  debugger;
+
   if (response.status === 401) {
     const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
       method: "POST",
@@ -41,14 +40,16 @@ export async function fetchWithAuth<T>(
 
     throw new HttpError(errorMessage, statusCode);
   }
-  debugger;
-  if (response.status === 204) {
-    return undefined as T;
+
+  const contentLength = response.headers.get("content-length");
+  if (
+    response.status === 204 ||
+    !contentLength ||
+    Number(contentLength) === 0
+  ) {
+    return undefined as T; // ✅ ไม่มีเนื้อหา → ไม่ต้อง parse json
   }
-  debugger;
-  try {
-    return await response.json();
-  } catch {
-    return undefined as T;
-  }
+
+  const data: T = await response.json();
+  return data;
 }
