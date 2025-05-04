@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { updatePaymentMethod } from "@/services/member/payment.service";
-import { UpdatePaymentMethodDto, PaymentMethod } from "@/types/member/Payment";
+import { UpdatePaymentMethodDto, PaymentMethod } from "@/types/member/payment";
 
 export function useUpdatePayment() {
   const [loading, setLoading] = useState(false);

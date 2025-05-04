@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { PaymentMethod } from "@/types/member/Payment";
+import { PaymentMethod } from "@/types/member/payment";
 import { getPaymentMethods } from "@/services/member/payment.service";
 import { useCreatePayment } from "@/hooks/api/payment/useCreatePayment";
 import { useUpdatePayment } from "@/hooks/api/payment/useUpdatePayment";

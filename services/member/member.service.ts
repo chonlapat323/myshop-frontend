@@ -3,7 +3,7 @@ import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import {
   MemberInfo,
   MemberProfileForm,
-} from "@/types/member/MemberProfileForm";
+} from "@/types/member/member-profile-form";
 import { redirect } from "next/navigation";
 
 export function getMemberInfo(): Promise<MemberInfo> {

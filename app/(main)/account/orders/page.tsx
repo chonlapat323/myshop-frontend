@@ -15,7 +15,7 @@ import {
 import { formatCurrencyTHB } from "@/utils/format-currency";
 import { Address } from "@/types/member/address";
 import Pagination from "../../components/Pagination";
-import { Order } from "@/types/member/Order";
+import { Order } from "@/types/member/order";
 
 export default function MyOrders() {
   const [page, setPage] = useState(1);

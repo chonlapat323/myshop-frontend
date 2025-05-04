@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { createPaymentMethod } from "@/services/member/payment.service";
-import { CreatePaymentMethodDto, PaymentMethod } from "@/types/member/Payment";
+import { CreatePaymentMethodDto, PaymentMethod } from "@/types/member/payment";
 
 export function useCreatePayment() {
   const [loading, setLoading] = useState(false);

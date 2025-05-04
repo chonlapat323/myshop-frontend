@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { OrderListResponse } from "@/types/member/Order";
+import { OrderListResponse } from "@/types/member/order";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";
 

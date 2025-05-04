@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ManagePaymentListProps } from "@/types/member/Payment";
+import { ManagePaymentListProps } from "@/types/member/payment";
 import ConfirmModal from "../ui/modal/ConfirmModal";
 import { usePaymentAction } from "@/hooks/member/usePaymentAction";
 

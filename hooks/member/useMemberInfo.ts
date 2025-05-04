@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMemberInfo } from "@/services/member/member.service";
-import { MemberInfo } from "@/types/member/MemberProfileForm";
+import { MemberInfo } from "@/types/member/member-profile-form";
 
 export function useMemberInfo() {
   const [member, setMember] = useState<MemberInfo | null>(null);

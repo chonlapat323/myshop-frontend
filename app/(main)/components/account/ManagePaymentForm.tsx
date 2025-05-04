@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ManagePaymentFormProps } from "@/types/member/Payment";
+import { ManagePaymentFormProps } from "@/types/member/payment";
 
 export default function ManagePaymentForm({
   newMethod,

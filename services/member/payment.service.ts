@@ -4,7 +4,7 @@ import {
   PaymentMethod,
   CreatePaymentMethodDto,
   UpdatePaymentMethodDto,
-} from "@/types/member/Payment";
+} from "@/types/member/payment";
 
 export async function getPaymentMethods(): Promise<PaymentMethod[]> {
   return fetchWithAuth<PaymentMethod[]>(`${API_URL}/payment-method`);

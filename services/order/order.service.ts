@@ -1,7 +1,7 @@
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
 import { API_URL } from "@/lib/config";
 import { OrderPayload } from "@/types/utils/order/buildOrderPayload";
-import { Order, OrderListResponse } from "@/types/member/Order";
+import { Order, OrderListResponse } from "@/types/member/order";
 
 export function createOrder(payload: OrderPayload) {
   return fetchWithAuth(`${API_URL}/orders`, {
