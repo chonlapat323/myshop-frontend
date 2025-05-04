@@ -13,7 +13,7 @@ import {
   getOrderStatusLabel,
 } from "@/utils/order/order-status";
 import { formatCurrencyTHB } from "@/utils/format-currency";
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 import Pagination from "../../components/Pagination";
 
 export default function MyOrders() {

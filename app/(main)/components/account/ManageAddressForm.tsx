@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AddressFormProps } from "@/types/member/Address";
+import { AddressFormProps } from "@/types/member/address";
 
 export default function ManageAddressForm({
   newAddress,

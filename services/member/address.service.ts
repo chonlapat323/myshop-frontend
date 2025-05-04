@@ -1,6 +1,6 @@
 import { API_URL } from "@/lib/config";
 import { fetchWithAuth } from "@/lib/fetchWithAuth";
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 
 export function getAddresses(): Promise<Address[]> {
   return fetchWithAuth<Address[]>(`${API_URL}/addresses`);

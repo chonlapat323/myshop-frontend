@@ -1,6 +1,6 @@
 "use client";
 
-import { AddressListProps } from "@/types/member/Address";
+import { AddressListProps } from "@/types/member/address";
 import ManageAddressForm from "./ManageAddressForm";
 import { useAddressActions } from "@/hooks/member/useAddressActions";
 import ConfirmModal from "../ui/modal/ConfirmModal";

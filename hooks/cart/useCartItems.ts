@@ -5,7 +5,7 @@ import {
   removeCartItem,
 } from "@/services/cart/cart.service";
 import { UseCartItemsProp } from "@/types/cart/cart";
-import { Address } from "@/types/member/Address.js";
+import { Address } from "@/types/member/address.js";
 import { BuildOrderPayload } from "@/utils/order/buildOrderPayload";
 import { createOrder } from "@/services/order/order.service";
 

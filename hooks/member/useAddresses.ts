@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getAddresses } from "@/services/member/address.service";
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 
 export function useAddresses() {
   const [addresses, setAddresses] = useState<Address[]>([]);

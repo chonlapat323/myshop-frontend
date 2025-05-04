@@ -1,4 +1,4 @@
-import { Address } from "../member/Address";
+import { Address } from "../member/address";
 
 export interface CartItem {
   id: number;

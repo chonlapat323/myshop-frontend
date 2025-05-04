@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { setDefaultAddress } from "@/services/member/address.service";
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 
 export function useSetDefaultAddress() {
   const [loading, setLoading] = useState(false);

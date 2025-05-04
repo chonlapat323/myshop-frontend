@@ -1,4 +1,4 @@
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 import { CartItem } from "@/types/cart/cart";
 import { OrderPayload } from "@/types/utils/order/buildOrderPayload";
 

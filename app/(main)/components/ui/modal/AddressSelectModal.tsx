@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Address } from "@/types/member/Address";
+import { Address } from "@/types/member/address";
 import { getAddresses } from "@/services/member/address.service";
 import { AddressSelectModalProps } from "@/types/ui/modal/AddressSelectModal";
 
