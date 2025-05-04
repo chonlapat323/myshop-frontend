@@ -3,7 +3,7 @@
 import { Carousel } from "antd";
 import styles from "./Slider.module.css";
 import Image from "next/image";
-import { SliderProps } from "@/types/components/slide/Slider";
+import { SliderProps } from "@/types/components/slide/slider";
 
 export default function Slider({ slides }: SliderProps) {
   return (

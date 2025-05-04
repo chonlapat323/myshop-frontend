@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ConfirmModalProps } from "@/types/ui/modal/ConfirmModal";
+import { ConfirmModalProps } from "@/types/ui/modal/confirm-modal";
 
 export default function ConfirmModal({
   open,

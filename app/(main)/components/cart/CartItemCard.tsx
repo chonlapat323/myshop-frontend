@@ -3,7 +3,7 @@ import debounce from "lodash/debounce";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
 import { formatCurrencyTHB } from "@/utils/format-currency";
-import { CartItemCardProps } from "@/types/components/cart/CartItemCard";
+import { CartItemCardProps } from "@/types/components/cart/cartItem-card";
 
 export default function CartItemCard({
   item,

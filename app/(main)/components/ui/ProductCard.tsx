@@ -9,7 +9,7 @@ import { addToCart } from "@/services/member/cart.service";
 import { toast } from "sonner";
 import { useCart } from "@/context/CartContext";
 import { flyToCart } from "@/lib/cart-animation";
-import { ProductCardProps } from "@/types/ui/ProductCard";
+import { ProductCardProps } from "@/types/ui/product-card";
 import { formatCurrencyTHB } from "@/utils/format-currency";
 
 export default function ProductCard({ product }: ProductCardProps) {

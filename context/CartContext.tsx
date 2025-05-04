@@ -7,7 +7,7 @@ import {
   useEffect,
 } from "react";
 import { getCartCount } from "@/services/cart/cart.service";
-import { CartContextTypeProp } from "@/types/context/CreateContext";
+import { CartContextTypeProp } from "@/types/context/create-context";
 
 const CartContext = createContext<CartContextTypeProp | null>(null);
 

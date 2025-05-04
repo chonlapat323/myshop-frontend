@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Menu, ShoppingCart, Lock, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/context/CartContext";
-import { NavbarProps } from "@/types/ui/Navbar";
+import { NavbarProps } from "@/types/ui/navbar";
 
 export default function Navbar({ menuItems }: NavbarProps) {
   const pathname = usePathname();

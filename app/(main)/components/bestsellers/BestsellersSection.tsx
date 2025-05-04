@@ -1,7 +1,7 @@
 "use client";
 
 import ProductCard from "@/app/(main)/components/ui/ProductCard";
-import { BestsellersProps } from "@/types/components/bestsellers/BestSellersSection";
+import { BestsellersProps } from "@/types/components/bestsellers/best-sellers-section";
 
 export default function BestSellersSection({ products }: BestsellersProps) {
   return (

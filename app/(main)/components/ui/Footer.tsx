@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import IconLink from "../IconLink";
-import { FooterProps } from "@/types/ui/Footer";
+import { FooterProps } from "@/types/ui/footer";
 
 export default function Footer({ menuItems, info }: FooterProps) {
   const midIndex = Math.ceil(menuItems.length / 2);

@@ -7,7 +7,7 @@ import { getCategories } from "@/services/home/category.service";
 import { Category } from "@/types/home/category";
 import { getBestSellers } from "@/services/home/product.service";
 import { Product } from "@/types/home/product";
-import { UseHomeDataResult } from "@/types/hook/home/useHomeData";
+import { UseHomeDataResult } from "@/types/hook/home/use-home-data";
 
 export function useHomeData(): UseHomeDataResult {
   const [categories, setCategories] = useState<Category[]>([]);

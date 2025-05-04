@@ -1,6 +1,6 @@
 "use client";
 
-import { Category } from "@/types/hook/home/useCategories";
+import { Category } from "@/types/hook/home/use-categories";
 import { useEffect, useState } from "react";
 
 export function useCategories(defaultOnly = true) {

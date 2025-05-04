@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Address } from "@/types/member/address";
 import { getAddresses } from "@/services/member/address.service";
-import { AddressSelectModalProps } from "@/types/ui/modal/AddressSelectModal";
+import { AddressSelectModalProps } from "@/types/ui/modal/address-select-modal";
 
 export default function AddressSelectModal({
   open,

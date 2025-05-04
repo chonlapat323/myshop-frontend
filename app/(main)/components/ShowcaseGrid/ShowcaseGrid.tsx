@@ -1,4 +1,4 @@
-import { ShowcaseGridProps } from "@/types/components/showcase/ShowcaseGrid";
+import { ShowcaseGridProps } from "@/types/components/showcase/showcase-grid";
 import ShowcaseCard from "../ShowcaseCard/ShowcaseCard";
 
 export default function ShowcaseGrid({ collections }: ShowcaseGridProps) {

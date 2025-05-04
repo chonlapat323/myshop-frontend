@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { MenuOutlined } from "@ant-design/icons";
 import { logoutUser } from "@/services/member/member.service";
-import { MenuItem } from "@/types/ui/Sidebar";
+import { MenuItem } from "@/types/ui/sidebar";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();

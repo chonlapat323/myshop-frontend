@@ -1,5 +1,5 @@
 "use client";
-import { ShippingAddressModalProps } from "@/types/ui/modal/ShippingAddressModal";
+import { ShippingAddressModalProps } from "@/types/ui/modal/shipping-address-modal";
 
 export default function ShippingAddressModal({
   open,

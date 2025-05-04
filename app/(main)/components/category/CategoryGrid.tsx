@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./CategoryGrid.module.css";
 import Image from "next/image";
 import { API_URL } from "@/lib/config";
-import { CategoryGridProps } from "@/types/components/category/CategoryGrid";
+import { CategoryGridProps } from "@/types/components/category/category-grid";
 
 export default function CategoryGrid({
   categories,

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useDeletePayment } from "@/hooks/api/payment/useDeletePayment";
 import { useSetDefaultPayment } from "@/hooks/api/payment/userSetDefaultPayment";
-import { usePaymentActionProps } from "@/types/hook/usePaymentAction";
+import { usePaymentActionProps } from "@/types/hook/use-payment-action";
 
 export function usePaymentAction({ setMethods }: usePaymentActionProps) {
   const { remove, loading: deleting } = useDeletePayment();

@@ -1,6 +1,6 @@
 import BestSellersSection from "./BestsellersSection";
 import BestsellerSkeleton from "./BestsellerSkeleton";
-import { BestSellersPageProps } from "@/types/components/bestsellers/BestSellersPage";
+import { BestSellersPageProps } from "@/types/components/bestsellers/best-sellers-page";
 
 export default function BestSellersPage({
   products,

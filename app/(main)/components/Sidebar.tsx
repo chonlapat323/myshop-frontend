@@ -1,5 +1,5 @@
 "use client";
-import { SidebarProps } from "@/types/ui/Sidebar";
+import { SidebarProps } from "@/types/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

@@ -1,6 +1,6 @@
 import { Address } from "@/types/member/address";
 import { CartItem } from "@/types/cart/cart";
-import { OrderPayload } from "@/types/utils/order/buildOrderPayload";
+import { OrderPayload } from "@/types/utils/order/build-order-payload";
 
 export function BuildOrderPayload(
   address: Address,

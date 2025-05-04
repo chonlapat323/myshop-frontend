@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { ProductDetailProps } from "@/types/product/ProductDetailPage";
+import { ProductDetailProps } from "@/types/product/product-detail-page";
 import { useAddToCart } from "@/hooks/cart/useAddToCartFromProduct";
 import ProductImageGallery from "@/app/(main)/components/products/ProductImageGallery";
 
