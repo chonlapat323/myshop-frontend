@@ -82,7 +82,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {activeTab === "Additional Information" && (
             <div>
               <p className="text-gray-700">
-                {product.additionalInformation || "-"}
+                {product.additional_information || "-"}
               </p>
             </div>
           )}

@@ -22,7 +22,7 @@ export interface Product {
   name: string;
   description: string;
   design: string;
-  additionalInformation: string;
+  additional_information: string;
   price: string;
   discountPrice: string;
   stock: number;
