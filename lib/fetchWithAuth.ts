@@ -8,6 +8,7 @@ export async function fetchWithAuth<T>(
     ...init,
     credentials: "include",
   });
+  console.log(input);
   debugger;
   if (response.status === 401) {
     const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
