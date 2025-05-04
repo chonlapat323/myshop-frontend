@@ -11,12 +11,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    domains: [
-      "localhost",
-      "localhost:3001",
-      "apis.paodev.xyz",
-      "admin.paodev.xyz",
-    ],
+    domains: ["localhost", "apis.paodev.xyz", "admin.paodev.xyz"],
   },
 };
 
