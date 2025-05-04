@@ -1,13 +1,14 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function login(email: string, password: string) {
+  debugger;
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify({ email, password }),
   });
-
+  debugger;
   const data = await res.json();
 
   if (!res.ok) {
