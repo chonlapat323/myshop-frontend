@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { BreadcrumbsProps } from "@/types/components/breadcrumbs";
+import { BreadcrumbsProps } from "@/types/components/breadcrumb";
 import Link from "next/link";
 
 export default function Breadcrumbs({
