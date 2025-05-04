@@ -15,6 +15,7 @@ import {
 import { formatCurrencyTHB } from "@/utils/format-currency";
 import { Address } from "@/types/member/address";
 import Pagination from "../../components/Pagination";
+import { Order } from "@/types/member/Order";
 
 export default function MyOrders() {
   const [page, setPage] = useState(1);
@@ -41,7 +42,7 @@ export default function MyOrders() {
         <h2 className="text-2xl font-bold mb-2">My Orders</h2>
         <p className="text-gray-500 mb-6">View and manage your orders here.</p>
         <div className="bg-white shadow-md p-4 sm:p-6 rounded-lg">
-          {orders.map((order) => (
+          {orders.map((order: Order) => (
             <div
               key={order.order_number}
               className="border-b last:border-none pb-6 mb-6"
