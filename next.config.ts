@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     domains: ["localhost", "apis.paodev.xyz"],
     remotePatterns: [
@@ -11,6 +10,11 @@ const nextConfig: NextConfig = {
         port: "3001",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "apis.paodev.xyz",
+        pathname: "/uploads/**",
+      },
     ],
   },
   webpack(config) {
@@ -18,7 +22,6 @@ const nextConfig: NextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
-
     return config;
   },
 };
