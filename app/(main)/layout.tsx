@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import theme from "../Theme/themeConfig";
+import theme from "../Theme/ThemeConfig";
 import "../globals.css";
 import { ConfigProvider } from "antd";
 import Navbar from "./components/Navbar";
