@@ -11,6 +11,7 @@ export function useLogin() {
 
   async function handleLogin(email: string, password: string) {
     try {
+      setLoading(true);
       await login(email, password);
       const user = await fetchStatusAndGetUser();
       setUser(user);
