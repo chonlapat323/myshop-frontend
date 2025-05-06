@@ -13,6 +13,7 @@ export function useLogin() {
     try {
       setLoading(true);
       const res = await login(email, password);
+      console.log(res);
       if (res.data.ok) {
         const user = await fetchStatusAndGetUser();
         setUser(user);
