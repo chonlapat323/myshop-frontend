@@ -10,7 +10,11 @@ export async function login(email: string, password: string) {
 
   const data = await res.json();
 
-  return { res, data };
+  if (!res.ok) {
+    throw new Error(data.message || "Email or password is incorrect");
+  }
+
+  return data;
 }
 
 export async function fetchStatusAndGetUser(): Promise<{

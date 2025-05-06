@@ -11,19 +11,17 @@ export function useLogin() {
 
   async function handleLogin(email: string, password: string) {
     try {
-      setLoading(true);
-      const res = await login(email, password);
-      console.log(res);
-      if (res.data.ok) {
-        const user = await fetchStatusAndGetUser();
-        setUser(user);
-        window.location.href = "/";
+      await login(email, password);
+      const user = await fetchStatusAndGetUser();
+      setUser(user);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
       } else {
-        setError(res.data.message || "Email or password is incorrect");
+        setError("Login failed");
       }
-    } catch (err: unknown) {
-      toast.error(`"Login failed: ${err}`);
     } finally {
+      window.location.href = "/";
       setLoading(false);
     }
   }
