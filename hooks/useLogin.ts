@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { fetchStatusAndGetUser, login } from "@/services/auth.service";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
 export function useLogin() {
-  const router = useRouter();
   const { setUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +16,7 @@ export function useLogin() {
       if (res.data.ok) {
         const user = await fetchStatusAndGetUser();
         setUser(user);
-        router.push("/");
+        window.location.href = "/";
       } else {
         setError(res.data.message || "Email or password is incorrect");
       }
