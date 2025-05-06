@@ -10,7 +10,7 @@ export default function RegisterPage() {
         <div className="mb-8">
           <div className="text-2xl font-bold cursor-pointer">
             <Link href="/" className="text-logo]">
-              Chair.
+              MyShop
             </Link>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function RegisterPage() {
             Register
           </button>
 
-          <button
+          {/* <button
             type="button"
             className="w-full border border-gray-300 py-2 rounded hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2"
           >
@@ -113,7 +113,7 @@ export default function RegisterPage() {
               height={20}
             />
             <span>Register with Google</span>
-          </button>
+          </button> */}
         </form>
 
         <p className="mt-6 text-center text-sm">
@@ -133,8 +133,8 @@ export default function RegisterPage() {
           priority
         />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center">
-          <h1 className="text-white text-3xl font-bold mb-2">Hello Overlay</h1>
-          <p className="text-white">This text is on top of the overlay</p>
+          <h1 className="text-white text-3xl font-bold mb-2">MyShop</h1>
+          {/* <p className="text-white">This text is on top of the overlay</p> */}
         </div>
       </div>
     </div>
