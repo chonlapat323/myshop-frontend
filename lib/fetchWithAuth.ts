@@ -21,7 +21,7 @@ export async function fetchWithAuth<T>(
         credentials: "include",
       });
     } else {
-      window.location.href = "/signin";
+      window.location.href = "/login";
       throw new HttpError("Unauthorized, redirected to signin", 401); // 👈 new HttpError จริง
     }
   }

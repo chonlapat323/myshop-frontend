@@ -30,7 +30,6 @@ export default function Home() {
     title: slide?.title,
     description: slide?.description,
   }));
-  console.log(slideItems.map((s) => s.image));
   return (
     <>
       {loading ? (

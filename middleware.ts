@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("token")?.value;
-  console.log(token);
-  debugger;
+  const token = req.cookies.get("member_token")?.value;
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
@@ -20,5 +18,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/account/:path*", "/orders/:path*", "/admin/:path*"],
+  matcher: ["/account/:path*", "/orders/:path*"],
 };
