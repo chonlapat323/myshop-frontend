@@ -15,8 +15,8 @@ export function useLogin() {
     try {
       setLoading(true);
       const res = await login(email, password);
-      const data = await res.json();
-      if (res.ok) {
+      const data = await res.data.json();
+      if (res.data.ok) {
         window.location.href = "/";
       } else {
         setError(data.message || "Email or password is incorrect");

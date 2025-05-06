@@ -7,13 +7,10 @@ export async function login(email: string, password: string) {
     credentials: "include",
     body: JSON.stringify({ email, password }),
   });
+
   const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message || "Login failed");
-  }
-
-  return data;
+  return { res, data };
 }
 
 export async function fetchStatusAndGetUser(): Promise<{
