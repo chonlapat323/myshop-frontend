@@ -8,7 +8,7 @@ import {
 } from "react";
 import { getCartCount } from "@/services/cart/cart.service";
 import { CartContextTypeProp } from "@/types/context/create-context";
-
+import { getCookie } from "cookies-next";
 const CartContext = createContext<CartContextTypeProp | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -27,7 +27,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    refresh();
+    const hasToken =
+      typeof window !== "undefined" && !!getCookie("member_token");
+    if (hasToken) {
+      refresh();
+    } else {
+      setCount(0);
+    }
   }, []);
 
   return (
