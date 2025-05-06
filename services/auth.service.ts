@@ -19,7 +19,7 @@ export async function fetchStatusAndGetUser(): Promise<{
 } | null> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/status`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/status_member`,
       {
         method: "GET",
         credentials: "include",
