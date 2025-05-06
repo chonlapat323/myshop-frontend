@@ -16,13 +16,12 @@ export function useLogin() {
       setLoading(true);
       const res = await login(email, password);
       if (res.data.ok) {
-        window.location.href = "/";
+        const user = await fetchStatusAndGetUser();
+        setUser(user);
+        router.push("/");
       } else {
         setError(res.data.message || "Email or password is incorrect");
       }
-      const user = await fetchStatusAndGetUser();
-      setUser(user);
-      router.push("/");
     } catch (err: unknown) {
       toast.error(`"Login failed: ${err}`);
     } finally {
