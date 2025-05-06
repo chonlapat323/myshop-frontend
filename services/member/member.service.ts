@@ -20,7 +20,7 @@ export function updateMemberInfo(data: FormData): Promise<MemberInfo> {
 }
 
 export const logoutUser = async (): Promise<void> => {
-  await fetch(`${API_URL}/auth/logout`, {
+  await fetch(`${API_URL}/auth/logout_member`, {
     method: "POST",
     credentials: "include",
   });
