@@ -4,21 +4,28 @@ import { useState } from "react";
 import { fetchStatusAndGetUser, login } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "sonner";
 export function useLogin() {
-  const { setUser } = useAuth();
   const router = useRouter();
+  const { setUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function handleLogin(email: string, password: string) {
     try {
       setLoading(true);
-      await login(email, password);
+      const res = await login(email, password);
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = "/";
+      } else {
+        setError(data.message || "Email or password is incorrect");
+      }
       const user = await fetchStatusAndGetUser();
       setUser(user);
       router.push("/");
-    } catch (err: any) {
-      setError(err.message || "Login failed");
+    } catch (err: unknown) {
+      toast.error(`"Login failed: ${err}`);
     } finally {
       setLoading(false);
     }

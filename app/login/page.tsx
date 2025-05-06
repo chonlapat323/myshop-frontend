@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin, loading } = useLogin();
+  const { handleLogin, loading, error } = useLogin();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,6 +34,9 @@ export default function LoginPage() {
 
         <form className="space-y-5" onSubmit={onSubmit}>
           <div>
+            {error && (
+              <p className="mt-2 text-sm text-red-500 text-center">{error}</p>
+            )}
             <label
               htmlFor="email"
               className="block mb-1 text-sm font-medium text-gray-700"
