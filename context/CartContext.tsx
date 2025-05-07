@@ -32,9 +32,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const res = await fetch(`${API_URL}/auth/status_member`, {
           credentials: "include",
         });
-        debugger;
-        console.log(res);
-        if (res.ok) {
+        const data = await res.json();
+        if (res.ok && data.user) {
           await refresh();
         } else {
           setCount(0);
