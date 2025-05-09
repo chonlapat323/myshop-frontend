@@ -61,7 +61,6 @@ export default function CategoryPage() {
         <p className="text-red-500">{error}</p>
       ) : (
         <>
-          {console.log("✅ products:", products)}
           {Array.isArray(products) && products.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {products.map((product) => (
