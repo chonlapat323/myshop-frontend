@@ -55,17 +55,18 @@ export default function CategoryPage() {
         </select>
       </div>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-
-      {!loading && products.length === 0 ? (
-        <p className="text-gray-500">No products found.</p>
-      ) : (
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : Array.isArray(products) && products.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+      ) : (
+        <p className="text-gray-500">No products found.</p>
       )}
     </section>
   );
