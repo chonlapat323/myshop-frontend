@@ -50,6 +50,14 @@ export async function fetchWithAuth<T>(
     return undefined as T; // ✅ ไม่มีเนื้อหา → ไม่ต้อง parse json
   }
 
-  const data: T = await response.json();
+  let data: T;
+  try {
+    data = await response.json();
+  } catch (err) {
+    console.error("❌ Failed to parse JSON:", err);
+    const rawText = await response.text();
+    console.warn("❗ Raw response text:", rawText.slice(0, 300));
+    throw new HttpError("Invalid JSON response", response.status);
+  }
   return data;
 }
