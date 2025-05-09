@@ -85,7 +85,6 @@ export default function CategoryGrid({
               href={`/catalog/${category.link}`}
               className={`relative group row-span-1 ${colSpan}`}
             >
-              {category.image}
               <Image
                 src={`${API_URL}${category.image}`}
                 alt={category.name}
