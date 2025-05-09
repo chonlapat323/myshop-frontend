@@ -40,7 +40,11 @@ export default function RegisterPage() {
           Join us now and get started with your journey!
         </p>
 
-        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          autoComplete="off"
+          className="space-y-5"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div>
             <label
               htmlFor="first_name"
@@ -71,6 +75,7 @@ export default function RegisterPage() {
             <input
               id="email"
               type="email"
+              autoComplete="off"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -98,6 +103,7 @@ export default function RegisterPage() {
             <input
               id="password"
               type="password"
+              autoComplete="new-password"
               {...register("password", { required: "Password is required" })}
               placeholder="Enter your password"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
