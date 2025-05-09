@@ -2,14 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import {
+  RegisterMemberDto,
+  RegisterMemberFormValues,
+} from "@/types/member/register-member";
+import { useRegisterMember } from "@/hooks/member/useRegisterMember";
 
 export default function RegisterPage() {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    watch,
+    formState: { errors },
+  } = useForm<RegisterMemberFormValues>();
+
+  const { handleRegister, loading } = useRegisterMember(setError);
+
+  const onSubmit = (data: RegisterMemberFormValues) => {
+    const { confirm_password, ...submitData } = data;
+    handleRegister(submitData);
+  };
+
   return (
     <div className="min-h-screen flex">
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-10 lg:px-16 bg-white">
         <div className="mb-8">
           <div className="text-2xl font-bold cursor-pointer">
-            <Link href="/" className="text-logo]">
+            <Link href="/" className="text-logo">
               MyShop
             </Link>
           </div>
@@ -20,20 +41,25 @@ export default function RegisterPage() {
           Join us now and get started with your journey!
         </p>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label
-              htmlFor="fullname"
+              htmlFor="first_name"
               className="block mb-1 text-sm font-medium text-gray-700"
             >
               Full Name
             </label>
             <input
-              id="fullname"
-              type="text"
+              id="first_name"
+              {...register("first_name", { required: "Full name is required" })}
               placeholder="Enter your full name"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
             />
+            {errors.first_name && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.first_name.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -46,9 +72,21 @@ export default function RegisterPage() {
             <input
               id="email"
               type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Invalid email format",
+                },
+              })}
               placeholder="Enter your email"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -61,66 +99,59 @@ export default function RegisterPage() {
             <input
               id="password"
               type="password"
+              {...register("password", { required: "Password is required" })}
               placeholder="Enter your password"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div>
             <label
-              htmlFor="confirm-password"
+              htmlFor="confirm_password"
               className="block mb-1 text-sm font-medium text-gray-700"
             >
               Confirm Password
             </label>
             <input
-              id="confirm-password"
+              id="confirm_password"
               type="password"
+              {...register("confirm_password", {
+                required: "Please confirm your password",
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
+              })}
               placeholder="Confirm your password"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-500"
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
             />
-          </div>
-
-          <div className="flex items-center text-sm">
-            <input
-              id="terms"
-              type="checkbox"
-              className="h-4 w-4 border-gray-300 rounded"
-            />
-            <label htmlFor="terms" className="ml-2 text-gray-700">
-              I agree to the{" "}
-              <a href="#" className="text-black font-medium hover:underline">
-                Terms & Conditions
-              </a>
-            </label>
+            {errors.confirm_password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirm_password.message}
+              </p>
+            )}
           </div>
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors"
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
-
-          {/* <button
-            type="button"
-            className="w-full border border-gray-300 py-2 rounded hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2"
-          >
-            <Image
-              src="/images/icons/google.svg"
-              alt="Google icon"
-              width={20}
-              height={20}
-            />
-            <span>Register with Google</span>
-          </button> */}
         </form>
 
         <p className="mt-6 text-center text-sm">
           Already have an account?{" "}
-          <a href="/login" className="text-black font-medium hover:underline">
+          <Link
+            href="/login"
+            className="text-black font-medium hover:underline"
+          >
             Sign In
-          </a>
+          </Link>
         </p>
       </div>
 
@@ -134,7 +165,6 @@ export default function RegisterPage() {
         />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center">
           <h1 className="text-white text-3xl font-bold mb-2">MyShop</h1>
-          {/* <p className="text-white">This text is on top of the overlay</p> */}
         </div>
       </div>
     </div>
