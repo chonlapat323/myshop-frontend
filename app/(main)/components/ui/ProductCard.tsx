@@ -59,7 +59,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="text-gray-500">
           {formatCurrencyTHB(Number(product.price))}
         </p>
-        {product.tags && product.tags.length > 0 && (
+        {Array.isArray(product.tags) && product.tags.length > 0 && (
           <div className="flex flex-wrap justify-center gap-1 mt-2">
             {product.tags.map((tag, idx) => (
               <span
