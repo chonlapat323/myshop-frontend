@@ -16,6 +16,7 @@ export function useProductsByCategory(
       try {
         setLoading(true);
         const data = await getProductsByCategory(slug, searchTerm, sortOption);
+        console.log("✅ API response", data);
         setProducts(data);
       } catch (err: any) {
         setError("Error fetching products");
