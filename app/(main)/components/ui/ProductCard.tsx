@@ -57,7 +57,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="text-center mt-4">
         <p className="font-semibold">{product.name}</p>
         <p className="text-gray-500">
-          {formatCurrencyTHB(parseInt(product.price))}
+          {formatCurrencyTHB(Number(product.price))}
         </p>
         {product.tags && product.tags.length > 0 && (
           <div className="flex flex-wrap justify-center gap-1 mt-2">
