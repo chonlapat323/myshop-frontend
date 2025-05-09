@@ -15,6 +15,7 @@ export function useRegisterMember(
 
       await registerMember(data);
       toast.success("Register successful");
+      window.location.assign("/login");
     } catch (error) {
       if (error instanceof HttpError) {
         setError("email", {
