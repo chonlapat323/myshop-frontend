@@ -3,10 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import {
-  RegisterMemberDto,
-  RegisterMemberFormValues,
-} from "@/types/member/register-member";
+import { RegisterMemberFormValues } from "@/types/member/register-member";
 import { useRegisterMember } from "@/hooks/member/useRegisterMember";
 
 export default function RegisterPage() {
@@ -20,11 +17,13 @@ export default function RegisterPage() {
 
   const { handleRegister, loading } = useRegisterMember(setError);
 
-  const onSubmit = (data: RegisterMemberFormValues) => {
-    const { confirm_password, ...submitData } = data;
-    handleRegister(submitData);
+  const onSubmit = ({
+    first_name,
+    email,
+    password,
+  }: RegisterMemberFormValues) => {
+    handleRegister({ first_name, email, password });
   };
-
   return (
     <div className="min-h-screen flex">
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-10 lg:px-16 bg-white">
