@@ -40,7 +40,7 @@ export async function fetchWithAuth<T>(
 
     throw new HttpError(errorMessage, statusCode);
   }
-
+  console.log(response.headers.get("content-type"));
   const contentLength = response.headers.get("content-length");
   if (
     response.status === 204 ||
