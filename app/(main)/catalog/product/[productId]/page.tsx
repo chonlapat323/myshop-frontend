@@ -76,7 +76,7 @@ export default async function ProductDetailPage({
             "@type": "Offer",
             priceCurrency: "THB",
             price: product.price,
-            url: `https://yourdomain.com/catalog/product/${product.id}`,
+            url: `https://paodev.xyz/catalog/product/${product.id}`,
           },
         })}
       </script>
