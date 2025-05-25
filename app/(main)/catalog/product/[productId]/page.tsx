@@ -35,6 +35,15 @@ export async function generateMetadata({
           alt: product.name,
         },
       ],
+      siteName: "My Shop",
+      locale: "th_TH",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.description,
+      images: [product.product_image?.[0]?.url || "/default.jpg"],
+      site: "@yourtwitter",
     },
   };
 }
@@ -49,5 +58,28 @@ export default async function ProductDetailPage({
 
   if (!product) return notFound();
 
-  return <ProductDetail product={product} />;
+  return (
+    <>
+      <ProductDetail product={product} />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          name: product.name,
+          image: product.product_image?.map((img) => img.url),
+          description: product.description,
+          brand: {
+            "@type": "Brand",
+            name: product.brand,
+          },
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "THB",
+            price: product.price,
+            url: `https://yourdomain.com/catalog/product/${product.id}`,
+          },
+        })}
+      </script>
+    </>
+  );
 }
