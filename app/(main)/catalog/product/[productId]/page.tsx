@@ -21,6 +21,12 @@ export async function generateMetadata({
     };
   }
 
+  const imageUrl = product.product_image?.[0]?.url?.startsWith("http")
+    ? product.product_image[0].url
+    : `https://paodev.xyz${
+        product.product_image?.[0]?.url || "/images/no-image.jpg"
+      }`;
+
   return {
     title: product.name,
     description: product.description,
@@ -29,7 +35,7 @@ export async function generateMetadata({
       description: product.description,
       images: [
         {
-          url: product.product_image?.[0]?.url || "/default.jpg",
+          url: product.product_image?.[0]?.url || "/images/no-image.jpg",
           width: 800,
           height: 600,
           alt: product.name,
@@ -42,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: product.name,
       description: product.description,
-      images: [product.product_image?.[0]?.url || "/default.jpg"],
+      images: imageUrl,
       site: "@yourtwitter",
     },
   };
