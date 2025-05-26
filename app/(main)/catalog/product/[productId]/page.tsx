@@ -2,6 +2,7 @@ import { getProductById } from "@/services/home/product.service";
 import ProductDetail from "../components/ProductDetail";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { IMAGE_URL, LOCAL_URL } from "@/lib/config";
 
 interface ProductDetailPageProps {
   params: Promise<{ productId: string }>;
@@ -21,11 +22,9 @@ export async function generateMetadata({
     };
   }
 
-  const imageUrl = product.product_image?.[0]?.url?.startsWith("http")
-    ? product.product_image[0].url
-    : `https://paodev.xyz${
-        product.product_image?.[0]?.url || "/images/no-image.jpg"
-      }`;
+  const imageUrl = `${IMAGE_URL}${
+    product.product_image?.[0]?.url || "/images/no-image.jpg"
+  }`;
 
   return {
     title: product.name,
@@ -43,7 +42,7 @@ export async function generateMetadata({
       ],
       siteName: "My Shop",
       locale: "th_TH",
-      url: `https://paodev.xyz/catalog/product/${product.id}`,
+      url: `${LOCAL_URL}/catalog/product/${product.id}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -68,25 +67,6 @@ export default async function ProductDetailPage({
   return (
     <>
       <ProductDetail product={product} />
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org/",
-          "@type": "Product",
-          name: product.name,
-          image: product.product_image?.map((img) => img.url),
-          description: product.description,
-          brand: {
-            "@type": "Brand",
-            name: product.brand,
-          },
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "THB",
-            price: product.price,
-            url: `https://paodev.xyz/catalog/product/${product.id}`,
-          },
-        })}
-      </script>
     </>
   );
 }
