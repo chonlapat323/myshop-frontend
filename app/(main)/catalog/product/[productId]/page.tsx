@@ -7,7 +7,7 @@ interface ProductDetailPageProps {
   params: Promise<{ productId: string }>;
 }
 
-// ✅ Metadata สำหรับ SEO
+// Metadata สำหรับ SEO
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
@@ -35,7 +35,7 @@ export async function generateMetadata({
       description: product.description,
       images: [
         {
-          url: product.product_image?.[0]?.url || "/images/no-image.jpg",
+          url: imageUrl,
           width: 800,
           height: 600,
           alt: product.name,
@@ -43,18 +43,19 @@ export async function generateMetadata({
       ],
       siteName: "My Shop",
       locale: "th_TH",
+      url: `https://paodev.xyz/catalog/product/${product.id}`,
     },
     twitter: {
       card: "summary_large_image",
       title: product.name,
       description: product.description,
-      images: imageUrl,
+      images: [imageUrl],
       site: "@yourtwitter",
     },
   };
 }
 
-// ✅ ตัว page
+// ตัว page
 export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
