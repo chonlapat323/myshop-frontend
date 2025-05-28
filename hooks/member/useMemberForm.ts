@@ -48,7 +48,7 @@ export function useMemberForm() {
           last_name: data.last_name || "",
           email: data.email || "",
           phone_number: data.phone_number || "",
-          avatar_url: `${API_URL}${data.avatar_url}` || "",
+          avatar_url: data.avatar_url ? `${API_URL}${data.avatar_url}` : "",
         });
       } catch (err) {
         setError("Failed to load data");
