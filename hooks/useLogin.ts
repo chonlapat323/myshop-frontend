@@ -15,15 +15,14 @@ export function useLogin() {
       await login(email, password);
       const user = await fetchStatusAndGetUser();
       setUser(user);
+      window.location.href = "/";
+      setLoading(false);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("Login failed");
       }
-    } finally {
-      window.location.href = "/";
-      setLoading(false);
     }
   }
 
