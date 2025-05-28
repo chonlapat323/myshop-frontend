@@ -1,4 +1,4 @@
-import { API_URL } from "@/lib/config";
+import { API_URL } from "./config";
 import { HttpError } from "./HttpError";
 
 export async function fetchWithAuth<T>(
@@ -9,10 +9,12 @@ export async function fetchWithAuth<T>(
     ...init,
     credentials: "include",
   });
-
   // 🔐 Handle token refresh
-  if (response.status === 401) {
-    const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
+  if (
+    response.status === 401 &&
+    !input.toString().includes("/auth/member/refresh")
+  ) {
+    const refreshRes = await fetch(`${API_URL}/auth/member/refresh`, {
       method: "POST",
       credentials: "include",
     });
@@ -23,8 +25,8 @@ export async function fetchWithAuth<T>(
         credentials: "include",
       });
     } else {
-      window.location.href = "/login";
-      throw new HttpError("Unauthorized, redirected to signin", 401);
+      //window.location.href = "/login";
+      throw new HttpError("Unauthorized, redirected to login", 401);
     }
   }
 
