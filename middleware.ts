@@ -14,8 +14,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.next(); // ✅ ไม่ redirect
     }
     console.warn("❌ No token and no refresh token. Redirecting to signin.");
-    return NextResponse.next();
-    //return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   try {
@@ -30,8 +29,7 @@ export async function middleware(req: NextRequest) {
     }
 
     console.warn("❌ Invalid token and no refresh token.");
-    return NextResponse.next();
-    //return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 }
 
