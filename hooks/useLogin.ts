@@ -23,6 +23,7 @@ export function useLogin() {
       } else {
         setError("Login failed");
       }
+      setLoading(false);
     }
   }
 
