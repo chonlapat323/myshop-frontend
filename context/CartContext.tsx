@@ -1,14 +1,14 @@
 "use client";
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import { API_URL } from "@/lib/config";
 import { getCartCount } from "@/services/cart/cart.service";
 import { CartContextTypeProp } from "@/types/context/create-context";
-import { API_URL } from "@/lib/config";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 const CartContext = createContext<CartContextTypeProp | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {

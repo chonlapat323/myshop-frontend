@@ -1,9 +1,10 @@
 "use client";
+import ProductImageGallery from "@/app/(main)/components/products/ProductImageGallery";
+import { useAuth } from "@/context/AuthContext";
+import { useAddToCart } from "@/hooks/cart/useAddToCartFromProduct";
+import { ProductDetailProps } from "@/types/product/product-detail-page";
 import { useRef, useState } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { ProductDetailProps } from "@/types/product/product-detail-page";
-import { useAddToCart } from "@/hooks/cart/useAddToCartFromProduct";
-import ProductImageGallery from "@/app/(main)/components/products/ProductImageGallery";
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -13,6 +14,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [quantity, setQuantity] = useState(1);
   const { add } = useAddToCart(product.id);
+  const { user } = useAuth(); // เช็คสถานะการ login
+  
   const handleAddToCart = async () => {
     add(quantity, imageRef.current ?? undefined);
   };
@@ -35,29 +38,43 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           <p className="text-lg font-medium">${product.price}</p>
           <p className="text-gray-700">{product.description}</p>
 
-          <div>
-            <label
-              htmlFor="quantity"
-              className="block mb-1 text-sm font-medium text-gray-700"
-            >
-              Quantity
-            </label>
-            <input
-              type="number"
-              id="quantity"
-              min="1"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              className="border rounded w-20 p-2"
-            />
-          </div>
+          {/* แสดง form Quantity และปุ่ม ADD TO CART เฉพาะเมื่อ login แล้ว */}
+          {user && (
+            <>
+              <div>
+                <label
+                  htmlFor="quantity"
+                  className="block mb-1 text-sm font-medium text-gray-700"
+                >
+                  Quantity
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  className="border rounded w-20 p-2"
+                />
+              </div>
 
-          <button
-            onClick={handleAddToCart}
-            className="cursor-pointer bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
-          >
-            ADD TO CART
-          </button>
+              <button
+                onClick={handleAddToCart}
+                className="cursor-pointer bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors"
+              >
+                ADD TO CART
+              </button>
+            </>
+          )}
+
+          {/* แสดงข้อความเมื่อไม่ได้ login */}
+          {!user && (
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-gray-600 text-sm">
+                กรุณา <a href="/login" className="text-blue-600 hover:underline">เข้าสู่ระบบ</a> เพื่อเพิ่มสินค้าลงตะกร้า
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

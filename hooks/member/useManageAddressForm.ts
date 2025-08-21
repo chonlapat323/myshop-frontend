@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
-import { useCreateAddress } from "../api/address/useCreateAddress";
-import { Address } from "@/types/member/address";
 import { getAddresses } from "@/services/member/address.service";
+import { Address } from "@/types/member/address";
+import { useCallback, useEffect, useState } from "react";
+import { useCreateAddress } from "../api/address/useCreateAddress";
 import { useUpdateAddress } from "../api/address/useUpdateAddress";
 export function useManageAddressForm() {
   const { create, loading } = useCreateAddress();
@@ -102,7 +102,6 @@ export function useManageAddressForm() {
 
   const handleUpdateEdit = useCallback(async () => {
     if (!validate() || !editingAddressId) return;
-    debugger;
     const updated = await update(editingAddressId, newAddress);
     if (updated) {
       setAddresses((prev) =>
